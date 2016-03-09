@@ -7,7 +7,7 @@ import highlightsnew
 def index():
     return render_template('index.html')
 
-@app.route('/submit')
+@app.route('/submit', methods=['POST'])
 def submit():
     
     doiList = request.form["pasteddois"]
@@ -15,6 +15,7 @@ def submit():
         myDOIs = [line.strip() for line in infile]
     # run python process
     result = processDOI(myDOIs)
+
 
 
 
