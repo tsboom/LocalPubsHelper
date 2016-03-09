@@ -1,8 +1,7 @@
  <html>
     <head>
         <title>Handle POST requests with Flask</title>
-        <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-    </head>
+            </head>
     <body>
         <div id="container">
             <div class="title">
@@ -17,7 +16,7 @@
                 <code><pre>
 @app.route('/submit', methods=['POST'])
 def hello():
-    myDOIs=request.form['pasteddois']
+    doiList=request.form['pasteddois']
     return render_template('results.html', myDOIs=myDOIs)
                 </pre></code>
             </div>

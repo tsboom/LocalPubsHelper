@@ -9,17 +9,16 @@ def index():
 
 @app.route('/submit')
 def submit():
-    print "hello world!"
     
-    # doiList = request.form["pasteddois"]
-    # with doiLIST as infile:
-    #     myDOIs = [line.strip() for line in infile]
-    # # run python process
-    # result = processDOI(myDOIs)
+    doiList = request.form["pasteddois"]
+    with doiLIST as infile:
+        myDOIs = [line.strip() for line in infile]
+    # run python process
+    result = processDOI(myDOIs)
 
 
 
-    # return render_template('results.html')
+    return render_template('results.html')
 
 if __name__ == '__main__':
     app.run()
