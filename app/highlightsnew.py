@@ -31,56 +31,106 @@ def processDOI(myDOIs):
 
     #dictionary to match stripped dois with their corresponding coden (for URL formation)
     coden_match = { 
-            'acsaccounts': 'achre4',
-            'acsjafc': 'jafcau',
-            'acsanalchem': 'ancham',
-            'acsami': 'aamick',
-            'acsbiochem': 'bichaw',
-            'acsbioconjchem': 'bcches',
-            'acsbiomac': 'bomaf6',
-            'acscatal': 'accacs',
-            'acscentsci': 'acscii',
-            'acschembio': 'acbcct',
-            'acsjchemed': 'jceda8',
-            'acsjced': 'jceaax',
-            'acsjcim': 'jcisd8',
-            'acschemneuro': 'acncdm',
-            'acschemrestox': 'crtoec',
-            'acschemrev': 'chreay',
-            'acsjctc': 'jctcce',
-            'acschemmater': 'cmatex',
-            'acscombsci': 'acsccc',
-            'acscgd': 'cgdefu',
-            'acsenergyfuels': 'enfuem',
-            'acsest': 'esthag',
-            'acsestlett': 'estlcu',
-            'acsacsiecr': 'iecred',
-            'acsinfecdis': 'aidcbc',
-            'acsinorgchem': 'inocaj',
-            'jacs': 'jacsat',
-            'acslangmuir': 'langd5',
-            'acsmacrolett': 'amlccd',
-            'acsmacromol': 'mamobx',
-            'acsjmedchem': 'jmcmar',
-            'acsmedchemlett': 'amclct',
-            'acsmolpharmaceut': 'mpohbp',
-            'acsnano': 'ancac3',
-            'acsnanolett': 'nalefd',
-            'acsjnatprod': 'jnprdf',
-            'acsjoc': 'joceah',
-            'acsorglett': 'orlef7',
-            'acsoprd': 'oprdfk',
-            'acsorganomet': 'orgnd7',
-            'acsomega': 'acsodf',
-            'acsphotonics': 'apchd5',
-            'acsjpca': 'jpcafh',
-            'acsjpcb': 'jpcbfk',
-            'acsjpcc': 'jpccck',
-            'acsjpclett': 'jpclcd',
-            'acsjproteome': 'jprobs',
-            'acssensors': 'ascefj',
-            'acssuschemeng': 'ascecg',
-            'acssynbio': 'asbcd6'
+        'ar': 'achre4',
+        'jf': 'jafcau',
+        'ac': 'ancham',
+        'am': 'aamick',
+        'bi': 'bichaw',
+        'bc': 'bcches',
+        'bm': 'bomaf6',
+        'ab': 'abseba',
+        'cs': 'accacs',
+        'oc': 'acscii',
+        'cb': 'acbcct',
+        'ed': 'jceda8',
+        'je': 'jceaax',
+        'ci': 'jcisd8',
+        'cn': 'acncdm',
+        'tx': 'crtoec',
+        'cr': 'chreay',
+        'ct': 'jctcce',
+        'cm': 'cmatex',
+        'co': 'acsccc',
+        'cg': 'cgdefu',
+        'ef': 'enfuem',
+        'es': 'esthag',
+        'ez': 'esthag',
+        'ie': 'iecred',
+        'id': 'aidcbc',
+        'ic': 'inocaj',
+        'ja': 'jacsat',
+        'la': 'langd5',
+        'mz': 'amlccd',
+        'ma': 'mamobx',
+        'jm': 'jmcmar',
+        'ml': 'amclct',
+        'mp': 'mpohbp',
+        'nn': 'ancac3',
+        'nl': 'nalefd',
+        'np': 'jnprdf',
+        'jo': 'joceah',
+        'ol': 'orlef7',
+        'op': 'oprdfk',
+        'om': 'orgnd7',
+        'ph': 'apchd5',
+        'jp': 'jpcafh',
+        'jpb': 'jpcbfk',
+        'jpc': 'jpccck',
+        'jz': 'jpclcd',
+        'pr': 'jprobs',
+        'se': 'ascefj',
+        'sc': 'ascecg',
+        'sb': 'asbcd6',
+        'acsaccounts': 'achre4',
+        'acsjafc': 'jafcau',
+        'acsanalchem': 'ancham',
+        'acsami': 'aamick',
+        'acsbiochem': 'bichaw',
+        'acsbioconjchem': 'bcches',
+        'acsbiomac': 'bomaf6',
+        'acscatal': 'accacs',
+        'acscentsci': 'acscii',
+        'acschembio': 'acbcct',
+        'acsjchemed': 'jceda8',
+        'acsjced': 'jceaax',
+        'acsjcim': 'jcisd8',
+        'acschemneuro': 'acncdm',
+        'acschemrestox': 'crtoec',
+        'acschemrev': 'chreay',
+        'acsjctc': 'jctcce',
+        'acschemmater': 'cmatex',
+        'acscombsci': 'acsccc',
+        'acscgd': 'cgdefu',
+        'acsenergyfuels': 'enfuem',
+        'acsest': 'esthag',
+        'acsestlett': 'estlcu',
+        'acsacsiecr': 'iecred',
+        'acsinfecdis': 'aidcbc',
+        'acsinorgchem': 'inocaj',
+        'jacs': 'jacsat',
+        'acslangmuir': 'langd5',
+        'acsmacrolett': 'amlccd',
+        'acsmacromol': 'mamobx',
+        'acsjmedchem': 'jmcmar',
+        'acsmedchemlett': 'amclct',
+        'acsmolpharmaceut': 'mpohbp',
+        'acsnano': 'ancac3',
+        'acsnanolett': 'nalefd',
+        'acsjnatprod': 'jnprdf',
+        'acsjoc': 'joceah',
+        'acsorglett': 'orlef7',
+        'acsoprd': 'oprdfk',
+        'acsorganomet': 'orgnd7',
+        'acsomega': 'acsodf',
+        'acsphotonics': 'apchd5',
+        'acsjpca': 'jpcafh',
+        'acsjpcb': 'jpcbfk',
+        'acsjpcc': 'jpccck',
+        'acsjpclett': 'jpclcd',
+        'acsjproteome': 'jprobs',
+        'acssensors': 'ascefj',
+        'acssuschemeng': 'ascecg',
+        'acssynbio': 'asbcd6'
     }
 
 
@@ -101,21 +151,24 @@ def processDOI(myDOIs):
         d = d[:-7]
         journal_name.append(d)
 
+    # convert list of shortened journal names into new list of corresponding codens
+    converted_journal = []
+    for n in journal_name:
+        coden = coden_match[n]
+        converted_journal.append(coden)
 
-    curr_journal = journal_name[0]
-
-    coden = coden_match[curr_journal]
 
     #form img prefix according to checked coden
+    img_urls = []
+    for coden, journal in zip(converted_journal, clean_journal):
+        img_prefix = "/pb-assets/images/" + str(coden) + "/highlights/" + str(datecode) + "/" + str(journal) + ".jpeg"
+        img_urls.append(img_prefix)
 
-    img_prefix = "/pb-assets/images/" + str(coden) + "/highlights/" + datecode + "/"   
 
-    for y in clean_journal:
-        result = str(img_prefix) + str(y) + ".jpeg"
-        img_urls.append(result)
 
     AUTHOR_XPATH = "//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | //*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a/sup"
 
+    
     '''
     Loop through the DOIS to find information from each article page. add that info to lists. 
 
@@ -195,11 +248,19 @@ def processDOI(myDOIs):
     driver.close()
     driver.quit()
 
-    # return img_urls
-    # return article_link
-    # return article_titles
-    # return authors_list;
 
+    '''
+    download mp3s from list of image href
+
+    '''
+
+    #download image into that directory
+    urlfilenamepair = zip(href_list, clean_journal)
+    for href, y in urlfilenamepair:
+            filename =  y + ".jpeg"
+            urllib.urlretrieve(href, filename)
+
+    
     #combine results lists into one list
 
     resultLists.append(img_urls)
@@ -209,16 +270,8 @@ def processDOI(myDOIs):
 
     return resultLists;
 
-    # '''
-    # download mp3s from list of image href
 
-    # '''
 
-    # #download image into that directory
-    # urlfilenamepair = zip(href_list, clean_journal)
-    # for href, y in urlfilenamepair:
-    #         filename =  y + ".jpeg"
-    #         urllib.urlretrieve(href, filename)
    
 
 
