@@ -28,7 +28,7 @@ def highlights():
         myDOIs = [line.strip() for line in infile]
     # run python process
     result = processDOI(myDOIs)
-    pdb.set_trace()
+    
     return render_template('results.html', result=result, imgurls_articlelink_articletitles_authorslist = zip(imgurls, articlelink, articletitles, authorslist))
 
 if __name__ == '__main__':
