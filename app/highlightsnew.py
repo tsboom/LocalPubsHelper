@@ -135,7 +135,7 @@ def processDOI(myDOIs):
 
 
     # create list of urls with stripped dois, and list of stripped dois 
-    img_urls = []
+    imgurls = []
     clean_journal = []
 
     for y in myDOIs:
@@ -159,10 +159,10 @@ def processDOI(myDOIs):
 
 
     #form img prefix according to checked coden
-    img_urls = []
+    imgurls = []
     for coden, journal in zip(converted_journal, clean_journal):
         img_prefix = "/pb-assets/images/" + str(coden) + "/highlights/" + str(datecode) + "/" + str(journal) + ".jpeg"
-        img_urls.append(img_prefix)
+        imgurls.append(img_prefix)
 
 
 
@@ -178,10 +178,10 @@ def processDOI(myDOIs):
 
     #instantiate the lists that the process will populate
         
-    article_titles = []
+    articletitles = []
     href_list = [] 
-    article_link = []
-    authors_list = []
+    articlelink = []
+    authorslist = []
 
 
     driver = webdriver.PhantomJS()
@@ -198,10 +198,10 @@ def processDOI(myDOIs):
 
 
         # add title to list of titles (with special characters)
-        article_titles.append(title.get_attribute('innerHTML').encode('utf-8'))
+        articletitles.append(title.get_attribute('innerHTML').encode('utf-8'))
         
         # create article URLS for PB, add to list
-        article_link.append("/doi/abs/" + str(i) + "\n")
+        articlelink.append("/doi/abs/" + str(i) + "\n")
 
         # get authors
         authors = driver.find_elements_by_xpath(AUTHOR_XPATH)
@@ -224,7 +224,7 @@ def processDOI(myDOIs):
         else: 
             authorsjoined = (''.join(authors_scrape))
         
-        authors_list.append(authorsjoined)
+        authorslist.append(authorsjoined)
 
 
         
@@ -260,15 +260,19 @@ def processDOI(myDOIs):
             filename =  y + ".jpeg"
             urllib.urlretrieve(href, filename)
 
-    
+
     #combine results lists into one list
 
-    resultLists.append(img_urls)
-    resultLists.append(article_link)
-    resultLists.append(article_titles)
-    resultLists.append(authors_list)
+    # resultLists.append(imgurls)
+    # resultLists.append(articlelink)
+    # resultLists.append(articletitles)
+    # resultLists.append(authorslist)
 
-    return resultLists;
+    # result = zip(imgurls, articlelink, articletitles, authorslist)
+    # return result
+
+
+    return (imgurls, articlelink, articletitles, authorslist)
 
 
 

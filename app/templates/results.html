@@ -1,16 +1,17 @@
 <html>
 
 <head>
-    <title>Handle POST requests with Flask</title>
+    <title>Results</title>
 </head>
 
 <body>
     <div id="container">
         <div class="title">
-            <h1>POST request with Flask</h1>
+            <h1>Results/h1>
         </div>
         <div id="content">
-            Hello <strong>{{user}}</strong>
+            {% for a,b,c,d in imgurls_articlelink_articletitles_authorslist %}
+              {{a}}<br>{{b}}<br>{{c}}<br>{{d}}
         </div>
         <div class="title">
             <h1>Flask code</h1>
