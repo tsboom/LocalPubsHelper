@@ -30,6 +30,7 @@ def highlights():
     result = processDOI(myDOIs)
     
     return render_template('results.html', result=result, imgurls_articlelink_articletitles_authorslist = zip(imgurls, articlelink, articletitles, authorslist))
+    # return render_template('results.html')
 
 if __name__ == '__main__':
     app.run()

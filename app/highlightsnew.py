@@ -151,6 +151,7 @@ def processDOI(myDOIs):
         d = d[:-7]
         journal_name.append(d)
 
+    
     # convert list of shortened journal names into new list of corresponding codens
     converted_journal = []
     for n in journal_name:
@@ -237,8 +238,7 @@ def processDOI(myDOIs):
         # add toc_href to list of URLS to download later and rename according to the DOI
         href_list.append(toc_href)
         
-        #feedback to user
-        print i + " article information saved. "
+     
 
         # open a new tab and repeat
         driver.implicitly_wait(8) # seconds
@@ -247,7 +247,7 @@ def processDOI(myDOIs):
 
     driver.close()
     driver.quit()
-
+    
 
     '''
     download mp3s from list of image href
