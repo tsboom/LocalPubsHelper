@@ -272,7 +272,9 @@ def processDOI(myDOIs):
     # return result
 
 
-    return (imgurls, articlelink, articletitles, authorslist)
+    #return (imgurls, articlelink, articletitles, authorslist)
+    return imgurls
+    
 
 
 

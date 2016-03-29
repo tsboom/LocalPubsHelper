@@ -3,6 +3,7 @@ import pdb
 #import pdb #use pdb.set_trace() to break
 
 import highlightsnew
+# import virtualissue
 
 @app.route('/')
 @app.route('/index')
@@ -23,14 +24,27 @@ def index():
 
 @app.route('/submit-form', methods=['POST'])
 def highlights():
-    doiList = request.form["dois"]
+    pdb.set_trace()
+    doiLIST = request.form['text']
+    
+    
     with doiLIST as infile:
         myDOIs = [line.strip() for line in infile]
     # run python process
+
+
     result = processDOI(myDOIs)
     
-    return render_template('results.html', result=result, imgurls_articlelink_articletitles_authorslist = zip(imgurls, articlelink, articletitles, authorslist))
-    # return render_template('results.html')
+    return render_template('test.html', result=result, imgurls=imgurls)
+#     # return render_template('results.html')
+# def virtualissueautomate():
+#     doiList = request.form["dois"]
+#     lines = [1 for 1 in doiList.split("\n") if 1]
+
+#     for DOI in lines:
+#         viScrapingForDOI(DOI)
+
+
 
 if __name__ == '__main__':
     app.run()
