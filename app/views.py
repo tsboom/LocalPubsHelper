@@ -1,8 +1,19 @@
+
+# -*- coding: utf-8 -*-
 from app import app, render_template, request, json
+import csv
 import pdb
+import string
+from table_fu import TableFu
+
+import sys
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 #import pdb #use pdb.set_trace() to break
 
-import highlightsnew
+from highlightsnew import processDOI
+from virtualissue import viScrapingForDOI
 # import virtualissue
 
 @app.route('/')
@@ -10,41 +21,48 @@ import highlightsnew
 def index():
     return render_template('index.html')
     
-# @app.route('/signUp')
-# def submit():
-#     return render_template('signUp.html')
+@app.route('/virtualissue')
+def virtualissue():
+    return render_template('virtualissue.html')
+
     
-# @app.route('/signUpUser', methods=['POST'])
-# def signUpUser():
-#     user =  request.form['username'];
-#     password = request.form['password'];
-#     return json.dumps({'status':'OK','user':user,'pass':password}); 
-#     return render_template('results.html')
+@app.route('/virtualissueprocess', methods=['POST'])
+def virtualissueautomate():
+    global viDOIs
+    viDOIs = str(request.form["text"]).split('\r\n')
+    
+    for DOI in viDOIs:
+        viScrapingForDOI(DOI)
+    pdb.set_trace() 
+
+    return render_template('virtualissueresults.html', results = results)
+
 
 
 @app.route('/submit-form', methods=['POST'])
 def highlights():
-    pdb.set_trace()
-    doiLIST = request.form['text']
+    #get text from textarea, split it up DOIS into a list
+    doiLIST = str(request.form['text'])
+
+    global myDOIs
+    myDOIs = doiLIST.split('\r\n')
     
-    
-    with doiLIST as infile:
-        myDOIs = [line.strip() for line in infile]
     # run python process
-
-
-    result = processDOI(myDOIs)
+    results = processDOI(myDOIs)
     
-    return render_template('test.html', result=result, imgurls=imgurls)
-#     # return render_template('results.html')
-# def virtualissueautomate():
-#     doiList = request.form["dois"]
-#     lines = [1 for 1 in doiList.split("\n") if 1]
+    return render_template('results.html', results=results, resultsarray = results)
 
-#     for DOI in lines:
-#         viScrapingForDOI(DOI)
+@app.route('/csv')
+def langmuir():
+    return render_template('csvindex.html')
 
 
+@app.route('/csvprocess', methods =['POST'])
+def langmuirresult():
+    global table
+    # data = request.form['text']
+    table = TableFu.from_file('app/data.csv')
+    return render_template('vi-template.html', table=table)
 
 if __name__ == '__main__':
     app.run()

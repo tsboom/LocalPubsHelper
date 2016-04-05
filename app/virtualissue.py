@@ -7,7 +7,8 @@ from selenium.webdriver.common.by import By
 import pdb
 import urllib
 from pprint import pprint
-
+#debugging
+#import pdb #use ar to break
 
 
 #get current YYYYMMDD
@@ -120,10 +121,6 @@ coden_match = {
     'acssynbio': 'asbcd6'
 }
 
-
-
-
-
 AUTHOR_XPATH = "//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | //*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a/sup"
 
 '''
@@ -131,9 +128,18 @@ Loop through the DOIS to find information from each article page. add that info 
 
 '''
 
-DOI = "10.1021/acscatal.5b01667"
+
+#format results
+results = {
+    "articles":[
+        
+    ]
+}
 
 def viScrapingForDOI(DOI):
+
+    global results
+    global articleinfo
 
     cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
     journalprefix = cleanDOI[:-7]
@@ -208,54 +214,14 @@ def viScrapingForDOI(DOI):
         # "issue-info": ,
         # "citation-year": ,
     }
-
-
     driver.close()
     driver.quit()
-      
-    return articleinfo;
 
-
-#get dois from txt file
-
-with open('doi_list.txt', 'r') as infile:
-          myDOIs = [line.strip() for line in infile]
-
-
-#format results
-results = {
-    "articles":[
-        
-
-    ]
-}
-
-
-for DOI in myDOIs:
-    #call function
     results.update(articleinfo)
-
-print results
-
-
-
-
-
-    # #print dois (minus periods), image url (using clean doi), title html, and TOC image link in nice way. 
-
-    # for (a, b, c, d) in zip(img_urls, article_link, article_titles, authors_list):
-    #     print a + "\n", b + "\n", c + "\n", d + "\n" + "\n----\n"
+    
+    return results;
 
     
 
-    # '''
-    # download mp3s from list of image href
 
-    # '''
-
-    # #download image into that directory
-    # urlfilenamepair = zip(href_list, clean_journal)
-    # for href, y in urlfilenamepair:
-    #         filename =  y + ".jpeg"
-    #         urllib.urlretrieve(href, filename)
 

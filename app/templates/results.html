@@ -1,23 +1,20 @@
-<html>
+{% extends "layout.html" %}
 
-<head>
+
+{% block head %}
     <title>Results</title>
-</head>
+{% endblock %}
 
-<body>
+{% block content %}
     <div id="container">
         <div class="title">
             <h1>Results</h1>
         </div>
         <div id="content">
-            {% for a,b,c,d in imgurls_articlelink_articletitles_authorslist %}
-              {{a}}<br>{{b}}<br>{{c}}<br>{{d}}
+            {% for a,b,c,d,e in resultsarray %}
+              <p>{{ a }} <br><a href="https://pubsdc3.acs.org{{a}}">Go to Article</a><br>{{ b }}<br>{{ c }}<br>{{ d }}<br><a href="{{ e }}">Save TOC Image</a><br></p>
             {% endfor %}
         </div>
-        <div class="title">
-            <h1>Flask code</h1>
-        </div>
-    </div>
-</body>
 
-</html>
+    </div>
+{% endblock %}

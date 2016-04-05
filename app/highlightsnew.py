@@ -10,12 +10,20 @@ import pdb
 import urllib
 import errno
 
+
+
+
 #debugging
 #import pdb #use pdb.set_trace() to break
 
 
 def processDOI(myDOIs):
 
+    global imgurls
+    global articlelink
+    global articletitles
+    global authorslist
+    global results
 
     '''
 
@@ -28,6 +36,9 @@ def processDOI(myDOIs):
     import datetime
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
+    
+
+
 
     #dictionary to match stripped dois with their corresponding coden (for URL formation)
     coden_match = { 
@@ -135,7 +146,6 @@ def processDOI(myDOIs):
 
 
     # create list of urls with stripped dois, and list of stripped dois 
-    imgurls = []
     clean_journal = []
 
     for y in myDOIs:
@@ -159,11 +169,7 @@ def processDOI(myDOIs):
         converted_journal.append(coden)
 
 
-    #form img prefix according to checked coden
-    imgurls = []
-    for coden, journal in zip(converted_journal, clean_journal):
-        img_prefix = "/pb-assets/images/" + str(coden) + "/highlights/" + str(datecode) + "/" + str(journal) + ".jpeg"
-        imgurls.append(img_prefix)
+    
 
 
 
@@ -199,7 +205,7 @@ def processDOI(myDOIs):
 
 
         # add title to list of titles (with special characters)
-        articletitles.append(title.get_attribute('innerHTML').encode('utf-8'))
+        articletitles.append(title.get_attribute('innerHTML'))
         
         # create article URLS for PB, add to list
         articlelink.append("/doi/abs/" + str(i) + "\n")
@@ -210,7 +216,7 @@ def processDOI(myDOIs):
         #join the text in the array of the correctly encoded authors
         authors_scrape = []
         for author in authors:
-            authors_scrape.append(author.text.encode('utf-8'))
+            authors_scrape.append(author.text)
             
         if len(authors_scrape) > 2:
             if authors_scrape[1] == 'and':
@@ -226,6 +232,7 @@ def processDOI(myDOIs):
             authorsjoined = (''.join(authors_scrape))
         
         authorslist.append(authorsjoined)
+
 
 
         
@@ -248,6 +255,18 @@ def processDOI(myDOIs):
     driver.close()
     driver.quit()
     
+    #form img prefix according to checked coden
+    cleanhref = []
+    for href in href_list:
+        href = href.split("/large/", 1)[1]
+        cleanhref.append(href)
+    
+
+    imgurls = []
+    for coden, href in zip(converted_journal, cleanhref):
+        img_prefix = "/pb-assets/images/" + str(coden) + "/highlights/" + str(datecode) + "/" + str(href)
+        imgurls.append(img_prefix)
+
 
     '''
     download mp3s from list of image href
@@ -255,26 +274,24 @@ def processDOI(myDOIs):
     '''
 
     #download image into that directory
-    urlfilenamepair = zip(href_list, clean_journal)
-    for href, y in urlfilenamepair:
-            filename =  y + ".jpeg"
-            urllib.urlretrieve(href, filename)
+    # urlfilenamepair = zip(href_list, clean_journal)
+    # for href, y in urlfilenamepair:
+    #         filename =  y + ".jpeg"
+    #         urllib.urlretrieve(href, filename)
 
 
     #combine results lists into one list
 
-    # resultLists.append(imgurls)
-    # resultLists.append(articlelink)
-    # resultLists.append(articletitles)
-    # resultLists.append(authorslist)
-
-    # result = zip(imgurls, articlelink, articletitles, authorslist)
-    # return result
-
-
-    #return (imgurls, articlelink, articletitles, authorslist)
-    return imgurls
     
+    results = zip(articlelink, imgurls, articletitles, authorslist, href_list)
+    
+    return results
+
+
+
+
+   
+
 
 
 
