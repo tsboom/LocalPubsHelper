@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="col-lg-5" padding-left:50px >
+<form action="/podcastprocess" method="POST" role="form" class="form-horizontal">
+    <div class="form-group">
+        <label name="csv"> Process CSV file here</label><br />
+        <p>Use a CSV called podcast.csv....</p>
+            <p>Save the CSV in Excel as a Windows-Formatted CSV. <br>
+            Open the CSV in Sublime Text and Save with Encoding UTF-8</p>
+        <!-- <textarea class="form-control" rows="10" cols="10" name="text"></textarea> -->
+        <p>
+            <button type="submit" value="langsubmit" name="submit" class="btn btn-default">Submit</button>
+        </p>
+    </div>
+</form>
+</div>
+
+<a href="/">Home</a>
+{% endblock %}
