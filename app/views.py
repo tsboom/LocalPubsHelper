@@ -1,6 +1,6 @@
 
 # -*- coding: utf-8 -*-
-from app import app, render_template, request, json
+from app import app, render_template, request, jsonify
 import csv
 import pdb
 import string
@@ -13,32 +13,39 @@ sys.setdefaultencoding('utf-8')
 #import pdb #use pdb.set_trace() to break
 
 from highlightsnew import processDOI
-from virtualissue import viScrapingForDOI
+from virtualissue import createVI
 # import virtualissue
 
+
+#index page starts with box to paste DOIs for highlights
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+# virtual issue index and virtual issue process results    
     
-@app.route('/virtualissue')
+@app.route('/doivirtualissue')
 def virtualissue():
     return render_template('virtualissue.html')
 
     
-@app.route('/virtualissueprocess', methods=['POST'])
+@app.route('/doivirtualissueprocess', methods=['POST'])
 def virtualissueautomate():
-    global viDOIs
-    viDOIs = str(request.form["text"]).split('\r\n')
     
-    for DOI in viDOIs:
-        viScrapingForDOI(DOI)
-    pdb.set_trace() 
+    myDOIs = str(request.form["text"]).split('\r\n')
+    
+ 
+     # run python process
+    createVI(myDOIs)
 
-    return render_template('virtualissueresults.html', results = results)
+    global table
+    # data = request.form['text']
+    table = TableFu.from_file('vi-csv.csv')
+    return render_template('vi-template.html', table=table)
 
 
-
+#results of highlights helper
 @app.route('/submit-form', methods=['POST'])
 def highlights():
     #get text from textarea, split it up DOIS into a list
@@ -52,17 +59,48 @@ def highlights():
     
     return render_template('results.html', results=results, resultsarray = results)
 
+#index for processing a csv into a virtual issue
 @app.route('/csv')
-def langmuir():
+def csvvi():
     return render_template('csvindex.html')
 
 
 @app.route('/csvprocess', methods =['POST'])
-def langmuirresult():
+def csvviresult():
     global table
     # data = request.form['text']
-    table = TableFu.from_file('app/data.csv')
-    return render_template('vi-template.html', table=table)
+    # table = TableFu.from_file('app/vi-csv.csv')
+    table = TableFu.from_file('app/heck.csv')
+    # return render_template('vi-template.html', table=table)
+    return render_template('heck-template.html', table=table)
+
+#podcast index and process results
+@app.route('/podcast')
+def podcast():
+    return render_template('podcastindex.html')
+
+@app.route('/podcastprocess', methods=['POST'])
+def podcastresult():
+    global table
+    table = TableFu.from_file('app/jacsbeta-podcast.csv')
+    return render_template('podcastresults.html', table=table)
+
+# @app.route('/interactive/')
+# def interactive():
+#     return render_template('interactive.html')
+
+
+# @app.route('/background_process')
+# def background_process():
+#     try:
+#         lang = request.args.get('proglang', 0, type=str)
+#         if lang.lower() == 'python':
+#             return jsonify(result='You are wise')
+#         else:
+#             return jsonify(result='Try again.')
+#     except Exception as e:
+#         return str(e)
+
 
 if __name__ == '__main__':
     app.run()

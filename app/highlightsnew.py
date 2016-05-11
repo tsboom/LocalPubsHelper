@@ -149,6 +149,7 @@ def processDOI(myDOIs):
     clean_journal = []
 
     for y in myDOIs:
+        y = y.strip()
         y = y.replace("10.1021/","").replace(".","")
         clean_journal.append(y)
 
@@ -173,8 +174,9 @@ def processDOI(myDOIs):
 
 
 
-    AUTHOR_XPATH = "//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | //*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a/sup"
-
+    AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " + 
+    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
+        
     
     '''
     Loop through the DOIS to find information from each article page. add that info to lists. 
@@ -255,17 +257,29 @@ def processDOI(myDOIs):
     driver.close()
     driver.quit()
     
+    # #form img prefix according to checked coden [for image hosted on PB]
+    # cleanhref = []
+    # for href in href_list:
+    #     href = href.split("/large/", 1)[1]
+    #     cleanhref.append(href)
+
+    # imgurls = []
+    # for coden, href in zip(converted_journal, cleanhref):
+    #     img_prefix = "/pb-assets/images/" + str(coden) + "/highlights/" + str(datecode) + "/" + str(href)
+    #     imgurls.append(img_prefix)
+
     #form img prefix according to checked coden
-    cleanhref = []
-    for href in href_list:
-        href = href.split("/large/", 1)[1]
-        cleanhref.append(href)
+    imgurls = []
+    img_filenames = []
+    for coden, journal in zip(converted_journal, clean_journal):
+        img_prefix = ("/pb-assets/images/" + str(coden) + "/highlights/" + str(datecode) + 
+        "/" + str(journal) + ".jpeg")
+        img_filename = str(journal + ".jpeg")
+        img_filenames.append(img_filename)
+        imgurls.append(img_prefix)
     
 
-    imgurls = []
-    for coden, href in zip(converted_journal, cleanhref):
-        img_prefix = "/pb-assets/images/" + str(coden) + "/highlights/" + str(datecode) + "/" + str(href)
-        imgurls.append(img_prefix)
+    
 
 
     '''
@@ -273,17 +287,16 @@ def processDOI(myDOIs):
 
     '''
 
-    #download image into that directory
-    # urlfilenamepair = zip(href_list, clean_journal)
-    # for href, y in urlfilenamepair:
-    #         filename =  y + ".jpeg"
-    #         urllib.urlretrieve(href, filename)
+    urlfilenamepair = zip(href_list, clean_journal)
+    for href, y in urlfilenamepair:
+            filename =  y + ".jpeg"
+            urllib.urlretrieve(href, filename)
 
 
     #combine results lists into one list
 
     
-    results = zip(articlelink, imgurls, articletitles, authorslist, href_list)
+    results = zip(articlelink, imgurls, articletitles, authorslist, href_list, img_filenames)
     
     return results
 
