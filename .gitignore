@@ -1,14 +1,30 @@
-
-.DS_Store
-*.pyc
-*.pyo
-env
-env*
-dist
-build
+*.py[co]
+*.DS_*
+# Packages
 *.egg
 *.egg-info
-_mailinglist
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
+
+# Installer logs
+pip-log.txt
+ghostdriver.log
+
+# Unit test / coverage reports
+.coverage
 .tox
-.cache/
-.idea/
+
+#Translations
+*.mo
+
+#Mr Developer
+venv
+*.pyc
+build
