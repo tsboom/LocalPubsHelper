@@ -193,7 +193,7 @@ def processDOI(myDOIs):
     authorslist = []
 
 
-    driver = webdriver.PhantomJS()
+    driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
     driver.set_window_size(1120,550)
 
     for i in myDOIs:

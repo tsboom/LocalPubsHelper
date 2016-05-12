@@ -162,7 +162,8 @@ def createVI(myDOIs):
         article_link = ("/doi/abs/" + str(DOI))
 
         #open selenium window
-        driver = webdriver.PhantomJS()
+        driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
+        # driver = webdriver.PhantomJS()
         driver.set_window_size(1120,550)
         
 
