@@ -15,7 +15,7 @@
         {% for a,b,c,d,e,f in resultsarray %}
         <div class="row">
               <div class="col-xs-2">{{ loop.index }}   <a href="{{e}}">
-                <img src="/{{ f }}" style="width:150px;border: 1px solid #cccccc; padding: 10px 5px 10px 10px;"></a></div>
+                <img src="{{ e }}" style="width:150px;border: 1px solid #cccccc; padding: 10px 5px 10px 10px;"></a></div>
               <div class="col-sm-2"><a href="https://pubsdc3.acs.org{{a}}">Link to Article</a></div>
               <div class="col-sm-8"><p>{{ b }}<br>{{ a }} <br>{{ c }}<br>{{ d }}<br></p></div>
                 
