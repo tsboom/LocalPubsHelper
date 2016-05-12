@@ -191,9 +191,10 @@ def processDOI(myDOIs):
     href_list = [] 
     articlelink = []
     authorslist = []
+    
+    #driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/app/ghostdriver.log', executable_path="/usr/local/bin/phantomjs")
+    driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
 
-
-    driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/app/ghostdriver.log', executable_path="/usr/local/bin/phantomjs")
     driver.set_window_size(1120,550)
 
     for i in myDOIs:
