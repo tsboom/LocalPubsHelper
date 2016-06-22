@@ -147,9 +147,11 @@ def processDOI(myDOIs):
 
     # create list of urls with stripped dois, and list of stripped dois 
     clean_journal = []
+    clean_doi_list = []
 
     for y in myDOIs:
         y = y.strip()
+        clean_doi_list.append(y)
         y = y.replace("10.1021/","").replace(".","")
         clean_journal.append(y)
 
@@ -192,8 +194,8 @@ def processDOI(myDOIs):
     articlelink = []
     authorslist = []
     
-    driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
-    # driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
+    # driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
+    driver = webdriver.PhantomJS()
 
     driver.set_window_size(1120,550)
 
@@ -290,14 +292,14 @@ def processDOI(myDOIs):
 
     urlfilenamepair = zip(href_list, clean_journal)
     for href, y in urlfilenamepair:
-            filename =  y + ".jpeg"
+            filename =  "/app/static/img/" + y + ".jpeg"
             urllib.urlretrieve(href, filename)
 
 
     #combine results lists into one list
 
     
-    results = zip(articlelink, imgurls, articletitles, authorslist, href_list, img_filenames)
+    results = zip(articlelink, imgurls, articletitles, authorslist, href_list, img_filenames, clean_doi_list)
     
     return results
 

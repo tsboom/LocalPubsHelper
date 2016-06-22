@@ -13,7 +13,8 @@ sys.setdefaultencoding('utf-8')
 #import pdb #use pdb.set_trace() to break
 
 from highlightsnew import processDOI
-from virtualissue import createVI
+# from virtualissue import createVI
+from virtualissueASAP import createVI
 # import virtualissue
 
 
@@ -70,9 +71,9 @@ def csvviresult():
     global table
     # data = request.form['text']
     # table = TableFu.from_file('app/vi-csv.csv')
-    table = TableFu.from_file('app/heck.csv')
+    table = TableFu.from_file('app/nanoreactors.csv')
     # return render_template('vi-template.html', table=table)
-    return render_template('heck-template.html', table=table)
+    return render_template('vi-template-synopses.html', table=table)
 
 #podcast index and process results
 @app.route('/podcast')
@@ -82,8 +83,8 @@ def podcast():
 @app.route('/podcastprocess', methods=['POST'])
 def podcastresult():
     global table
-    table = TableFu.from_file('app/jacsbeta-podcast.csv')
-    return render_template('podcastresults.html', table=table)
+    table = TableFu.from_file('app/anchamtemp.csv')
+    return render_template('podcastresultsancham.html', table=table)
 
 # @app.route('/interactive/')
 # def interactive():

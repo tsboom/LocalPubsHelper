@@ -9,21 +9,23 @@
 <div class="audioBoxWrap">
 
   <h3 class="date">{{ row['month-year'] }}</h3>
-  <h2 class="title">{{ row['title'] }}</h2>
+  <h2 class="title">Interview with {{ row['author-sentence'] }}</h2>
   <div class="duration">{{ row['duration'] }}</div>
   <p class="description">{{ row['description'] }}</p>
+  {% if row['doi1']|safe %}
   <p class="article">Read article by <a href="http://pubs.acs.org/doi/abs/{{ row['doi1'] }}">{{ row['author-name1'] }}</a></p>
+  {% endif %}
   {% if row['doi2']|safe %}
   <p class="article">Read article by <a href="http://pubs.acs.org/doi/abs/{{ row['doi2'] }}">{{ row['author-name2'] }}</a></p>
   {% endif %}
   {% if row['doi3']|safe %}
   <p class="article">Read article by <a href="http://pubs.acs.org/doi/abs/{{ row['doi3'] }}">{{ row['author-name3'] }}</a></p>
   {% endif %}
-  <div class="audioplayer" data-file="{{ row['media_url'] }}" data-date="{{ row['data-date'] }}">
+  <div class="audioplayer" data-file="{{ row['media-url'] }}" data-date="{{ row['data-date'] }}">
     <div class="loadAudioPlayer">Load Audio</div>
     <div class="message">Loading audio...</div>
-    <a class="play"></a>
-    <a class="pause"></a>
+    <div class="play"></div>
+    <div class="pause"></div>
     <div class="slider"></div>
     <div class="runTime">
       <div class="currentTime"></div><div class="totalDuration"></div>
