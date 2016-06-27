@@ -12,15 +12,20 @@
             <h5>Save images, resize and upload them, and paste highlights information into PageBuilder.</h5>
         </div>
         <br />
-        {% for a,b,c,d,e,f, g in resultsarray %}
+        {% for a,b,c,d, e, f in resultsarray %}
         <div class="row">
-              <div class="col-xs-2">{{ loop.index }}   <a href="{{e}}">
-                <img src="{{ e }}" style="width:150px;border: 1px solid #cccccc; padding: 10px 5px 10px 10px;"></a></div>
-              <div class="col-sm-2"><a href="https://pubsdc3.acs.org/doi/full/{{ g }}#showFigures" target="_blank">Link to Figures</a></div>
+              <div class="col-xs-2">{{ loop.index }}   <a href="{{ url_for('static', filename = e ) }}">
+                <!-- <img src="{{ url_for('static', filename = 'img/'+ e ) }}"  -->
+                <img src="{{ url_for('static', filename = e ) }}"
+                style="width:150px;border: 1px solid #cccccc; padding: 10px 5px 10px 10px;"></a></div>
+              <div class="col-sm-2"><a href="https://pubsdc3.acs.org/doi/full/{{ f }}#showFigures" target="_blank">Link to Figures</a></div>
               <div class="col-sm-8"><p>{{ b }}<br>{{ a }} <br>{{ c }}<br>{{ d }}<br></p></div>
                 
             
         </div>
         {% endfor %}
+        <div class="body">
+            <a href="">Download ZIP file of all images</a>
+        </div>
     </div>
 {% endblock %}

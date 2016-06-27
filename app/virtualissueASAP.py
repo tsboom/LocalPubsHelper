@@ -134,8 +134,8 @@ def createVI(myDOIs):
 
 
     AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " + 
-    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1']")
-
+    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
+    
     '''
     Loop through the DOIS to find information from each article page. add that info to lists. 
 
@@ -192,19 +192,13 @@ def createVI(myDOIs):
         for author in authors:
             authors_scrape.append(author.text.encode('utf-8'))
         
-        #make sure spacing around authors names is correct     
-        if len(authors_scrape) > 2:
-            if authors_scrape[1] == 'and':
-                authors_scrape[1] = ' and '
-                authorsjoined = (''.join(authors_scrape))
-            elif authors_scrape[2] == 'and':
-                authors_scrape[2] = ' and '
-                authorsjoined = (''.join(authors_scrape))
-            else: 
-                authorsjoined = (''.join(authors_scrape))
-                authorsjoined = authorsjoined.replace(',', ', ').replace(' and', 'and ')
+        #deal with 2 and more authors formatting
+        if ',' not in authors_scrape:
+            authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
         else: 
-            authorsjoined = (''.join(authors_scrape))
+            authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
+        
+        authorsjoined = (''.join(authors_scrape))
 
         # #Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
@@ -293,8 +287,6 @@ def createVI(myDOIs):
             "toc_href": str(toc_href),
             "Image": img_url,
             # "full-citation": fullcitation
-
-
             "Journal": journal,
             "Volume": volume,
             "Issue-info": issue_info,
@@ -338,6 +330,6 @@ def createVI(myDOIs):
     urlfilenamepair = zip(href_list, clean_journal)
 
     for href, y in urlfilenamepair:
-            filename =  "/app/static/img/" + y + ".jpeg"
+            filename = y + ".jpeg"
             urllib.urlretrieve(href, filename)
 

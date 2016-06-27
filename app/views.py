@@ -71,9 +71,9 @@ def csvviresult():
     global table
     # data = request.form['text']
     # table = TableFu.from_file('app/vi-csv.csv')
-    table = TableFu.from_file('app/nanoreactors.csv')
+    table = TableFu.from_file('app/vi-csv.csv')
     # return render_template('vi-template.html', table=table)
-    return render_template('vi-template-synopses.html', table=table)
+    return render_template('vi-template.html', table=table)
 
 #podcast index and process results
 @app.route('/podcast')
@@ -83,8 +83,8 @@ def podcast():
 @app.route('/podcastprocess', methods=['POST'])
 def podcastresult():
     global table
-    table = TableFu.from_file('app/anchamtemp.csv')
-    return render_template('podcastresultsancham.html', table=table)
+    table = TableFu.from_file('app/chembio.csv')
+    return render_template('podcastresultsnano.html', table=table)
 
 # @app.route('/interactive/')
 # def interactive():

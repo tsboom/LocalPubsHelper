@@ -9,6 +9,7 @@ from selenium.webdriver.common.by import By
 import pdb
 import urllib
 import errno
+import os, sys
 
 
 
@@ -155,6 +156,9 @@ def processDOI(myDOIs):
         y = y.replace("10.1021/","").replace(".","")
         clean_journal.append(y)
 
+    
+
+
     #Cross-check stripped doi with journal coden dictionary, and use the coden.
         #remove journal IDs from clean_journal to keep just the cleaned journal name
 
@@ -172,7 +176,12 @@ def processDOI(myDOIs):
         converted_journal.append(coden)
 
 
-    
+    #create abcd.jpeg for each article
+    jpeg_path = []
+    for coden, y in zip(converted_journal, clean_journal):
+        y = y + ".jpeg"
+        path = 'img/' + coden + '/' + datecode + "/" + y
+        jpeg_path.append(path)
 
 
 
@@ -222,20 +231,16 @@ def processDOI(myDOIs):
         authors_scrape = []
         for author in authors:
             authors_scrape.append(author.text)
-            
-        if len(authors_scrape) > 2:
-            if authors_scrape[1] == 'and':
-                authors_scrape[1] = ' and '
-                authorsjoined = (''.join(authors_scrape))
-            elif authors_scrape[2] == 'and':
-                authors_scrape[2] = ' and '
-                authorsjoined = (''.join(authors_scrape))
-            else: 
-                authorsjoined = (''.join(authors_scrape))
-                authorsjoined = authorsjoined.replace(',', ', ').replace(' and', 'and ')
+           
+
+        #deal with 2 and more authors formatting
+        if ',' not in authors_scrape:
+            authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
         else: 
-            authorsjoined = (''.join(authors_scrape))
+            authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
         
+        authorsjoined = (''.join(authors_scrape))
+
         authorslist.append(authorsjoined)
 
 
@@ -260,16 +265,7 @@ def processDOI(myDOIs):
     driver.close()
     driver.quit()
     
-    # #form img prefix according to checked coden [for image hosted on PB]
-    # cleanhref = []
-    # for href in href_list:
-    #     href = href.split("/large/", 1)[1]
-    #     cleanhref.append(href)
 
-    # imgurls = []
-    # for coden, href in zip(converted_journal, cleanhref):
-    #     img_prefix = "/pb-assets/images/" + str(coden) + "/highlights/" + str(datecode) + "/" + str(href)
-    #     imgurls.append(img_prefix)
 
     #form img prefix according to checked coden
     imgurls = []
@@ -289,18 +285,29 @@ def processDOI(myDOIs):
     download mp3s from list of image href
 
     '''
-
+    #create folder for journal coden and date stamp
+    try:
+        os.makedirs("app/static/img/"+ coden + '/' + str(datecode)+ "/")
+    except OSError as exc:
+        if exc.errno != errno.EEXIST:
+            raise exc
+        pass
+    
     urlfilenamepair = zip(href_list, clean_journal)
+    filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
+    
+    
     for href, y in urlfilenamepair:
-            filename =  "/app/static/img/" + y + ".jpeg"
+            filename =  filedirectory + y + ".jpeg"
             urllib.urlretrieve(href, filename)
+            
+
 
 
     #combine results lists into one list
 
     
-    results = zip(articlelink, imgurls, articletitles, authorslist, href_list, img_filenames, clean_doi_list)
-    
+    results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path, clean_doi_list)   
     return results
 
 
