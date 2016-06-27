@@ -10,6 +10,7 @@ import pdb
 import urllib
 import errno
 import os, sys
+import shutil
 
 
 
@@ -292,21 +293,27 @@ def processDOI(myDOIs):
         if exc.errno != errno.EEXIST:
             raise exc
         pass
-    
+
     urlfilenamepair = zip(href_list, clean_journal)
     filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
-    
-    
+
+
     for href, y in urlfilenamepair:
             filename =  filedirectory + y + ".jpeg"
             urllib.urlretrieve(href, filename)
             
 
+    '''
+    ZIP images using shutil
+    
+    '''
+    # output_filename = filedirectory + 'images'
 
+    # shutil.make_archive(output_filename, 'zip', filedirectory)
 
     #combine results lists into one list
 
-    
+        
     results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path, clean_doi_list)   
     return results
 
