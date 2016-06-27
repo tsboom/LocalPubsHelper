@@ -3,6 +3,9 @@
 # Packages
 *.egg
 *.egg-info
+*.jpeg
+*.jpg
+*.gif
 dist
 build
 eggs
