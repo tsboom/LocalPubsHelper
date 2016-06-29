@@ -12,7 +12,7 @@ sys.setdefaultencoding('utf-8')
 
 #import pdb #use pdb.set_trace() to break
 
-from highlightsnew import processDOI
+from highlightsnewtest import processDOI
 # from virtualissue import createVI
 from virtualissueASAP import createVI
 # import virtualissue
@@ -58,7 +58,7 @@ def highlights():
     # run python process
     results = processDOI(myDOIs)
     
-    return render_template('results.html', results=results, resultsarray = results)
+    return render_template('results.html', results=results)
 
 #index for processing a csv into a virtual issue
 @app.route('/csv')

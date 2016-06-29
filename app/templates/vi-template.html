@@ -15,4 +15,16 @@
 </textarea>
 
 
+{% for row in table.rows %}
+<div class="sideBox leftSide w125 padBox">
+    <a href="/doi/abs/{{ row['DOI'] }}"><img src="{{ row['toc_href']}}" style="width:150px;border: 1px solid #cccccc; padding: 10px 5px 10px 10px;" /></a>
+</div>
+<p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
+    <br /> {{ row['Authors']}}
+    <br />
+    <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}} <br><strong>DOI: </strong> {{ row['DOI'] }}</p>
+<br class="clearBoth" />
+{% endfor %}
+
+
 {% endblock %}

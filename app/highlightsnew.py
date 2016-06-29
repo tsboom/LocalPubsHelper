@@ -11,6 +11,7 @@ import urllib
 import errno
 import os, sys
 import shutil
+import zipfile
 
 
 
@@ -26,6 +27,8 @@ def processDOI(myDOIs):
     global articletitles
     global authorslist
     global results
+    global coden
+    global datecode
 
     '''
 
@@ -307,15 +310,19 @@ def processDOI(myDOIs):
     ZIP images using shutil
     
     '''
-    # output_filename = filedirectory + 'images'
+    output_filename = 'test'
 
-    # shutil.make_archive(output_filename, 'zip', filedirectory)
+    shutil.make_archive(datecode, 'zip', filedirectory)
+    shutil.copy(datecode + '.zip', filedirectory)
+
+
 
     #combine results lists into one list
 
         
-    results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path, clean_doi_list)   
-    return results
+    results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path)   
+    return results, coden, datecode
+    
 
 
 

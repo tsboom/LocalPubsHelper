@@ -280,17 +280,17 @@ def createVI(myDOIs):
         
         
         articleinfo = {
-            "DOI": DOI,
-            "Title": html_title,
-            "article-link": article_link,
-            "Authors": str(authorsjoined),
-            "toc_href": str(toc_href),
-            "Image": img_url,
+            'DOI': DOI,
+            'Title': html_title,
+            'article-link': article_link,
+            'Authors': str(authorsjoined),
+            'toc_href': str(toc_href),
+            'Image': img_url,
             # "full-citation": fullcitation
-            "Journal": journal,
-            "Volume": volume,
-            "Issue-info": issue_info,
-            "Year": year,
+            'Journal': journal,
+            'Volume': volume,
+            'Issue-info': issue_info,
+            'Year': year,
         }
 
 
@@ -301,7 +301,7 @@ def createVI(myDOIs):
         print "\n"
 
 
-        results.append(articleinfo)
+        results['articles'].append(articleinfo)
 
     # print results
 
