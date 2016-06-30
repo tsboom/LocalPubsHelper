@@ -9,6 +9,10 @@ import pdb
 import urllib
 from pprint import pprint
 import csv
+import os, sys
+import shutil
+import zipfile
+import errno
 
 
 #debugging
@@ -17,7 +21,8 @@ import csv
 
 def createVI(myDOIs):
 
-
+    global results
+    
     #get current YYYYMMDD
     import datetime
     date = datetime.date.today()
@@ -291,6 +296,8 @@ def createVI(myDOIs):
             'Volume': volume,
             'Issue-info': issue_info,
             'Year': year,
+            "Datecode": datecode,
+            "Clean_doi": cleanDOI
         }
 
 
@@ -301,10 +308,12 @@ def createVI(myDOIs):
         print "\n"
 
 
-        results['articles'].append(articleinfo)
+        results.append(articleinfo)
 
     # print results
+    print results
 
+    #write python dict to a csv file
     keys = results[0].keys()
 
     with open('vi-csv.csv', 'wb') as f:
@@ -314,22 +323,54 @@ def createVI(myDOIs):
 
 
 
+    '''
+    check to see if there is an existing folder for coden and date, if not, create the folder
 
+    '''
+    #create folder for journal coden and date stamp
+    try:
+        os.makedirs("app/static/img/"+ coden + '/' + str(datecode)+ "/")
+    except OSError as exc:
+        if exc.errno != errno.EEXIST:
+            raise exc
+        pass
+
+    
         
 
     '''
-    download mp3s from list of image href
+    download images from list of image href
 
     '''
 
-    #download image into that directory
-    href_list = []
-    for i in results:
-        href_list.append(i['toc_href'])
+    # #download image into that directory
+    # href_list = []
+    # for i in results:
+    #     href_list.append(i['toc_href'])
 
-    urlfilenamepair = zip(href_list, clean_journal)
+    # urlfilenamepair = zip(href_list, clean_journal)
 
-    for href, y in urlfilenamepair:
-            filename = y + ".jpeg"
-            urllib.urlretrieve(href, filename)
+    # for href, y in urlfilenamepair:
+    #         filename = y + ".jpeg"
+    #         urllib.urlretrieve(href, filename)
+
+
+
+    for articleinfo in results:
+        filename = "app/static/img/virtualissue/" + coden + '/' + str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
+        href = articleinfo["toc_href"]
+        
+
+        urllib.urlretrieve(href, filename)
+
+
+    '''
+    ZIP images using shutil
+    
+    '''
+    output_filename = 'test'
+    filedirectory = "app/static/img/virtualissue/" + coden + '/' + str(datecode) + "/"
+
+    shutil.make_archive(datecode, 'zip', filedirectory)
+    shutil.copy(datecode + '.zip', filedirectory)
 

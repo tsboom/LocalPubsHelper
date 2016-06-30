@@ -27,7 +27,7 @@
         </div>
     </div>
     {% endfor %}
-    {{ results[0]['Datecode'] }}
+    <br />
     <div class="body">
         <a href="{{ url_for('static', filename = 'img/' + results[0]['Coden'] +'/' + results[0]['Datecode'] + '.zip') }}">
             <button type="button" class="btn btn-secondary btn-sm">Download ZIP file of all images</button>

@@ -276,7 +276,7 @@ def processDOI(myDOIs):
         pass
 
     '''
-    download mp3s from list of image href
+    download images from list of image href
 
     '''
 

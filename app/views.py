@@ -43,7 +43,7 @@ def virtualissueautomate():
     global table
     # data = request.form['text']
     table = TableFu.from_file('vi-csv.csv')
-    return render_template('vi-template.html', table=table)
+    return render_template('vi-template.html', table=table, results=results)
 
 
 #results of highlights helper
