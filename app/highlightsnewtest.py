@@ -174,17 +174,17 @@ def processDOI(myDOIs):
         journalprefix = cleanDOI[:-7]
 
         coden = coden_match[journalprefix]
-        results.append(coden)
+        
         
        
         #create image URL for PB using coden and today's date. 
-        img_url = ("/pb-assets/images/selects/" + str(coden) + "/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
+        img_url = ("/pb-assets/images/" + str(coden) + "/" + "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
 
         #create article URL
         article_link = ("/doi/abs/" + str(DOI))
 
         #create img path for Flask, so that the images can be displayed on Flask. 
-        img_path = "app/static/img/" + coden + '/' + str(datecode) + "/" + str(cleanDOI) + ".jpeg"
+        img_path = "img/" + coden + '/' + str(datecode) + "/" + str(cleanDOI) + ".jpeg"
 
 
         #Open Phantom JS
@@ -242,7 +242,9 @@ def processDOI(myDOIs):
             "Image": img_url,
             "Flask-image-path": img_path,
             "Coden": coden,
-            "Datecode": datecode
+            "Datecode": datecode,
+            "Clean_doi": cleanDOI
+
         }
 
 
@@ -261,29 +263,29 @@ def processDOI(myDOIs):
     
 
 
-    # '''
-    # check to see if there is an existing folder for coden and date, if not, create the folder
+    '''
+    check to see if there is an existing folder for coden and date, if not, create the folder
 
-    # '''
-    # #create folder for journal coden and date stamp
-    # try:
-    #     os.makedirs("app/static/img/"+ coden + '/' + str(datecode)+ "/")
-    # except OSError as exc:
-    #     if exc.errno != errno.EEXIST:
-    #         raise exc
-    #     pass
+    '''
+    #create folder for journal coden and date stamp
+    try:
+        os.makedirs("app/static/img/"+ coden + '/' + str(datecode)+ "/")
+    except OSError as exc:
+        if exc.errno != errno.EEXIST:
+            raise exc
+        pass
 
-    # '''
-    # download mp3s from list of image href
+    '''
+    download mp3s from list of image href
 
-    # '''
+    '''
 
-    # #download image into that directory
-    # href_list = []
-    # for i in results:
-    #     href_list.append(i['toc_href'])
 
-    # urlfilenamepair = zip(href_list, clean_journal)
+    for articleinfo in results:
+        filename = "app/static/img/" + coden + '/' + str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
+        href = articleinfo["toc_href"]
+        urllib.urlretrieve(href, filename)
+
 
     # for href, y in urlfilenamepair:
     #         filename = y + ".jpeg"
@@ -292,15 +294,15 @@ def processDOI(myDOIs):
 
             
 
-    # '''
-    # ZIP images using shutil
+    '''
+    ZIP images using shutil
     
-    # '''
-    # output_filename = 'test'
-    # filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
+    '''
+    output_filename = 'test'
+    filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
 
-    # shutil.make_archive(datecode, 'zip', filedirectory)
-    # shutil.copy(datecode + '.zip', filedirectory)
+    shutil.make_archive(datecode, 'zip', filedirectory)
+    shutil.copy(datecode + '.zip', filedirectory)
 
 
 
