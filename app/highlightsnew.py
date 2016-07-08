@@ -234,14 +234,18 @@ def processDOI(myDOIs):
         #join the text in the array of the correctly encoded authors
         authors_scrape = []
         for author in authors:
-            authors_scrape.append(author.text)
+            authors_scrape.append(author.text.encode('utf-8'))
            
+        authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
+        authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
+        authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
+
 
         #deal with 2 and more authors formatting
-        if ',' not in authors_scrape:
-            authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
-        else: 
-            authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
+        # if ',' not in authors_scrape:
+        #     authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
+        # else: 
+        #     authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
         
         authorsjoined = (''.join(authors_scrape))
 

@@ -299,15 +299,15 @@ def processDOI(myDOIs):
     
     '''
     output_filename = 'test'
-    filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
-
+    # filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
+    filedirectory = "app/static/img/" + coden + '/' 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
 
 
 
     return results   
-    # results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path, coden)   
+      
     
     
 

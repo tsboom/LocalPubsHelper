@@ -13,6 +13,7 @@ import os, sys
 import shutil
 import zipfile
 import errno
+import re
 
 
 #debugging
@@ -22,7 +23,7 @@ import errno
 def createVI(myDOIs):
 
     global results
-    
+
     #get current YYYYMMDD
     import datetime
     date = datetime.date.today()
@@ -153,7 +154,6 @@ def createVI(myDOIs):
 
         DOI = DOI.strip()
 
-
         #collect journal prefixes
         
         cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
@@ -196,14 +196,20 @@ def createVI(myDOIs):
         authors_scrape = []
         for author in authors:
             authors_scrape.append(author.text.encode('utf-8'))
-        
+   
+        authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
+        authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
+        authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
+
+
         #deal with 2 and more authors formatting
-        if ',' not in authors_scrape:
-            authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
-        else: 
-            authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
+        # if ',' not in authors_scrape:
+        #     authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
+        # else: 
+        #     authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
         
         authorsjoined = (''.join(authors_scrape))
+        
 
         # #Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
@@ -297,9 +303,10 @@ def createVI(myDOIs):
             'Issue-info': issue_info,
             'Year': year,
             "Datecode": datecode,
-            "Clean_doi": cleanDOI
+            "Clean_doi": cleanDOI,
+            'Coden': coden
         }
-
+        
 
         driver.close()
         driver.quit()
@@ -316,7 +323,7 @@ def createVI(myDOIs):
     #write python dict to a csv file
     keys = results[0].keys()
 
-    with open('vi-csv.csv', 'wb') as f:
+    with open('app/vi-csv.csv', 'wb') as f:
         dict_writer = csv.DictWriter(f, keys)
         dict_writer.writeheader()
         dict_writer.writerows(results)
@@ -329,35 +336,23 @@ def createVI(myDOIs):
     '''
     #create folder for journal coden and date stamp
     try:
-        os.makedirs("app/static/img/"+ coden + '/' + str(datecode)+ "/")
+        os.makedirs("app/static/img/virtualissue/"+ str(datecode)+ "/")
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise exc
         pass
 
     
-        
+ 
 
     '''
     download images from list of image href
 
     '''
 
-    # #download image into that directory
-    # href_list = []
-    # for i in results:
-    #     href_list.append(i['toc_href'])
-
-    # urlfilenamepair = zip(href_list, clean_journal)
-
-    # for href, y in urlfilenamepair:
-    #         filename = y + ".jpeg"
-    #         urllib.urlretrieve(href, filename)
-
-
 
     for articleinfo in results:
-        filename = "app/static/img/virtualissue/" + coden + '/' + str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
+        filename = "app/static/img/virtualissue/" + str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
         href = articleinfo["toc_href"]
         
 
@@ -369,8 +364,13 @@ def createVI(myDOIs):
     
     '''
     output_filename = 'test'
-    filedirectory = "app/static/img/virtualissue/" + coden + '/' + str(datecode) + "/"
+    filedirectory = "app/static/img/virtualissue/" + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
+
+ 
+    
+    return results
+
 

@@ -1,15 +1,9 @@
-jQuery(document).ready(function($){
-    
+$(document).ready(function($){
+
     //show spinner by removing bootstrap css class
     $('.load').click(function(e) {
-        $('.spinner').removeClass('hidden');
-
-        // while(true){
-        //     $.get('/log', function(response){
-        //         $('.logbox').text(response.data.logText);
-        //     });
-        //     setTimeout(3000);
-        // }
+        $('#circleG').removeClass('hidden');
+        $('#note').removeClass('hidden');
 
     });
 

@@ -1,10 +1,12 @@
 
 # -*- coding: utf-8 -*-
-from app import app, render_template, request, jsonify
+from app import app, render_template, request, jsonify, redirect, url_for
 import csv
 import pdb
 import string
 from table_fu import TableFu
+import os
+from werkzeug.utils import secure_filename
 
 import sys
 reload(sys)
@@ -16,6 +18,44 @@ from highlightsnewtest import processDOI
 # from virtualissue import createVI
 from virtualissueASAP import createVI
 # import virtualissue
+
+
+
+#code that checks if extention is valid, and then uploads the file and redirects the user to the URL for the uploaded file
+ALLOWED_EXTENSIONS = set(['csv'])
+
+def allowed_file(filename):
+
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
+
+@app.route('/uploader', methods=['GET', 'POST'])
+def upload_file():
+    if request.method == 'POST':
+        # check if the post request has the file part
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        file = request.files['file']
+        # if user does not select file, browser also
+        # submit a empty part without filename
+        if file.filename == '':
+            flash('No selected file')
+            return redirect(request.url)
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            return redirect(url_for('uploaded_file',
+                                    filename=filename))
+    return '''
+    <!doctype html>
+    <title>Upload new File</title>
+    <h1>Upload new File</h1>
+    <form action="" method=post enctype=multipart/form-data>
+      <p><input type=file name=file>
+         <input type=submit value=Upload>
+    </form>
+    '''
 
 
 #index page starts with box to paste DOIs for highlights
@@ -34,16 +74,16 @@ def virtualissue():
 @app.route('/doivirtualissueprocess', methods=['POST'])
 def virtualissueautomate():
     
-    myDOIs = str(request.form["text"]).split('\r\n')
-    
+    myDOIs = str(request.form["text"])
+    myDOIs = [doi for doi in myDOIs.split('\r\n') if doi]
  
      # run python process
-    createVI(myDOIs)
+    results = createVI(myDOIs)
 
     global table
     # data = request.form['text']
-    table = TableFu.from_file('vi-csv.csv')
-    return render_template('vi-template.html', table=table, results=results)
+    table = TableFu.from_file('app/vi-csv.csv')
+    return render_template('vi-template.html', results=results, table=table)
 
 
 #results of highlights helper
@@ -53,7 +93,8 @@ def highlights():
     doiLIST = str(request.form['text'])
 
     global myDOIs
-    myDOIs = doiLIST.split('\r\n')
+    myDOIs = str(request.form["text"])
+    myDOIs = [doi for doi in myDOIs.split('\r\n') if doi]
     
     # run python process
     results = processDOI(myDOIs)
@@ -83,8 +124,8 @@ def podcast():
 @app.route('/podcastprocess', methods=['POST'])
 def podcastresult():
     global table
-    table = TableFu.from_file('app/chembio.csv')
-    return render_template('podcastresultsnano.html', table=table)
+    table = TableFu.from_file('app/ancham-may.csv')
+    return render_template('podcastresultsancham.html', table=table)
 
 # @app.route('/interactive/')
 # def interactive():
