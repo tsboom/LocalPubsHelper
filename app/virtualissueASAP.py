@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
+from constants import AUTHOR_XPATH, CODEN_MATCH
 import pdb
 import urllib
 from pprint import pprint
@@ -30,117 +31,14 @@ def createVI(myDOIs):
     datecode = datetime.datetime.now().strftime("%Y%m%d")
 
 
-    #dictionary to match stripped dois with their corresponding coden (for URL formation)
-    coden_match = {
-        'ar': 'achre4',
-        'jf': 'jafcau',
-        'ac': 'ancham',
-        'am': 'aamick',
-        'bi': 'bichaw',
-        'bc': 'bcches',
-        'bm': 'bomaf6',
-        'ab': 'abseba',
-        'cs': 'accacs',
-        'oc': 'acscii',
-        'cb': 'acbcct',
-        'ed': 'jceda8',
-        'je': 'jceaax',
-        'ci': 'jcisd8',
-        'cn': 'acncdm',
-        'tx': 'crtoec',
-        'cr': 'chreay',
-        'ct': 'jctcce',
-        'cm': 'cmatex',
-        'co': 'acsccc',
-        'cg': 'cgdefu',
-        'ef': 'enfuem',
-        'es': 'esthag',
-        'ez': 'esthag',
-        'ie': 'iecred',
-        'id': 'aidcbc',
-        'ic': 'inocaj',
-        'ja': 'jacsat',
-        'la': 'langd5',
-        'mz': 'amlccd',
-        'ma': 'mamobx',
-        'jm': 'jmcmar',
-        'ml': 'amclct',
-        'mp': 'mpohbp',
-        'nn': 'ancac3',
-        'nl': 'nalefd',
-        'np': 'jnprdf',
-        'jo': 'joceah',
-        'ol': 'orlef7',
-        'op': 'oprdfk',
-        'om': 'orgnd7',
-        'ph': 'apchd5',
-        'jp': 'jpcafh',
-        'jpb': 'jpcbfk',
-        'jpc': 'jpccck',
-        'jz': 'jpclcd',
-        'pr': 'jprobs',
-        'se': 'ascefj',
-        'sc': 'ascecg',
-        'sb': 'asbcd6',
-        'acsaccounts': 'achre4',
-        'acsjafc': 'jafcau',
-        'acsanalchem': 'ancham',
-        'acsami': 'aamick',
-        'acsbiochem': 'bichaw',
-        'acsbioconjchem': 'bcches',
-        'acsbiomac': 'bomaf6',
-        'acscatal': 'accacs',
-        'acscentsci': 'acscii',
-        'acschembio': 'acbcct',
-        'acsjchemed': 'jceda8',
-        'acsjced': 'jceaax',
-        'acsjcim': 'jcisd8',
-        'acschemneuro': 'acncdm',
-        'acschemrestox': 'crtoec',
-        'acschemrev': 'chreay',
-        'acsjctc': 'jctcce',
-        'acschemmater': 'cmatex',
-        'acscombsci': 'acsccc',
-        'acscgd': 'cgdefu',
-        'acsenergyfuels': 'enfuem',
-        'acsest': 'esthag',
-        'acsestlett': 'estlcu',
-        'acsiecr': 'iecred',
-        'acsinfecdis': 'aidcbc',
-        'acsinorgchem': 'inocaj',
-        'jacs': 'jacsat',
-        'acslangmuir': 'langd5',
-        'acsmacrolett': 'amlccd',
-        'acsmacromol': 'mamobx',
-        'acsjmedchem': 'jmcmar',
-        'acsmedchemlett': 'amclct',
-        'acsmolpharmaceut': 'mpohbp',
-        'acsnano': 'ancac3',
-        'acsnanolett': 'nalefd',
-        'acsjnatprod': 'jnprdf',
-        'acsjoc': 'joceah',
-        'acsorglett': 'orlef7',
-        'acsoprd': 'oprdfk',
-        'acsorganomet': 'orgnd7',
-        'acsomega': 'acsodf',
-        'acsphotonics': 'apchd5',
-        'acsjpca': 'jpcafh',
-        'acsjpcb': 'jpcbfk',
-        'acsjpcc': 'jpccck',
-        'acsjpclett': 'jpclcd',
-        'acsjproteome': 'jprobs',
-        'acssensors': 'ascefj',
-        'acssuschemeng': 'ascecg',
-        'acssynbio': 'asbcd6'
-    }
+    
 
 
     #format results
     results = []
 
 
-    AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " + 
-    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
+    
     
     '''
     Loop through the DOIS to find information from each article page. add that info to lists. 
@@ -160,7 +58,7 @@ def createVI(myDOIs):
         journalprefix = cleanDOI[:-7]
         clean_journal.append(cleanDOI)
 
-        coden = coden_match[journalprefix]
+        coden = CODEN_MATCH[journalprefix]
 
         #create image URL for PB using coden and today's date. 
         img_url = ("/pb-assets/images/selects/" + str(coden) + "/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")

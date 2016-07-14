@@ -7,6 +7,7 @@
 *.jpg
 *.gif
 *.csv
+*.zip
 dist
 build
 eggs

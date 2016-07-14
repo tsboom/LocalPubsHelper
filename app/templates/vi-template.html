@@ -22,7 +22,7 @@
     <p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
         <br /> {{ row['Authors']}}
         <br />
-        {% if row['Year'] %}
+        {% if not row['Year'] %}
             <cite>{{ row['Journal'] }}</cite>, Article ASAP
         {% else %}
             <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}
