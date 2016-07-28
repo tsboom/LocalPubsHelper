@@ -1,8 +1,5 @@
-from flask import Flask, render_template, request, json
-from flask_bootstrap import Bootstrap
+from flask import Flask, render_template, request, json, jsonify
 
-app = Flask(__name__)
-
-
+app = Flask(__name__, static_url_path='/static')
 
 from app import views

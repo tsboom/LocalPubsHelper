@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
-
+<div class="title">
+            <h1>Virtual Issue HTML</h1>
+            
+        </div>
 <h2>Articles</h2>
 {% for row in table.rows %}
 <div class="sideBox leftSide w125 padBox">
@@ -9,7 +12,7 @@
 <p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
     <br /> {{ row['Authors']}}
     <br />
-    <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> ({{ row['Issue'] }}), pp {{ row['Pages'] }} <strong>DOI:</strong> {{ row['DOI'] }}</p>
+    <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> ({{ row['Issue'] }}), pp {{ row['Pages'] }} <br><strong>DOI:</strong> {{ row['DOI'] }}</p>
 <br class="clearBoth" />
 {% endfor %}
 </textarea>

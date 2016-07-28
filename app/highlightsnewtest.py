@@ -1,4 +1,4 @@
-#! python3
+#! python2.7
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
@@ -14,6 +14,7 @@ import sys
 import shutil
 import zipfile
 
+
 # debugging
 # import pdb #use pdb.set_trace() to break
 
@@ -25,24 +26,24 @@ def processDOI(myDOIs):
     global articletitles
     global authorslist
     global results
-    global coden
-    global datecode
 
     '''
 
     dealing with creating custom URLS for each DOI
 
     '''
-#   Steps to prepare....
+    # Steps to prepare....
 
-#   get current YYYYMMDD
+    # create empty array to hold results dicts
+    results = []
+
+    # get current YYYYMMDD
     import datetime
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
 
-
-# dictionary to match stripped dois with their corresponding coden (for URL
-#   formation)
+    # dictionary to match stripped dois with their corresponding coden (for
+    # URL formation)
     coden_match = {
         'ar': 'achre4',
         'jf': 'jafcau',
@@ -117,6 +118,7 @@ def processDOI(myDOIs):
         'acsenergyfuels': 'enfuem',
         'acsest': 'esthag',
         'acsestlett': 'estlcu',
+        'acsenergylett': 'aelccp',
         'acsacsiecr': 'iecred',
         'acsinfecdis': 'aidcbc',
         'acsinorgchem': 'inocaj',
@@ -146,130 +148,114 @@ def processDOI(myDOIs):
         'acssynbio': 'asbcd6'
     }
 
-
-# create list of urls with stripped dois, and list of stripped dois
-    clean_journal = []
-    clean_doi_list = []
-
-    for y in myDOIs:
-        y = y.strip()
-        clean_doi_list.append(y)
-        y = y.replace("10.1021/", "").replace(".", "")
-        clean_journal.append(y)
-
-
-# Cross-check stripped doi with journal coden dictionary, and use the coden.
-# remove journal IDs from clean_journal to keep just the cleaned journal name
-
-    journal_name = []
-
-    for d in clean_journal:
-        d = d[:-7]
-        journal_name.append(d)
-
-
-# convert list of shortened journal names into new list of corresponding codens
-    converted_journal = []
-    for n in journal_name:
-        coden = coden_match[n]
-        converted_journal.append(coden)
-
-
-# create abcd.jpeg for each article
-    jpeg_path = []
-    for coden, y in zip(converted_journal, clean_journal):
-        y = y + ".jpeg"
-        path = 'img/' + coden + '/' + datecode + "/" + y
-        jpeg_path.append(path)
-
-#   todo: change this
     AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
                     "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
 
+    # create list of urls with stripped dois, and list of stripped dois
+    clean_journal = []
+    clean_doi_list = []
+
     '''
-    Loop through the DOIS to find information from each article page.
-    Add that info to lists.
+    Loop through DOIS and find info about each article. add that information to a python dictionary
+
     '''
 
+    for DOI in myDOIs:
 
-#  instantiate the lists that the process will populate
+        DOI = DOI.strip()
 
-    articletitles = []
-    href_list = []
-    articlelink = []
-    authorslist = []
+        # collect journal prefixes
+        cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
+        journalprefix = cleanDOI[:-7]
 
-#  driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
-    driver = webdriver.PhantomJS()
+        coden = coden_match[journalprefix]
 
-    driver.set_window_size(1120, 550)
+        # create image URL for PB using coden and today's date.
+        img_url = ("/pb-assets/images/" + str(coden) + "/" +
+                   "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
 
-#   go to full article page by adding URL prefix to DOI
-    for i in myDOIs:
-        driver.get("http://pubs.acs.org/doi/full/" + i)
+        # create article URL
+        article_link = ("/doi/abs/" + str(DOI))
 
-#       wait ten seconds and get title text
-        title = WebDriverWait(driver, 10).until(
+        # create img path for Flask, so that the images can be displayed on
+        # Flask.
+        img_path = "img/" + coden + '/' + \
+            str(datecode) + "/" + str(cleanDOI) + ".jpeg"
+
+        # Open Phantom JS
+
+        # driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
+        driver = webdriver.PhantomJS()
+        driver.set_window_size(1120, 550)
+
+        # go to full article page by adding URL prefix to DOI
+        driver.get("http://pubs.acs.org/doi/full/" + DOI)
+
+        # wait ten seconds and get title text to add to results object
+        title = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
+        html_title = title.get_attribute('innerHTML').encode('utf-8')
 
-#       add title to list of titles (with special characters)
-        articletitles.append(title.get_attribute('innerHTML'))
-
-#       create article URLS for PB, add to list
-        articlelink.append("/doi/abs/" + str(i) + "\n")
-
-#        get authors
+        # get authors
         authors = driver.find_elements_by_xpath(AUTHOR_XPATH)
 
-#       join the text in the array of the correctly encoded authors
+        # join the text in the array of the correctly encoded authors
         authors_scrape = []
         for author in authors:
             authors_scrape.append(author.text)
 
-
-#       deal with 2 and more authors formatting
+        # deal with 2 and more authors formatting
         if ',' not in authors_scrape:
             authors_scrape = [x.replace('and', ' and ')
                               for x in authors_scrape]
         else:
-            authors_scrape = [x.replace(',', ', ').replace(' and', 'and ')
-                              for x in authors_scrape]
+            authors_scrape = [x.replace(',', ', ').replace(
+                ' and', 'and ') for x in authors_scrape]
 
         authorsjoined = (''.join(authors_scrape))
 
-        authorslist.append(authorsjoined)
+        # click figures link and form url, or set to empty string
+        try:
+            driver.find_element_by_class_name('showFiguresLink').click()
 
-        # click figures link
-        driver.find_element_by_class_name('showFiguresLink').click()
+            # get toc image href
+            img_box = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
+            if img_box is None:
+                raise Exception
+            toc_href = img_box.find_element_by_css_selector(
+                'a').get_attribute('href')
+        except:
+            toc_href = ''
+            print 'no figures found'
 
-        img_box = WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
-        toc_href = img_box.find_element_by_css_selector(
-            'a').get_attribute('href')
+        articleinfo = {
+            "DOI": DOI,
+            "Title": html_title,
+            "article-link": article_link,
+            "Authors": str(authorsjoined),
+            "toc_href": str(toc_href),
+            "Image": img_url,
+            "Flask-image-path": img_path,
+            "Coden": coden,
+            "Datecode": datecode,
+            "Clean_doi": cleanDOI
 
-        # add toc_href to list of URLS to download later and rename according
-        # to the DOI
-        href_list.append(toc_href)
+        }
 
-        # open a new tab and repeat
-        driver.implicitly_wait(8)  # seconds
-        driver.find_element_by_tag_name("body").send_keys(Keys.COMMAND + 't')
+        print "\n"
+        print articleinfo
+        print "\n"
+
+        results.append(articleinfo)
+
+    print results
 
     driver.close()
     driver.quit()
 
-    # form img prefix according to checked coden
-    imgurls = []
-    img_filenames = []
-    for coden, journal in zip(converted_journal, clean_journal):
-        img_prefix = ("/pb-assets/images/" + str(coden) + "/highlights/" +
-                      str(datecode) + "/" + str(journal) + ".jpeg")
-        img_filename = str(journal + ".jpeg")
-        img_filenames.append(img_filename)
-        imgurls.append(img_prefix)
-
     '''
-    download mp3s from list of image href
+    check to see if there is an existing folder for coden and date, if not, create the folder
 
     '''
     # create folder for journal coden and date stamp
@@ -280,23 +266,30 @@ def processDOI(myDOIs):
             raise exc
         pass
 
-    urlfilenamepair = zip(href_list, clean_journal)
-    filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
+    '''
+    download images from list of image href
 
-    for href, y in urlfilenamepair:
-        filename = filedirectory + y + ".jpeg"
+    '''
+
+    for articleinfo in results:
+        filename = "app/static/img/" + coden + '/' + \
+            str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
+        href = articleinfo["toc_href"]
         urllib.urlretrieve(href, filename)
+
+    # for href, y in urlfilenamepair:
+    #         filename = y + ".jpeg"
+    #         urllib.urlretrieve(href, filename)
 
     '''
     ZIP images using shutil
 
     '''
     output_filename = 'test'
+    filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
 
-    # combine results lists into one list
-
-    results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path)
-    return results, coden, datecode
+    return results
+    # results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path, coden)

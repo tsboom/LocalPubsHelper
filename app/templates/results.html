@@ -1,20 +1,37 @@
-{% extends "layout.html" %}
-
-
-{% block head %}
-    <title>Results</title>
-{% endblock %}
-
-{% block content %}
-    <div id="container">
-        <div class="title">
-            <h1>Results</h1>
-        </div>
-        <div id="content">
-            {% for a,b,c,d,e in resultsarray %}
-              <p>{{ a }} <br><a href="https://pubsdc3.acs.org{{a}}">Go to Article</a><br>{{ b }}<br>{{ c }}<br>{{ d }}<br><a href="{{ e }}">Save TOC Image</a><br></p>
-            {% endfor %}
-        </div>
-
+{% extends "layout.html" %} {% block head %}
+<title>Highlights</title>
+{% endblock %} {% block content %}
+<div id="container-fluid">
+    <div class="title">
+        <h1>Highlights</h1>
+        <h5>Save images, resize and upload them, and paste highlights information into PageBuilder.</h5>
     </div>
+    <br /> 
+    {% for articleinfo in results %}
+        
+    <div class="row">
+        <div class="col-xs-2">
+            {{ loop.index }}
+            <a href="{{ url_for('static', filename = articleinfo['Flask-image-path'] ) }}">
+                <img src="{{ url_for('static', filename = articleinfo['Flask-image-path'] ) }}" style="width:150px;border: 1px solid #cccccc; padding: 10px 5px 10px 10px;" />
+            </a>
+        </div>
+        <div class="col-sm-2"><a href="https://pubsdc3.acs.org/doi/full/{{ articleinfo['DOI'] }}#showFigures" target="_blank">Link to Figures</a></div>
+        <div class="col-sm-8">
+            <p>{{ articleinfo['Image'] }}
+                <br>{{ articleinfo['article-link'] }}
+                <br>{{ articleinfo['Title'] }}
+                <br>{{ articleinfo['Authors'] }}
+                <br>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+    <br />
+    <div class="body">
+        <a href="{{ url_for('static', filename = 'img/' + results[0]['Coden'] +'/' + results[0]['Datecode'] + '.zip') }}">
+            <button type="button" class="btn btn-secondary btn-sm">Download ZIP file of all images</button>
+        </a>
+    </div>
+</div>
 {% endblock %}
