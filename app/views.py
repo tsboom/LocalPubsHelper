@@ -10,7 +10,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-#import pdb #use pdb.set_trace() to break
+# import pdb #use pdb.set_trace() to break
 
 from highlightsnewtest import processDOI
 # from virtualissue import createVI
@@ -18,26 +18,26 @@ from virtualissueASAP import createVI
 # import virtualissue
 
 
-#index page starts with box to paste DOIs for highlights
+# index page starts with box to paste DOIs for highlights
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
-# virtual issue index and virtual issue process results    
-    
+# virtual issue index and virtual issue process results
+
+
 @app.route('/doivirtualissue')
 def virtualissue():
     return render_template('virtualissue.html')
 
-    
+
 @app.route('/doivirtualissueprocess', methods=['POST'])
 def virtualissueautomate():
-    
+
     myDOIs = str(request.form["text"]).split('\r\n')
-    
- 
-     # run python process
+
+    # run python process
     createVI(myDOIs)
 
     global table
@@ -46,27 +46,29 @@ def virtualissueautomate():
     return render_template('vi-template.html', table=table, results=results)
 
 
-#results of highlights helper
+# results of highlights helper
 @app.route('/submit-form', methods=['POST'])
 def highlights():
-    #get text from textarea, split it up DOIS into a list
+    # get text from textarea, split it up DOIS into a list
     doiLIST = str(request.form['text'])
 
     global myDOIs
     myDOIs = doiLIST.split('\r\n')
-    
+
     # run python process
     results = processDOI(myDOIs)
-    
+
     return render_template('results.html', results=results)
 
-#index for processing a csv into a virtual issue
+# index for processing a csv into a virtual issue
+
+
 @app.route('/csv')
 def csvvi():
     return render_template('csvindex.html')
 
 
-@app.route('/csvprocess', methods =['POST'])
+@app.route('/csvprocess', methods=['POST'])
 def csvviresult():
     global table
     # data = request.form['text']
@@ -75,10 +77,13 @@ def csvviresult():
     # return render_template('vi-template.html', table=table)
     return render_template('vi-template.html', table=table)
 
-#podcast index and process results
+# podcast index and process results
+
+
 @app.route('/podcast')
 def podcast():
     return render_template('podcastindex.html')
+
 
 @app.route('/podcastprocess', methods=['POST'])
 def podcastresult():

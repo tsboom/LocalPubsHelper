@@ -1,1 +1,1 @@
-def getAuthors()
+# def getAuthors()
