@@ -218,7 +218,7 @@ def processDOI(myDOIs):
         authorsjoined = (''.join(authors_scrape))
 
                
-        #click figures link and form url, or set to empty string
+        #click figures link and form hi-res image url, or get low quality toc_image
         try:
             driver.find_element_by_class_name('showFiguresLink').click()
             
@@ -228,8 +228,9 @@ def processDOI(myDOIs):
                 raise Exception
             toc_href = img_box.find_element_by_css_selector('a').get_attribute('href')
         except:
-            toc_href = ''
-            print 'no figures found'
+            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.ID, "absImg")))
+            toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
+            print 'no hi-res figure found for ' + DOI
         
          
 

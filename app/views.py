@@ -55,7 +55,7 @@ def upload_file():
       <p><input type=file name=file>
          <input type=submit value=Upload>
     </form>
-    '''
+`    '''
 
 
 #index page starts with box to paste DOIs for highlights
@@ -124,8 +124,19 @@ def podcast():
 @app.route('/podcastprocess', methods=['POST'])
 def podcastresult():
     global table
-    table = TableFu.from_file('app/ancham-may.csv')
-    return render_template('podcastresultsancham.html', table=table)
+    table = TableFu.from_file('app/est.csv')
+    return render_template('podcastresults.html', table=table)
+
+#podcast index and process results
+@app.route('/temp')
+def temp():
+    return render_template('tempindex.html')
+
+@app.route('/tempprocess', methods=['POST'])
+def tempresult():
+    global table
+    table = TableFu.from_file('app/temp.csv')
+    return render_template('tempresults.html', table=table)
 
 # @app.route('/interactive/')
 # def interactive():

@@ -9,7 +9,7 @@
 <div class="audioBoxWrap">
 
   <h3 class="date">{{ row['month-year'] }}</h3>
-  <h2 class="title">Interview with {{ row['author-sentence'] }}</h2>
+  <h2 class="title">{{ row['title'] }}</h2>
   <div class="duration">{{ row['duration'] }}</div>
   <p class="description">{{ row['description'] }}</p>
   {% if row['doi1']|safe %}
@@ -21,6 +21,7 @@
   {% if row['doi3']|safe %}
   <p class="article">Read article by <a href="http://pubs.acs.org/doi/abs/{{ row['doi3'] }}">{{ row['author-name3'] }}</a></p>
   {% endif %}
+
   <div class="audioplayer" data-file="{{ row['media-url'] }}" data-date="{{ row['data-date'] }}">
     <div class="loadAudioPlayer">Load Audio</div>
     <div class="message">Loading audio...</div>

@@ -144,13 +144,19 @@ def processDOI(myDOIs):
 
 
 
-        
-        #click figures link
-        driver.find_element_by_class_name('showFiguresLink').click()
-
-        img_box = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
-        toc_href = img_box.find_element_by_css_selector('a').get_attribute('href')
-
+        #click figures link and form hi-res image url, or get low quality toc_image
+        try:
+            driver.find_element_by_class_name('showFiguresLink').click()
+            
+            #get toc image href
+            img_box = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
+            if img_box is None:
+                raise Exception
+            toc_href = img_box.find_element_by_css_selector('a').get_attribute('href')
+        except:
+            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CLASS_NAME, "figBox"))
+            toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
+            print 'no hi-res figure found'
         # add toc_href to list of URLS to download later and rename according to the DOI
         href_list.append(toc_href)
         
@@ -208,7 +214,7 @@ def processDOI(myDOIs):
     output_filename = 'test'
 
     shutil.make_archive(datecode, 'zip', filedirectory)
-    shutil.copy(datecode + '.zip', filedirectory)
+    shutil.move(datecode + '.zip', filedirectory)
 
 
 
