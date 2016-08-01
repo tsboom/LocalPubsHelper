@@ -12,7 +12,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
-#import pdb #use pdb.set_trace() to break
+# import pdb #use pdb.set_trace() to break
 
 from highlightsnewtest import processDOI
 # from virtualissue import createVI
@@ -20,6 +20,7 @@ from virtualissueASAP import createVI
 # import virtualissue
 
 
+<<<<<<< HEAD
 
 #code that checks if extention is valid, and then uploads the file and redirects the user to the URL for the uploaded file
 ALLOWED_EXTENSIONS = set(['csv'])
@@ -59,26 +60,38 @@ def upload_file():
 
 
 #index page starts with box to paste DOIs for highlights
+=======
+# index page starts with box to paste DOIs for highlights
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
-# virtual issue index and virtual issue process results    
-    
+# virtual issue index and virtual issue process results
+
+
 @app.route('/doivirtualissue')
 def virtualissue():
     return render_template('virtualissue.html')
 
-    
+
 @app.route('/doivirtualissueprocess', methods=['POST'])
 def virtualissueautomate():
+<<<<<<< HEAD
     
     myDOIs = str(request.form["text"])
     myDOIs = [doi for doi in myDOIs.split('\r\n') if doi]
  
      # run python process
     results = createVI(myDOIs)
+=======
+
+    myDOIs = str(request.form["text"]).split('\r\n')
+
+    # run python process
+    createVI(myDOIs)
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
 
     global table
     # data = request.form['text']
@@ -86,28 +99,35 @@ def virtualissueautomate():
     return render_template('vi-template.html', results=results, table=table)
 
 
-#results of highlights helper
+# results of highlights helper
 @app.route('/submit-form', methods=['POST'])
 def highlights():
-    #get text from textarea, split it up DOIS into a list
+    # get text from textarea, split it up DOIS into a list
     doiLIST = str(request.form['text'])
 
     global myDOIs
+<<<<<<< HEAD
     myDOIs = str(request.form["text"])
     myDOIs = [doi for doi in myDOIs.split('\r\n') if doi]
     
+=======
+    myDOIs = doiLIST.split('\r\n')
+
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
     # run python process
     results = processDOI(myDOIs)
-    
+
     return render_template('results.html', results=results)
 
-#index for processing a csv into a virtual issue
+# index for processing a csv into a virtual issue
+
+
 @app.route('/csv')
 def csvvi():
     return render_template('csvindex.html')
 
 
-@app.route('/csvprocess', methods =['POST'])
+@app.route('/csvprocess', methods=['POST'])
 def csvviresult():
     global table
     # data = request.form['text']
@@ -116,10 +136,13 @@ def csvviresult():
     # return render_template('vi-template.html', table=table)
     return render_template('vi-template.html', table=table)
 
-#podcast index and process results
+# podcast index and process results
+
+
 @app.route('/podcast')
 def podcast():
     return render_template('podcastindex.html')
+
 
 @app.route('/podcastprocess', methods=['POST'])
 def podcastresult():

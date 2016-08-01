@@ -9,15 +9,14 @@ from selenium.webdriver.common.by import By
 import pdb
 import urllib
 import errno
-import os, sys
+import os
+import sys
 import shutil
 import zipfile
 
 
-
-
-#debugging
-#import pdb #use pdb.set_trace() to break
+# debugging
+# import pdb #use pdb.set_trace() to break
 
 
 def processDOI(myDOIs):
@@ -33,21 +32,19 @@ def processDOI(myDOIs):
     dealing with creating custom URLS for each DOI
 
     '''
-    #Steps to prepare....
+    # Steps to prepare....
 
-    #create empty array to hold results dicts
+    # create empty array to hold results dicts
     results = []
-   
-   
 
-
-    #get current YYYYMMDD
+    # get current YYYYMMDD
     import datetime
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
 
-    #dictionary to match stripped dois with their corresponding coden (for URL formation)
-    coden_match = { 
+    # dictionary to match stripped dois with their corresponding coden (for
+    # URL formation)
+    coden_match = {
         'ar': 'achre4',
         'jf': 'jafcau',
         'ac': 'ancham',
@@ -151,12 +148,10 @@ def processDOI(myDOIs):
         'acssynbio': 'asbcd6'
     }
 
+    AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
+                    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
 
-    AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " + 
-    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
-        
-
-    # create list of urls with stripped dois, and list of stripped dois 
+    # create list of urls with stripped dois, and list of stripped dois
     clean_journal = []
     clean_doi_list = []
 
@@ -169,70 +164,83 @@ def processDOI(myDOIs):
 
         DOI = DOI.strip()
 
-        #collect journal prefixes
+        # collect journal prefixes
         cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
         journalprefix = cleanDOI[:-7]
 
         coden = coden_match[journalprefix]
-        
-        
-       
-        #create image URL for PB using coden and today's date. 
-        img_url = ("/pb-assets/images/" + str(coden) + "/" + "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
 
-        #create article URL
+        # create image URL for PB using coden and today's date.
+        img_url = ("/pb-assets/images/" + str(coden) + "/" +
+                   "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
+
+        # create article URL
         article_link = ("/doi/abs/" + str(DOI))
 
-        #create img path for Flask, so that the images can be displayed on Flask. 
-        img_path = "img/" + coden + '/' + str(datecode) + "/" + str(cleanDOI) + ".jpeg"
+        # create img path for Flask, so that the images can be displayed on
+        # Flask.
+        img_path = "img/" + coden + '/' + \
+            str(datecode) + "/" + str(cleanDOI) + ".jpeg"
 
-
-        #Open Phantom JS
+        # Open Phantom JS
 
         # driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
         driver = webdriver.PhantomJS()
-        driver.set_window_size(1120,550)
+        driver.set_window_size(1120, 550)
 
-        #go to full article page by adding URL prefix to DOI
+        # go to full article page by adding URL prefix to DOI
         driver.get("http://pubs.acs.org/doi/full/" + DOI)
 
-        #wait ten seconds and get title text to add to results object
-        title = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
-        html_title = title.get_attribute('innerHTML').encode('utf-8')  
+        # wait ten seconds and get title text to add to results object
+        title = WebDriverWait(driver, 20).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
+        html_title = title.get_attribute('innerHTML').encode('utf-8')
 
         # get authors
         authors = driver.find_elements_by_xpath(AUTHOR_XPATH)
 
-        #join the text in the array of the correctly encoded authors
+        # join the text in the array of the correctly encoded authors
         authors_scrape = []
         for author in authors:
             authors_scrape.append(author.text)
-           
 
-        #deal with 2 and more authors formatting
+        # deal with 2 and more authors formatting
         if ',' not in authors_scrape:
-            authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
-        else: 
-            authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
-        
+            authors_scrape = [x.replace('and', ' and ')
+                              for x in authors_scrape]
+        else:
+            authors_scrape = [x.replace(',', ', ').replace(
+                ' and', 'and ') for x in authors_scrape]
+
         authorsjoined = (''.join(authors_scrape))
 
+<<<<<<< HEAD
                
         #click figures link and form hi-res image url, or get low quality toc_image
+=======
+        # click figures link and form url, or set to empty string
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
         try:
             driver.find_element_by_class_name('showFiguresLink').click()
-            
-            #get toc image href
-            img_box = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
+
+            # get toc image href
+            img_box = WebDriverWait(driver, 10).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
             if img_box is None:
                 raise Exception
-            toc_href = img_box.find_element_by_css_selector('a').get_attribute('href')
+            toc_href = img_box.find_element_by_css_selector(
+                'a').get_attribute('href')
         except:
+<<<<<<< HEAD
             toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.ID, "absImg")))
             toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
             print 'no hi-res figure found for ' + DOI
         
          
+=======
+            toc_href = ''
+            print 'no figures found'
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
 
         articleinfo = {
             "DOI": DOI,
@@ -248,11 +256,9 @@ def processDOI(myDOIs):
 
         }
 
-
-        print "\n"  
-        print articleinfo;
         print "\n"
-
+        print articleinfo
+        print "\n"
 
         results.append(articleinfo)
 
@@ -260,17 +266,14 @@ def processDOI(myDOIs):
 
     driver.close()
     driver.quit()
-    
-    
-
 
     '''
     check to see if there is an existing folder for coden and date, if not, create the folder
 
     '''
-    #create folder for journal coden and date stamp
+    # create folder for journal coden and date stamp
     try:
-        os.makedirs("app/static/img/"+ coden + '/' + str(datecode)+ "/")
+        os.makedirs("app/static/img/" + coden + '/' + str(datecode) + "/")
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise exc
@@ -281,23 +284,19 @@ def processDOI(myDOIs):
 
     '''
 
-
     for articleinfo in results:
-        filename = "app/static/img/" + coden + '/' + str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
+        filename = "app/static/img/" + coden + '/' + \
+            str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
         href = articleinfo["toc_href"]
         urllib.urlretrieve(href, filename)
-
 
     # for href, y in urlfilenamepair:
     #         filename = y + ".jpeg"
     #         urllib.urlretrieve(href, filename)
 
-
-            
-
     '''
     ZIP images using shutil
-    
+
     '''
     output_filename = 'test'
     # filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
@@ -305,6 +304,7 @@ def processDOI(myDOIs):
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
 
+<<<<<<< HEAD
 
 
     return results   
@@ -331,3 +331,7 @@ def processDOI(myDOIs):
 
 
 
+=======
+    return results
+    # results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path, coden)
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
