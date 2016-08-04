@@ -16,7 +16,7 @@ import shutil
 import zipfile
 import errno
 import re
-
+import constants
 
 # debugging
 # import pdb #use pdb.set_trace() to break
@@ -31,19 +31,8 @@ def createVI(myDOIs):
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
 
-
-
-    
-
     # format results
     results = []
-
-    AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
-                    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
-
-
-    
-    
 
     '''
     Loop through the DOIS to find information from each article page. add that info to lists.
@@ -61,7 +50,7 @@ def createVI(myDOIs):
         journalprefix = cleanDOI[:-7]
         clean_journal.append(cleanDOI)
 
-        coden = CODEN_MATCH[journalprefix]
+        coden = constants.CODEN_MATCH[journalprefix]
 
         # create image URL for PB using coden and today's date.
         img_url = ("/pb-assets/images/selects/" + str(coden) +
@@ -89,7 +78,7 @@ def createVI(myDOIs):
         # article_titles.append(title.get_attribute('innerHTML').encode('utf-8'))
 
         # get authors
-        authors = driver.find_elements_by_xpath(AUTHOR_XPATH)
+        authors = driver.find_elements_by_xpath(constants.AUTHOR_XPATH)
 
         # join the text in the array of the correctly encoded authors
         authors_scrape = []
@@ -99,13 +88,6 @@ def createVI(myDOIs):
         authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
         authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
         authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
-
-
-        #deal with 2 and more authors formatting
-        # if ',' not in authors_scrape:
-        #     authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
-        # else: 
-        #     authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
         
         authorsjoined = (''.join(authors_scrape))
         
@@ -230,7 +212,7 @@ def createVI(myDOIs):
     # create folder for journal coden and date stamp
     try:
 
-        os.makedirs("app/static/img/virtualissue/"+ str(datecode)+ "/")
+        os.makedirs("app/static/img/generated/virtualissue/"+ coden + '/' + str(datecode)+ "/")
 
     except OSError as exc:
         if exc.errno != errno.EEXIST:
@@ -255,7 +237,7 @@ def createVI(myDOIs):
     #         urllib.urlretrieve(href, filename)
 
     for articleinfo in results:
-        filename = "app/static/img/virtualissue/" + coden + '/' + \
+        filename = "app/static/img/generated/virtualissue/" + coden + '/' + \
             str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
 
         href = articleinfo["toc_href"]
@@ -267,7 +249,7 @@ def createVI(myDOIs):
 
     '''
 
-    filedirectory = "app/static/img/virtualissue/" + \
+    filedirectory = "app/static/img/generated/virtualissue/" + \
         coden + '/' + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)

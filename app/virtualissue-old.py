@@ -200,6 +200,13 @@ def createVI(myDOIs):
         else:
             authorsjoined = (''.join(authors_scrape))
 
+
+        #deal with 2 and more authors formatting
+        # if ',' not in authors_scrape:
+        #     authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
+        # else: 
+        #     authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
+
         # #Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
         # journalcite = driver.find_elements_by_xpath(CITATION_XPATH)

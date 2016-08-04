@@ -13,7 +13,8 @@ import os
 import sys
 import shutil
 import zipfile
-
+import constants
+import re
 
 # debugging
 # import pdb #use pdb.set_trace() to break
@@ -42,115 +43,6 @@ def processDOI(myDOIs):
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
 
-    # dictionary to match stripped dois with their corresponding coden (for
-    # URL formation)
-    coden_match = {
-        'ar': 'achre4',
-        'jf': 'jafcau',
-        'ac': 'ancham',
-        'am': 'aamick',
-        'bi': 'bichaw',
-        'bc': 'bcches',
-        'bm': 'bomaf6',
-        'ab': 'abseba',
-        'cs': 'accacs',
-        'oc': 'acscii',
-        'cb': 'acbcct',
-        'ed': 'jceda8',
-        'je': 'jceaax',
-        'ci': 'jcisd8',
-        'cn': 'acncdm',
-        'tx': 'crtoec',
-        'cr': 'chreay',
-        'ct': 'jctcce',
-        'cm': 'cmatex',
-        'co': 'acsccc',
-        'cg': 'cgdefu',
-        'ef': 'enfuem',
-        'es': 'esthag',
-        'ez': 'esthag',
-        'ie': 'iecred',
-        'id': 'aidcbc',
-        'ic': 'inocaj',
-        'ja': 'jacsat',
-        'la': 'langd5',
-        'mz': 'amlccd',
-        'ma': 'mamobx',
-        'jm': 'jmcmar',
-        'ml': 'amclct',
-        'mp': 'mpohbp',
-        'nn': 'ancac3',
-        'nl': 'nalefd',
-        'np': 'jnprdf',
-        'jo': 'joceah',
-        'ol': 'orlef7',
-        'op': 'oprdfk',
-        'om': 'orgnd7',
-        'ph': 'apchd5',
-        'jp': 'jpcafh',
-        'jpb': 'jpcbfk',
-        'jpc': 'jpccck',
-        'jz': 'jpclcd',
-        'pr': 'jprobs',
-        'se': 'ascefj',
-        'sc': 'ascecg',
-        'sb': 'asbcd6',
-        'acsaccounts': 'achre4',
-        'acsjafc': 'jafcau',
-        'acsanalchem': 'ancham',
-        'acsami': 'aamick',
-        'acsbiochem': 'bichaw',
-        'acsbioconjchem': 'bcches',
-        'acsbiomac': 'bomaf6',
-        'acscatal': 'accacs',
-        'acscentsci': 'acscii',
-        'acschembio': 'acbcct',
-        'acsjchemed': 'jceda8',
-        'acsjced': 'jceaax',
-        'acsjcim': 'jcisd8',
-        'acschemneuro': 'acncdm',
-        'acschemrestox': 'crtoec',
-        'acschemrev': 'chreay',
-        'acsjctc': 'jctcce',
-        'acschemmater': 'cmatex',
-        'acscombsci': 'acsccc',
-        'acscgd': 'cgdefu',
-        'acsenergyfuels': 'enfuem',
-        'acsest': 'esthag',
-        'acsestlett': 'estlcu',
-        'acsenergylett': 'aelccp',
-        'acsacsiecr': 'iecred',
-        'acsinfecdis': 'aidcbc',
-        'acsinorgchem': 'inocaj',
-        'jacs': 'jacsat',
-        'acslangmuir': 'langd5',
-        'acsmacrolett': 'amlccd',
-        'acsmacromol': 'mamobx',
-        'acsjmedchem': 'jmcmar',
-        'acsmedchemlett': 'amclct',
-        'acsmolpharmaceut': 'mpohbp',
-        'acsnano': 'ancac3',
-        'acsnanolett': 'nalefd',
-        'acsjnatprod': 'jnprdf',
-        'acsjoc': 'joceah',
-        'acsorglett': 'orlef7',
-        'acsoprd': 'oprdfk',
-        'acsorganomet': 'orgnd7',
-        'acsomega': 'acsodf',
-        'acsphotonics': 'apchd5',
-        'acsjpca': 'jpcafh',
-        'acsjpcb': 'jpcbfk',
-        'acsjpcc': 'jpccck',
-        'acsjpclett': 'jpclcd',
-        'acsjproteome': 'jprobs',
-        'acssensors': 'ascefj',
-        'acssuschemeng': 'ascecg',
-        'acssynbio': 'asbcd6'
-    }
-
-    AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
-                    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
-
     # create list of urls with stripped dois, and list of stripped dois
     clean_journal = []
     clean_doi_list = []
@@ -168,7 +60,7 @@ def processDOI(myDOIs):
         cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
         journalprefix = cleanDOI[:-7]
 
-        coden = coden_match[journalprefix]
+        coden = constants.CODEN_MATCH[journalprefix]
 
         # create image URL for PB using coden and today's date.
         img_url = ("/pb-assets/images/" + str(coden) + "/" +
@@ -197,20 +89,17 @@ def processDOI(myDOIs):
         html_title = title.get_attribute('innerHTML').encode('utf-8')
 
         # get authors
-        authors = driver.find_elements_by_xpath(AUTHOR_XPATH)
+        authors = driver.find_elements_by_xpath(constants.AUTHOR_XPATH)
 
         # join the text in the array of the correctly encoded authors
         authors_scrape = []
         for author in authors:
-            authors_scrape.append(author.text)
+            authors_scrape.append(author.text.encode('utf-8'))
+   
+        authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
+        authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
+        authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
 
-        # deal with 2 and more authors formatting
-        if ',' not in authors_scrape:
-            authors_scrape = [x.replace('and', ' and ')
-                              for x in authors_scrape]
-        else:
-            authors_scrape = [x.replace(',', ', ').replace(
-                ' and', 'and ') for x in authors_scrape]
 
         authorsjoined = (''.join(authors_scrape))
 
@@ -226,8 +115,9 @@ def processDOI(myDOIs):
             toc_href = img_box.find_element_by_css_selector(
                 'a').get_attribute('href')
         except:
-            toc_href = ''
-            print 'no figures found'
+            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CLASS_NAME, "figBox"))
+            toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
+            print 'no hi-res figure found'
 
         articleinfo = {
             "DOI": DOI,
@@ -260,7 +150,7 @@ def processDOI(myDOIs):
     '''
     # create folder for journal coden and date stamp
     try:
-        os.makedirs("app/static/img/" + coden + '/' + str(datecode) + "/")
+        os.makedirs("app/static/img/generated/" + coden + '/' + str(datecode) + "/")
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise exc
@@ -272,7 +162,7 @@ def processDOI(myDOIs):
     '''
 
     for articleinfo in results:
-        filename = "app/static/img/" + coden + '/' + \
+        filename = "app/static/img/generated/" + coden + '/' + \
             str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
         href = articleinfo["toc_href"]
         urllib.urlretrieve(href, filename)
@@ -285,11 +175,11 @@ def processDOI(myDOIs):
     ZIP images using shutil
 
     '''
-    output_filename = 'test'
-    filedirectory = "app/static/img/" + coden + '/' + str(datecode) + "/"
+      
+    filedirectory = "app/static/img/generated/" + coden + '/' + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
 
     return results
-    # results = zip(articlelink, imgurls, articletitles, authorslist, jpeg_path, coden)
+
