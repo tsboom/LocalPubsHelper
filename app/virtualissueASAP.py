@@ -5,6 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
+from constants import AUTHOR_XPATH, CODEN_MATCH
 import pdb
 import urllib
 from pprint import pprint
@@ -14,6 +15,7 @@ import sys
 import shutil
 import zipfile
 import errno
+import re
 
 
 # debugging
@@ -29,116 +31,19 @@ def createVI(myDOIs):
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
 
-    # dictionary to match stripped dois with their corresponding coden (for
-    # URL formation)
-    coden_match = {
-        'ar': 'achre4',
-        'jf': 'jafcau',
-        'ac': 'ancham',
-        'am': 'aamick',
-        'bi': 'bichaw',
-        'bc': 'bcches',
-        'bm': 'bomaf6',
-        'ab': 'abseba',
-        'cs': 'accacs',
-        'oc': 'acscii',
-        'cb': 'acbcct',
-        'ed': 'jceda8',
-        'je': 'jceaax',
-        'ci': 'jcisd8',
-        'cn': 'acncdm',
-        'tx': 'crtoec',
-        'cr': 'chreay',
-        'ct': 'jctcce',
-        'cm': 'cmatex',
-        'co': 'acsccc',
-        'cg': 'cgdefu',
-        'ef': 'enfuem',
-        'es': 'esthag',
-        'ez': 'esthag',
-        'ie': 'iecred',
-        'id': 'aidcbc',
-        'ic': 'inocaj',
-        'ja': 'jacsat',
-        'la': 'langd5',
-        'mz': 'amlccd',
-        'ma': 'mamobx',
-        'jm': 'jmcmar',
-        'ml': 'amclct',
-        'mp': 'mpohbp',
-        'nn': 'ancac3',
-        'nl': 'nalefd',
-        'np': 'jnprdf',
-        'jo': 'joceah',
-        'ol': 'orlef7',
-        'op': 'oprdfk',
-        'om': 'orgnd7',
-        'ph': 'apchd5',
-        'jp': 'jpcafh',
-        'jpb': 'jpcbfk',
-        'jpc': 'jpccck',
-        'jz': 'jpclcd',
-        'pr': 'jprobs',
-        'se': 'ascefj',
-        'sc': 'ascecg',
-        'sb': 'asbcd6',
-        'acsaccounts': 'achre4',
-        'acsjafc': 'jafcau',
-        'acsanalchem': 'ancham',
-        'acsami': 'aamick',
-        'acsbiochem': 'bichaw',
-        'acsbioconjchem': 'bcches',
-        'acsbiomac': 'bomaf6',
-        'acscatal': 'accacs',
-        'acscentsci': 'acscii',
-        'acschembio': 'acbcct',
-        'acsjchemed': 'jceda8',
-        'acsjced': 'jceaax',
-        'acsjcim': 'jcisd8',
-        'acschemneuro': 'acncdm',
-        'acschemrestox': 'crtoec',
-        'acschemrev': 'chreay',
-        'acsjctc': 'jctcce',
-        'acschemmater': 'cmatex',
-        'acscombsci': 'acsccc',
-        'acscgd': 'cgdefu',
-        'acsenergyfuels': 'enfuem',
-        'acsest': 'esthag',
-        'acsestlett': 'estlcu',
-        'acsiecr': 'iecred',
-        'acsinfecdis': 'aidcbc',
-        'acsinorgchem': 'inocaj',
-        'jacs': 'jacsat',
-        'acslangmuir': 'langd5',
-        'acsmacrolett': 'amlccd',
-        'acsmacromol': 'mamobx',
-        'acsjmedchem': 'jmcmar',
-        'acsmedchemlett': 'amclct',
-        'acsmolpharmaceut': 'mpohbp',
-        'acsnano': 'ancac3',
-        'acsnanolett': 'nalefd',
-        'acsjnatprod': 'jnprdf',
-        'acsjoc': 'joceah',
-        'acsorglett': 'orlef7',
-        'acsoprd': 'oprdfk',
-        'acsorganomet': 'orgnd7',
-        'acsomega': 'acsodf',
-        'acsphotonics': 'apchd5',
-        'acsjpca': 'jpcafh',
-        'acsjpcb': 'jpcbfk',
-        'acsjpcc': 'jpccck',
-        'acsjpclett': 'jpclcd',
-        'acsjproteome': 'jprobs',
-        'acssensors': 'ascefj',
-        'acssuschemeng': 'ascecg',
-        'acssynbio': 'asbcd6'
-    }
+
+
+    
 
     # format results
     results = []
 
     AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
                     "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
+
+
+    
+    
 
     '''
     Loop through the DOIS to find information from each article page. add that info to lists.
@@ -156,7 +61,7 @@ def createVI(myDOIs):
         journalprefix = cleanDOI[:-7]
         clean_journal.append(cleanDOI)
 
-        coden = coden_match[journalprefix]
+        coden = CODEN_MATCH[journalprefix]
 
         # create image URL for PB using coden and today's date.
         img_url = ("/pb-assets/images/selects/" + str(coden) +
@@ -190,16 +95,20 @@ def createVI(myDOIs):
         authors_scrape = []
         for author in authors:
             authors_scrape.append(author.text.encode('utf-8'))
+   
+        authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
+        authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
+        authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
 
-        # deal with 2 and more authors formatting
-        if ',' not in authors_scrape:
-            authors_scrape = [x.replace('and', ' and ')
-                              for x in authors_scrape]
-        else:
-            authors_scrape = [x.replace(',', ', ').replace(
-                ' and', 'and ') for x in authors_scrape]
 
+        #deal with 2 and more authors formatting
+        # if ',' not in authors_scrape:
+        #     authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
+        # else: 
+        #     authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
+        
         authorsjoined = (''.join(authors_scrape))
+        
 
         # #Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
@@ -274,8 +183,9 @@ def createVI(myDOIs):
             toc_href = img_box.find_element_by_css_selector(
                 'a').get_attribute('href')
         except:
-            toc_href = ''
-            print 'no figures found'
+            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CLASS_NAME, "figBox"))
+            toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
+            print 'no hi-res figure found'
 
         articleinfo = {
             'DOI': DOI,
@@ -290,7 +200,8 @@ def createVI(myDOIs):
             'Issue-info': issue_info,
             'Year': year,
             "Datecode": datecode,
-            "Clean_doi": cleanDOI
+            "Clean_doi": cleanDOI,
+            'Coden': coden
         }
 
         driver.close()
@@ -307,7 +218,7 @@ def createVI(myDOIs):
     # write python dict to a csv file
     keys = results[0].keys()
 
-    with open('vi-csv.csv', 'wb') as f:
+    with open('app/vi-csv.csv', 'wb') as f:
         dict_writer = csv.DictWriter(f, keys)
         dict_writer.writeheader()
         dict_writer.writerows(results)
@@ -318,11 +229,14 @@ def createVI(myDOIs):
     '''
     # create folder for journal coden and date stamp
     try:
-        os.makedirs("app/static/img/" + coden + '/' + str(datecode) + "/")
+
+        os.makedirs("app/static/img/virtualissue/"+ str(datecode)+ "/")
+
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise exc
         pass
+
 
     '''
     download images from list of image href
@@ -343,6 +257,7 @@ def createVI(myDOIs):
     for articleinfo in results:
         filename = "app/static/img/virtualissue/" + coden + '/' + \
             str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
+
         href = articleinfo["toc_href"]
 
         urllib.urlretrieve(href, filename)
@@ -351,9 +266,11 @@ def createVI(myDOIs):
     ZIP images using shutil
 
     '''
-    output_filename = 'test'
+
     filedirectory = "app/static/img/virtualissue/" + \
         coden + '/' + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
+
+    return results
