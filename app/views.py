@@ -81,14 +81,14 @@ def csvviresult():
 
 @app.route('/podcast')
 def podcast():
-    return render_template('podcastindex.html')
+    return render_template('podcastuploader.html')
 
 
 @app.route('/podcastprocess', methods=['POST'])
 def podcastresult():
     global table
     table = TableFu.from_file('app/chembio.csv')
-    return render_template('podcastresultsnano.html', table=table)
+    return render_template('podcastresults.html', table=table)
 
 if __name__ == '__main__':
     app.run()
