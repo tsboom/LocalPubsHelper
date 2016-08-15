@@ -51,6 +51,8 @@ def processDOI(myDOIs):
     Loop through DOIS and find info about each article. add that information to a python dictionary
 
     '''
+    # remove empty strings from list
+    myDOIs = [doi for doi in myDOIs if doi]
 
     for DOI in myDOIs:
 
@@ -71,7 +73,7 @@ def processDOI(myDOIs):
 
         # create img path for Flask, so that the images can be displayed on
         # Flask.
-        img_path = "img/" + coden + '/' + \
+        img_path = "img/generated/" + coden + '/' + \
             str(datecode) + "/" + str(cleanDOI) + ".jpeg"
 
         # Open Phantom JS
@@ -95,7 +97,7 @@ def processDOI(myDOIs):
         authors_scrape = []
         for author in authors:
             authors_scrape.append(author.text.encode('utf-8'))
-   
+
         authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
         authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
         authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
@@ -175,11 +177,10 @@ def processDOI(myDOIs):
     ZIP images using shutil
 
     '''
-      
+
     filedirectory = "app/static/img/generated/" + coden + '/' + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
 
     return results
-

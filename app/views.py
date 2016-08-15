@@ -24,6 +24,21 @@ from virtualissueASAP import createVI
 def index():
     return render_template('index.html')
 
+# results of highlights helper
+
+@app.route('/submit-form', methods=['POST'])
+def highlights():
+    # get text from textarea, split it up DOIS into a list
+    doiLIST = str(request.form['text'])
+
+    global myDOIs
+    myDOIs = doiLIST.split('\r\n')
+
+    # run python process
+    results = processDOI(myDOIs)
+
+    return render_template('results.html', results=results)
+
 # virtual issue index and virtual issue process results
 
 
@@ -38,27 +53,13 @@ def virtualissueautomate():
     myDOIs = str(request.form["text"]).split('\r\n')
 
     # run python process
-    createVI(myDOIs)
+    results = createVI(myDOIs)
 
     global table
     # data = request.form['text']
-    table = TableFu.from_file('vi-csv.csv')
+    table = TableFu.from_file('app/vi-csv.csv')
     return render_template('vi-template.html', table=table, results=results)
 
-
-# results of highlights helper
-@app.route('/submit-form', methods=['POST'])
-def highlights():
-    # get text from textarea, split it up DOIS into a list
-    doiLIST = str(request.form['text'])
-
-    global myDOIs
-    myDOIs = doiLIST.split('\r\n')
-
-    # run python process
-    results = processDOI(myDOIs)
-
-    return render_template('results.html', results=results)
 
 # index for processing a csv into a virtual issue
 
@@ -72,9 +73,7 @@ def csvvi():
 def csvviresult():
     global table
     # data = request.form['text']
-    # table = TableFu.from_file('app/vi-csv.csv')
     table = TableFu.from_file('app/vi-csv.csv')
-    # return render_template('vi-template.html', table=table)
     return render_template('vi-template.html', table=table)
 
 # podcast index and process results
@@ -90,23 +89,6 @@ def podcastresult():
     global table
     table = TableFu.from_file('app/chembio.csv')
     return render_template('podcastresultsnano.html', table=table)
-
-# @app.route('/interactive/')
-# def interactive():
-#     return render_template('interactive.html')
-
-
-# @app.route('/background_process')
-# def background_process():
-#     try:
-#         lang = request.args.get('proglang', 0, type=str)
-#         if lang.lower() == 'python':
-#             return jsonify(result='You are wise')
-#         else:
-#             return jsonify(result='Try again.')
-#     except Exception as e:
-#         return str(e)
-
 
 if __name__ == '__main__':
     app.run()
