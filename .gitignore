@@ -7,6 +7,7 @@
 *.jpg
 *.gif
 *.csv
+*.zip
 dist
 build
 eggs
@@ -33,4 +34,4 @@ venv
 *.pyc
 build
 
-app/static/img/*
+app/static/img/generated/*
