@@ -1,10 +1,12 @@
 
 # -*- coding: utf-8 -*-
-from app import app, render_template, request, jsonify
+from app import app, render_template, request, jsonify, redirect, url_for, send_from_directory
 import csv
 import pdb
 import string
 from table_fu import TableFu
+from werkzeug.utils import secure_filename
+import os
 
 import sys
 reload(sys)
@@ -76,19 +78,41 @@ def csvviresult():
     table = TableFu.from_file('app/vi-csv.csv')
     return render_template('vi-template.html', table=table)
 
-# podcast index and process results
+'''
+podcast index and process results
 
+'''
+
+UPLOAD_FOLDER = 'app/static/uploads'
+ALLOWED_EXTENSIONS = set(['csv'])
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
+#check if extension is allowed
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/podcast')
 def podcast():
-    return render_template('podcastuploader.html')
+    return render_template('podcastindex.html')
 
+@app.route('/podcastupload', methods=['GET', 'POST'])
+def podcastupload():
+    if request.method == 'POST':
+    # Get the name of uploaded file
+        file = request.files['file']
+        # Check if the file is an allowed extension
+        if file and allowed_file(file.filename):
+            # Make the filename safe - remove unsupported characters
+            filename = secure_filename(file.filename)
+            # # Move the file from the temp folder to the upload folder
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            # Use tablefu to template out the uploaded CSV file
+            global table
+            table = TableFu.from_file('app/static/uploads/'+ filename)
+            return render_template('podcastresults.html', table=table)
 
-@app.route('/podcastprocess', methods=['POST'])
-def podcastresult():
-    global table
-    table = TableFu.from_file('app/chembio.csv')
-    return render_template('podcastresults.html', table=table)
 
 if __name__ == '__main__':
     app.run()

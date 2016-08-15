@@ -1,11 +1,12 @@
-from flask import Flask, render_template, request, json, jsonify. redirect, url_for
-from werkzeug.utils import secure_filename
-import os
+from flask import Flask, render_template, request, json, jsonify, redirect, url_for, send_from_directory
 
-UPLOAD_FOLDER = 'app/uploads'
-ALLOWED_EXTENSIONS = set(['csv'])
+
+
+__author__ = "tsboom"
+
+
 
 app = Flask(__name__, static_url_path='/static')
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 
 from app import views
