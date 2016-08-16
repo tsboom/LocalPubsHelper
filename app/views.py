@@ -63,7 +63,19 @@ def virtualissueautomate():
     return render_template('vi-template.html', table=table, results=results)
 
 
-# index for processing a csv into a virtual issue
+'''
+index for processing a csv into a virtual issue
+'''
+#set upload folder and allowed extensions
+
+UPLOAD_FOLDER = 'app/static/uploads'
+ALLOWED_EXTENSIONS = set(['csv'])
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+#check if extension is allowed
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
 @app.route('/csv')
@@ -73,25 +85,24 @@ def csvvi():
 
 @app.route('/csvprocess', methods=['POST'])
 def csvviresult():
-    global table
-    # data = request.form['text']
-    table = TableFu.from_file('app/vi-csv.csv')
-    return render_template('vi-template.html', table=table)
+    if request.method == 'POST':
+    # Get the name of uploaded file
+        file = request.files['file']
+        # Check if the file is an allowed extension
+        if file and allowed_file(file.filename):
+            # Make the filename safe - remove unsupported characters
+            filename = secure_filename(file.filename)
+            # # Move the file from the temp folder to the upload folder
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            # Use tablefu to template out the uploaded CSV file
+            global table
+            table = TableFu.from_file('app/static/uploads'+ filename)
+            return render_template('vi-template.html', table=table)
 
 '''
 podcast index and process results
 
 '''
-
-UPLOAD_FOLDER = 'app/static/uploads'
-ALLOWED_EXTENSIONS = set(['csv'])
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-
-#check if extension is allowed
-def allowed_file(filename):
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/podcast')
 def podcast():
