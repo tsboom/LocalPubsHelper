@@ -83,7 +83,7 @@ def csvvi():
     return render_template('csvindex.html')
 
 
-@app.route('/csvprocess', methods=['POST'])
+@app.route('/csvupload', methods=['POST'])
 def csvviresult():
     if request.method == 'POST':
     # Get the name of uploaded file
@@ -96,8 +96,8 @@ def csvviresult():
             file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
             # Use tablefu to template out the uploaded CSV file
             global table
-            table = TableFu.from_file('app/static/uploads'+ filename)
-            return render_template('vi-template.html', table=table)
+            table = TableFu.from_file('app/static/uploads/'+ filename)
+            return render_template('virtualissueresults.html', table=table)
 
 '''
 podcast index and process results

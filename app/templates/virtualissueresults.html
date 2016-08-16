@@ -2,9 +2,11 @@
 {% block content %}
 <div class="title">
             <h1>Virtual Issue HTML</h1>
-            
+
         </div>
 <h2>Articles</h2>
+
+<textarea>
 {% for row in table.rows %}
 <div class="sideBox leftSide w125 padBox">
     <a href="/doi/abs/{{ row['DOI'] }}"><img src="{{ row['Image']}}" /></a>
@@ -17,5 +19,15 @@
 {% endfor %}
 </textarea>
 
-<a href="/">Home</a>
+{% for row in table.rows %}
+<div class="sideBox leftSide w125 padBox">
+    <a href="/doi/abs/{{ row['DOI'] }}"><img src="{{ row['Image']}}" /></a>
+</div>
+<p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
+    <br /> {{ row['Authors']}}
+    <br />
+    <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> ({{ row['Issue'] }}), pp {{ row['Pages'] }} <br><strong>DOI:</strong> {{ row['DOI'] }}</p>
+<br class="clearBoth" />
+{% endfor %}
+
 {% endblock %}
