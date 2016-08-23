@@ -26,124 +26,12 @@ def createVI(myDOIs):
 
     global results
 
-<<<<<<< HEAD
-    #get current YYYYMMDD
-=======
+
     # get current YYYYMMDD
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+
     import datetime
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
-
-<<<<<<< HEAD
-
-    
-=======
-    # dictionary to match stripped dois with their corresponding coden (for
-    # URL formation)
-    coden_match = {
-        'ar': 'achre4',
-        'jf': 'jafcau',
-        'ac': 'ancham',
-        'am': 'aamick',
-        'bi': 'bichaw',
-        'bc': 'bcches',
-        'bm': 'bomaf6',
-        'ab': 'abseba',
-        'cs': 'accacs',
-        'oc': 'acscii',
-        'cb': 'acbcct',
-        'ed': 'jceda8',
-        'je': 'jceaax',
-        'ci': 'jcisd8',
-        'cn': 'acncdm',
-        'tx': 'crtoec',
-        'cr': 'chreay',
-        'ct': 'jctcce',
-        'cm': 'cmatex',
-        'co': 'acsccc',
-        'cg': 'cgdefu',
-        'ef': 'enfuem',
-        'es': 'esthag',
-        'ez': 'esthag',
-        'ie': 'iecred',
-        'id': 'aidcbc',
-        'ic': 'inocaj',
-        'ja': 'jacsat',
-        'la': 'langd5',
-        'mz': 'amlccd',
-        'ma': 'mamobx',
-        'jm': 'jmcmar',
-        'ml': 'amclct',
-        'mp': 'mpohbp',
-        'nn': 'ancac3',
-        'nl': 'nalefd',
-        'np': 'jnprdf',
-        'jo': 'joceah',
-        'ol': 'orlef7',
-        'op': 'oprdfk',
-        'om': 'orgnd7',
-        'ph': 'apchd5',
-        'jp': 'jpcafh',
-        'jpb': 'jpcbfk',
-        'jpc': 'jpccck',
-        'jz': 'jpclcd',
-        'pr': 'jprobs',
-        'se': 'ascefj',
-        'sc': 'ascecg',
-        'sb': 'asbcd6',
-        'acsaccounts': 'achre4',
-        'acsjafc': 'jafcau',
-        'acsanalchem': 'ancham',
-        'acsami': 'aamick',
-        'acsbiochem': 'bichaw',
-        'acsbioconjchem': 'bcches',
-        'acsbiomac': 'bomaf6',
-        'acscatal': 'accacs',
-        'acscentsci': 'acscii',
-        'acschembio': 'acbcct',
-        'acsjchemed': 'jceda8',
-        'acsjced': 'jceaax',
-        'acsjcim': 'jcisd8',
-        'acschemneuro': 'acncdm',
-        'acschemrestox': 'crtoec',
-        'acschemrev': 'chreay',
-        'acsjctc': 'jctcce',
-        'acschemmater': 'cmatex',
-        'acscombsci': 'acsccc',
-        'acscgd': 'cgdefu',
-        'acsenergyfuels': 'enfuem',
-        'acsest': 'esthag',
-        'acsestlett': 'estlcu',
-        'acsiecr': 'iecred',
-        'acsinfecdis': 'aidcbc',
-        'acsinorgchem': 'inocaj',
-        'jacs': 'jacsat',
-        'acslangmuir': 'langd5',
-        'acsmacrolett': 'amlccd',
-        'acsmacromol': 'mamobx',
-        'acsjmedchem': 'jmcmar',
-        'acsmedchemlett': 'amclct',
-        'acsmolpharmaceut': 'mpohbp',
-        'acsnano': 'ancac3',
-        'acsnanolett': 'nalefd',
-        'acsjnatprod': 'jnprdf',
-        'acsjoc': 'joceah',
-        'acsorglett': 'orlef7',
-        'acsoprd': 'oprdfk',
-        'acsorganomet': 'orgnd7',
-        'acsomega': 'acsodf',
-        'acsphotonics': 'apchd5',
-        'acsjpca': 'jpcafh',
-        'acsjpcb': 'jpcbfk',
-        'acsjpcc': 'jpccck',
-        'acsjpclett': 'jpclcd',
-        'acsjproteome': 'jprobs',
-        'acssensors': 'ascefj',
-        'acssuschemeng': 'ascecg',
-        'acssynbio': 'asbcd6'
-    }
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
 
     # format results
     results = []
@@ -151,33 +39,31 @@ def createVI(myDOIs):
     AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
                     "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
 
-<<<<<<< HEAD
-    
-    
-=======
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+    # format results
+    results = []
+
+
     '''
     Loop through the DOIS to find information from each article page. add that info to lists.
 
     '''
     clean_journal = []
 
+    # remove empty strings from list
+    myDOIs = [doi for doi in myDOIs if doi]
+
+
     for DOI in myDOIs:
 
         DOI = DOI.strip()
 
-<<<<<<< HEAD
-        #collect journal prefixes
-        
-=======
-        # collect journal prefixes
 
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+        # collect journal prefixes
         cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
         journalprefix = cleanDOI[:-7]
         clean_journal.append(cleanDOI)
 
-        coden = CODEN_MATCH[journalprefix]
+        coden = constants.CODEN_MATCH[journalprefix]
 
         # create image URL for PB using coden and today's date.
         img_url = ("/pb-assets/images/selects/" + str(coden) +
@@ -205,38 +91,21 @@ def createVI(myDOIs):
         # article_titles.append(title.get_attribute('innerHTML').encode('utf-8'))
 
         # get authors
-        authors = driver.find_elements_by_xpath(AUTHOR_XPATH)
+        authors = driver.find_elements_by_xpath(constants.AUTHOR_XPATH)
 
         # join the text in the array of the correctly encoded authors
         authors_scrape = []
         for author in authors:
             authors_scrape.append(author.text.encode('utf-8'))
-<<<<<<< HEAD
-   
+
+
         authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
         authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
         authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
 
-
-        #deal with 2 and more authors formatting
-        # if ',' not in authors_scrape:
-        #     authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
-        # else: 
-        #     authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
-        
-=======
-
-        # deal with 2 and more authors formatting
-        if ',' not in authors_scrape:
-            authors_scrape = [x.replace('and', ' and ')
-                              for x in authors_scrape]
-        else:
-            authors_scrape = [x.replace(',', ', ').replace(
-                ' and', 'and ') for x in authors_scrape]
-
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
         authorsjoined = (''.join(authors_scrape))
-        
+
+
 
         # #Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
@@ -330,11 +199,8 @@ def createVI(myDOIs):
             "Datecode": datecode,
             "Clean_doi": cleanDOI,
             'Coden': coden
-        }
-<<<<<<< HEAD
-        
-=======
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+            }
+
 
         driver.close()
         driver.quit()
@@ -361,32 +227,19 @@ def createVI(myDOIs):
     '''
     # create folder for journal coden and date stamp
     try:
-<<<<<<< HEAD
-        os.makedirs("app/static/img/virtualissue/"+ str(datecode)+ "/")
-=======
-        os.makedirs("app/static/img/" + coden + '/' + str(datecode) + "/")
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+
+        os.makedirs("app/static/img/generated/virtualissue/"+ coden + '/' + str(datecode)+ "/")
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise exc
         pass
 
-<<<<<<< HEAD
-    
- 
 
-=======
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
     '''
     download images from list of image href
 
     '''
 
-<<<<<<< HEAD
-
-    for articleinfo in results:
-        filename = "app/static/img/virtualissue/" + str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
-=======
     # #download image into that directory
     # href_list = []
     # for i in results:
@@ -399,9 +252,11 @@ def createVI(myDOIs):
     #         urllib.urlretrieve(href, filename)
 
     for articleinfo in results:
-        filename = "app/static/img/virtualissue/" + coden + '/' + \
+        filename = "app/static/img/generated/virtualissue/" + coden + '/' + \
             str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+
+
+
         href = articleinfo["toc_href"]
 
         urllib.urlretrieve(href, filename)
@@ -410,22 +265,13 @@ def createVI(myDOIs):
     ZIP images using shutil
 
     '''
-    output_filename = 'test'
-<<<<<<< HEAD
-    filedirectory = "app/static/img/virtualissue/" + str(datecode) + "/"
-
-    shutil.make_archive(datecode, 'zip', filedirectory)
-    shutil.copy(datecode + '.zip', filedirectory)
-
- 
-    
-    return results
 
 
-=======
-    filedirectory = "app/static/img/virtualissue/" + \
+    filedirectory = "app/static/img/generated/virtualissue/" + \
         coden + '/' + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+
+
+    return results

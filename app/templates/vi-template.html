@@ -6,7 +6,7 @@
         <h5>Copy and paste this HTML into the Virtual Issue.</h5>
     </div>
 <div class="col-xs-3">
-    
+
     <a href="{{ url_for('static', filename = 'img/virtualissue/' + results[0]['Coden'] +'/' + results[0]['Datecode'] +'/' + results[0]['Datecode'] + '.zip') }}">
         <button type="button" class="btn btn-primary btn-sm btn-block" style="margin: 10px;">Download ZIP file of all images</button>
     </a>
@@ -22,13 +22,15 @@
     <p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
         <br /> {{ row['Authors']}}
         <br />
-        {% if not row['Year'] %}
-            <cite>{{ row['Journal'] }}</cite>, Article ASAP
+
+        {% if row['Year'] == '' %}
+        <cite>{{ row['Journal'] }}</cite>, Article ASAP
         {% else %}
-            <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}
+        <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}
+
         {% endif %}
         <br><strong>DOI: </strong> {{ row['DOI'] }}</p>
-    <br class="clearBoth" /> 
+    <br class="clearBoth" />
 
     {% endfor %}
 
@@ -41,23 +43,22 @@
 
     <div class="sideBox leftSide w125 padBox">
         <a href="/doi/abs/{{ articleinfo['DOI'] }}">
-            
+
             <img src="{{ url_for('static', filename = 'img/virtualissue/' + articleinfo['Datecode'] +'/' + articleinfo['Clean_doi'] + '.jpeg' ) }}" style="width:150px;border: 1px solid #cccccc; margin: 10px 5px 10px 0px; padding: 5px 5px 5px 5px;" />
-            
+
         </a>
     </div>
-    <p><a href="/doi/abs/{{ articleinfo['DOI'] }}"><strong>{{ articleinfo['Title'] }}</strong></a>
-        <br /> {{ articleinfo['Authors']}}
-        <br />
-        {% if not articleinfo['Year'] %}
-            <cite>{{ articleinfo['Journal'] }}</cite>, Article ASAP
-        {% else %}
-            <cite>{{ articleinfo['Journal'] }}</cite>, <strong>{{ articleinfo['Year'] }}</strong>, <em>{{ articleinfo['Volume'] }}</em> {{ articleinfo['Issue-info']}}
-        {% endif %}
-        <br><strong>DOI: </strong> {{ articleinfo['DOI'] }}</p>
-    <br class="clearBoth" /> 
 
+<p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
+    <br /> {{ row['Authors']}}
+    <br />
+    {% if row['Year'] == '' %}
+    <cite>{{ row['Journal'] }}</cite>, Article ASAP
+    {% else %}
+    <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}
+    {% endif %}
+    <br><strong>DOI: </strong> {{ row['DOI'] }}</p>
+<br class="clearBoth" />
 {% endfor %}
-
 
 {% endblock %}

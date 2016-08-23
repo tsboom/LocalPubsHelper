@@ -5,8 +5,8 @@ import csv
 import pdb
 import string
 from table_fu import TableFu
-import os
 from werkzeug.utils import secure_filename
+import os
 
 import sys
 reload(sys)
@@ -20,53 +20,26 @@ from virtualissueASAP import createVI
 # import virtualissue
 
 
-<<<<<<< HEAD
-
-#code that checks if extention is valid, and then uploads the file and redirects the user to the URL for the uploaded file
-ALLOWED_EXTENSIONS = set(['csv'])
-
-def allowed_file(filename):
-
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
-
-@app.route('/uploader', methods=['GET', 'POST'])
-def upload_file():
-    if request.method == 'POST':
-        # check if the post request has the file part
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect(request.url)
-        file = request.files['file']
-        # if user does not select file, browser also
-        # submit a empty part without filename
-        if file.filename == '':
-            flash('No selected file')
-            return redirect(request.url)
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form action="" method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-`    '''
-
-
-#index page starts with box to paste DOIs for highlights
-=======
 # index page starts with box to paste DOIs for highlights
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+# results of highlights helper
+
+@app.route('/submit-form', methods=['POST'])
+def highlights():
+    # get text from textarea, split it up DOIS into a list
+    doiLIST = str(request.form['text'])
+
+    global myDOIs
+    myDOIs = doiLIST.split('\r\n')
+
+    # run python process
+    results = processDOI(myDOIs)
+
+    return render_template('results.html', results=results)
 
 # virtual issue index and virtual issue process results
 
@@ -78,48 +51,31 @@ def virtualissue():
 
 @app.route('/doivirtualissueprocess', methods=['POST'])
 def virtualissueautomate():
-<<<<<<< HEAD
-    
-    myDOIs = str(request.form["text"])
-    myDOIs = [doi for doi in myDOIs.split('\r\n') if doi]
- 
-     # run python process
-    results = createVI(myDOIs)
-=======
 
     myDOIs = str(request.form["text"]).split('\r\n')
 
     # run python process
-    createVI(myDOIs)
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+    results = createVI(myDOIs)
 
     global table
     # data = request.form['text']
     table = TableFu.from_file('app/vi-csv.csv')
-    return render_template('vi-template.html', results=results, table=table)
+    return render_template('vi-template.html', table=table, results=results)
 
 
-# results of highlights helper
-@app.route('/submit-form', methods=['POST'])
-def highlights():
-    # get text from textarea, split it up DOIS into a list
-    doiLIST = str(request.form['text'])
+'''
+index for processing a csv into a virtual issue
+'''
+#set upload folder and allowed extensions
 
-    global myDOIs
-<<<<<<< HEAD
-    myDOIs = str(request.form["text"])
-    myDOIs = [doi for doi in myDOIs.split('\r\n') if doi]
-    
-=======
-    myDOIs = doiLIST.split('\r\n')
+UPLOAD_FOLDER = 'app/static/uploads'
+ALLOWED_EXTENSIONS = set(['csv'])
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
->>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
-    # run python process
-    results = processDOI(myDOIs)
-
-    return render_template('results.html', results=results)
-
-# index for processing a csv into a virtual issue
+#check if extension is allowed
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 
 @app.route('/csv')
@@ -127,55 +83,46 @@ def csvvi():
     return render_template('csvindex.html')
 
 
-@app.route('/csvprocess', methods=['POST'])
+@app.route('/csvupload', methods=['POST'])
 def csvviresult():
-    global table
-    # data = request.form['text']
-    # table = TableFu.from_file('app/vi-csv.csv')
-    table = TableFu.from_file('app/vi-csv.csv')
-    # return render_template('vi-template.html', table=table)
-    return render_template('vi-template.html', table=table)
+    if request.method == 'POST':
+    # Get the name of uploaded file
+        file = request.files['file']
+        # Check if the file is an allowed extension
+        if file and allowed_file(file.filename):
+            # Make the filename safe - remove unsupported characters
+            filename = secure_filename(file.filename)
+            # # Move the file from the temp folder to the upload folder
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            # Use tablefu to template out the uploaded CSV file
+            global table
+            table = TableFu.from_file('app/static/uploads/'+ filename)
+            return render_template('virtualissueresults.html', table=table)
 
-# podcast index and process results
+'''
+podcast index and process results
 
+'''
 
 @app.route('/podcast')
 def podcast():
     return render_template('podcastindex.html')
 
-
-@app.route('/podcastprocess', methods=['POST'])
-def podcastresult():
-    global table
-    table = TableFu.from_file('app/est.csv')
-    return render_template('podcastresults.html', table=table)
-
-#podcast index and process results
-@app.route('/temp')
-def temp():
-    return render_template('tempindex.html')
-
-@app.route('/tempprocess', methods=['POST'])
-def tempresult():
-    global table
-    table = TableFu.from_file('app/temp.csv')
-    return render_template('tempresults.html', table=table)
-
-# @app.route('/interactive/')
-# def interactive():
-#     return render_template('interactive.html')
-
-
-# @app.route('/background_process')
-# def background_process():
-#     try:
-#         lang = request.args.get('proglang', 0, type=str)
-#         if lang.lower() == 'python':
-#             return jsonify(result='You are wise')
-#         else:
-#             return jsonify(result='Try again.')
-#     except Exception as e:
-#         return str(e)
+@app.route('/podcastupload', methods=['GET', 'POST'])
+def podcastupload():
+    if request.method == 'POST':
+    # Get the name of uploaded file
+        file = request.files['file']
+        # Check if the file is an allowed extension
+        if file and allowed_file(file.filename):
+            # Make the filename safe - remove unsupported characters
+            filename = secure_filename(file.filename)
+            # # Move the file from the temp folder to the upload folder
+            file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
+            # Use tablefu to template out the uploaded CSV file
+            global table
+            table = TableFu.from_file('app/static/uploads/'+ filename)
+            return render_template('podcastresults.html', table=table)
 
 
 if __name__ == '__main__':
