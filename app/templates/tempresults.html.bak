@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<textarea class="form-control" rows="50" cols="10" name="text">
+
+
+{% for row in table.rows %}
+
+<div class="author-info"><strong>{{ row['Name'] }}</strong>, <i>{{ row['Institution']}}</i></div>
+{{ row['DOI']}}
+
+{% endfor %}
+</textarea>
+{% endblock %}

@@ -21,10 +21,7 @@
   {% if row['doi3']|safe %}
   <p class="article">Read article by <a href="http://pubs.acs.org/doi/abs/{{ row['doi3'] }}">{{ row['author-name3'] }}</a></p>
   {% endif %}
-  {% if row['doi4']|safe %}
-  <p class="article">Read article by <a href="http://pubs.acs.org/doi/abs/{{ row['doi4'] }}">{{ row['author-name4'] }}</a></p>
-  {% endif %}
-  <a href="{{ row['special-issue-link'] }}"></a>
+
   <div class="audioplayer" data-file="{{ row['media-url'] }}" data-date="{{ row['data-date'] }}">
     <div class="loadAudioPlayer">Load Audio</div>
     <div class="message">Loading audio...</div>

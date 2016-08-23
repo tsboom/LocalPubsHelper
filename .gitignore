@@ -33,3 +33,5 @@ ghostdriver.log
 venv
 *.pyc
 build
+
+app/static/img/generated/*

@@ -6,9 +6,9 @@
         <h1>Highlights</h1>
         <h5>Save images, resize and upload them, and paste highlights information into PageBuilder.</h5>
     </div>
-    <br /> 
+    <br />
     {% for articleinfo in results %}
-        
+
     <div class="row">
         <div class="col-xs-2">
             {{ loop.index }}
@@ -28,9 +28,11 @@
     </div>
     {% endfor %}
     <br />
-    <div class="col-xs-3">
-        <a href="{{ url_for('static', filename = 'img/' + results[0]['Coden'] +'/' + results[0]['Datecode'] + '.zip') }}">
-            <button type="button" class="btn btn-primary btn-sm btn-block">Download ZIP file of all images</button>
+
+    <div class="body">
+        <a href="{{ url_for('static', filename = 'img/generated/' + results[0]['Coden'] +'/' + results[0]['Datecode'] +'/' + results[0]['Datecode'] + '.zip') }}">
+            <button type="button" class="btn btn-primary btn-sm">Download ZIP file of all images</button>
+
         </a>
     </div>
 </div>

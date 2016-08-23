@@ -5,10 +5,17 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
+from constants import AUTHOR_XPATH, CODEN_MATCH
 import pdb
 import urllib
 from pprint import pprint
 import csv
+import os
+import sys
+import shutil
+import zipfile
+import errno
+import re
 
 
 # debugging
@@ -17,11 +24,21 @@ import csv
 
 def createVI(myDOIs):
 
+    global results
+
+<<<<<<< HEAD
+    #get current YYYYMMDD
+=======
     # get current YYYYMMDD
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
     import datetime
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
 
+<<<<<<< HEAD
+
+    
+=======
     # dictionary to match stripped dois with their corresponding coden (for
     # URL formation)
     coden_match = {
@@ -126,13 +143,19 @@ def createVI(myDOIs):
         'acssuschemeng': 'ascecg',
         'acssynbio': 'asbcd6'
     }
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
 
     # format results
     results = []
 
     AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
-                    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1']")
+                    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
 
+<<<<<<< HEAD
+    
+    
+=======
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
     '''
     Loop through the DOIS to find information from each article page. add that info to lists.
 
@@ -143,14 +166,18 @@ def createVI(myDOIs):
 
         DOI = DOI.strip()
 
+<<<<<<< HEAD
+        #collect journal prefixes
+        
+=======
         # collect journal prefixes
 
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
         cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
         journalprefix = cleanDOI[:-7]
-
         clean_journal.append(cleanDOI)
 
-        coden = coden_match[journalprefix]
+        coden = CODEN_MATCH[journalprefix]
 
         # create image URL for PB using coden and today's date.
         img_url = ("/pb-assets/images/selects/" + str(coden) +
@@ -170,7 +197,7 @@ def createVI(myDOIs):
         driver.get("http://pubs.acs.org/doi/full/" + DOI)
 
         # wait ten seconds and get title text to add to results object
-        title = WebDriverWait(driver, 10).until(
+        title = WebDriverWait(driver, 20).until(
             EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
         html_title = title.get_attribute('innerHTML').encode('utf-8')
 
@@ -184,21 +211,11 @@ def createVI(myDOIs):
         authors_scrape = []
         for author in authors:
             authors_scrape.append(author.text.encode('utf-8'))
-
-        # make sure spacing around authors names is correct
-        if len(authors_scrape) > 2:
-            if authors_scrape[1] == 'and':
-                authors_scrape[1] = ' and '
-                authorsjoined = (''.join(authors_scrape))
-            elif authors_scrape[2] == 'and':
-                authors_scrape[2] = ' and '
-                authorsjoined = (''.join(authors_scrape))
-            else:
-                authorsjoined = (''.join(authors_scrape))
-                authorsjoined = authorsjoined.replace(
-                    ',', ', ').replace(' and', 'and ')
-        else:
-            authorsjoined = (''.join(authors_scrape))
+<<<<<<< HEAD
+   
+        authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
+        authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
+        authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
 
 
         #deal with 2 and more authors formatting
@@ -206,6 +223,20 @@ def createVI(myDOIs):
         #     authors_scrape = [x.replace('and', ' and ') for x in authors_scrape]
         # else: 
         #     authors_scrape = [x.replace(',', ', ').replace(' and', 'and ') for x in authors_scrape]
+        
+=======
+
+        # deal with 2 and more authors formatting
+        if ',' not in authors_scrape:
+            authors_scrape = [x.replace('and', ' and ')
+                              for x in authors_scrape]
+        else:
+            authors_scrape = [x.replace(',', ', ').replace(
+                ' and', 'and ') for x in authors_scrape]
+
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+        authorsjoined = (''.join(authors_scrape))
+        
 
         # #Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
@@ -224,80 +255,86 @@ def createVI(myDOIs):
         for i in journalscrape:
             journal = i.text.encode('utf-8')
 
-        # Get citation year or set to nothing
-        year = ''
+        # set up soup for BS4
+
+        citationtag = driver.find_element_by_id("citation")
+        outcitationtag = citationtag.get_attribute("outerHTML")
+        soup = BeautifulSoup(outcitationtag, "html.parser")
+
+        # set year to citation year or empty string
         try:
+            year = soup.find("span", class_="citation_year").text
+            if year is None:
+                raise Exception
+            else:
+                year = year.encode("utf-8")
 
-            YEAR_XPATH = "//*[@id=\"citation\"]/span[@class=\"citation_year\"]"
-            yearscrape = driver.find_elements_by_xpath(YEAR_XPATH)
-
-            for i in yearscrape:
-                year = i.text.encode('utf-8')
         except:
+            year = ''
             print 'year not found'
-            continue
 
-        # Get citation volume
-        volume = ''
+        # Get citation voume or set to empty string
+
         try:
+            volume = soup.find("span", class_="citation_volume").text
+            if volume is None:
+                raise Exception
+            else:
+                volume = volume.encode("utf-8")
 
-            VOLUME_XPATH = "//*[@id=\"citation\"]/span[@class=\"citation_volume\"]"
-            volumescrape = driver.find_elements_by_xpath(VOLUME_XPATH)
-            for i in volumescrape:
-                volume = i.text.encode('utf-8')
         except:
+            volume = ''
             print 'volume not found'
-            continue
 
-        # Get issue info
-        issue_info = ''
-        citation = driver.find_element_by_id("citation")
-        html = citation.get_attribute("outerHTML")
-
-        soup = BeautifulSoup(html, "html.parser")
+        # Get issue info or set to empty string
 
         try:
             issue_info = soup.find(
                 "span", class_="citation_volume").next_sibling
+            if issue_info is None:
+                raise Exception
             issue_info = issue_info.encode("utf-8")
+
         except:
+            issue_info = ''
             print 'issue not found'
-            continue
 
-        # somewhere in here teh DOI gets messed up for
-        # 10.1021/acs.chemmater.5b01982.
-        print DOI
-
-        # click figures link
-        toc_href = ''
+        # click figures link and form url, or set to empty string
         try:
-
             driver.find_element_by_class_name('showFiguresLink').click()
 
             # get toc image href
             img_box = WebDriverWait(driver, 10).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
+            if img_box is None:
+                raise Exception
             toc_href = img_box.find_element_by_css_selector(
                 'a').get_attribute('href')
         except:
-            print 'TOC href not found'
-            pass
-
-        print DOI
+            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CLASS_NAME, "figBox"))
+            toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
+            print 'no hi-res figure found'
 
         articleinfo = {
-            "DOI": DOI,
-            "Title": html_title,
-            "article-link": article_link,
-            "Authors": str(authorsjoined),
-            "toc_href": str(toc_href),
-            "Image": img_url,
+            'DOI': DOI,
+            'Title': html_title,
+            'article-link': article_link,
+            'Authors': str(authorsjoined),
+            'toc_href': str(toc_href),
+            'Image': img_url,
             # "full-citation": fullcitation
-            "Journal": journal,
-            "Volume": volume,
-            "Issue-info": issue_info,
-            "Year": year,
+            'Journal': journal,
+            'Volume': volume,
+            'Issue-info': issue_info,
+            'Year': year,
+            "Datecode": datecode,
+            "Clean_doi": cleanDOI,
+            'Coden': coden
         }
+<<<<<<< HEAD
+        
+=======
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
 
         driver.close()
         driver.quit()
@@ -305,23 +342,51 @@ def createVI(myDOIs):
         print articleinfo
         print "\n"
 
-        print myDOIs
         results.append(articleinfo)
 
     # print results
+    print results
 
+    # write python dict to a csv file
     keys = results[0].keys()
 
-    with open('vi-csv.csv', 'wb') as f:
+    with open('app/vi-csv.csv', 'wb') as f:
         dict_writer = csv.DictWriter(f, keys)
         dict_writer.writeheader()
         dict_writer.writerows(results)
 
     '''
-    download mp3s from list of image href
+    check to see if there is an existing folder for coden and date, if not, create the folder
+
+    '''
+    # create folder for journal coden and date stamp
+    try:
+<<<<<<< HEAD
+        os.makedirs("app/static/img/virtualissue/"+ str(datecode)+ "/")
+=======
+        os.makedirs("app/static/img/" + coden + '/' + str(datecode) + "/")
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+    except OSError as exc:
+        if exc.errno != errno.EEXIST:
+            raise exc
+        pass
+
+<<<<<<< HEAD
+    
+ 
+
+=======
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+    '''
+    download images from list of image href
 
     '''
 
+<<<<<<< HEAD
+
+    for articleinfo in results:
+        filename = "app/static/img/virtualissue/" + str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
+=======
     # #download image into that directory
     # href_list = []
     # for i in results:
@@ -330,5 +395,37 @@ def createVI(myDOIs):
     # urlfilenamepair = zip(href_list, clean_journal)
 
     # for href, y in urlfilenamepair:
-    #         filename =  y + ".jpeg"
+    #         filename = y + ".jpeg"
     #         urllib.urlretrieve(href, filename)
+
+    for articleinfo in results:
+        filename = "app/static/img/virtualissue/" + coden + '/' + \
+            str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
+        href = articleinfo["toc_href"]
+
+        urllib.urlretrieve(href, filename)
+
+    '''
+    ZIP images using shutil
+
+    '''
+    output_filename = 'test'
+<<<<<<< HEAD
+    filedirectory = "app/static/img/virtualissue/" + str(datecode) + "/"
+
+    shutil.make_archive(datecode, 'zip', filedirectory)
+    shutil.copy(datecode + '.zip', filedirectory)
+
+ 
+    
+    return results
+
+
+=======
+    filedirectory = "app/static/img/virtualissue/" + \
+        coden + '/' + str(datecode) + "/"
+
+    shutil.make_archive(datecode, 'zip', filedirectory)
+    shutil.copy(datecode + '.zip', filedirectory)
+>>>>>>> e45b448c784b8a5b8ac1b5ec33bab07f7b345026
