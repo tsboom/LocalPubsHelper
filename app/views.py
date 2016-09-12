@@ -6,27 +6,23 @@ import pdb
 import string
 from table_fu import TableFu
 from werkzeug.utils import secure_filename
+from highlightsnewtest import processDOI
+from virtualissueASAP import createVI
 import os
-
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 # import pdb #use pdb.set_trace() to break
 
-from highlightsnewtest import processDOI
-# from virtualissue import createVI
-from virtualissueASAP import createVI
-# import virtualissue
-
-
 # index page starts with box to paste DOIs for highlights
+
+
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
 
-# results of highlights helper
 
 @app.route('/submit-form', methods=['POST'])
 def highlights():
@@ -67,13 +63,15 @@ def virtualissueautomate():
 '''
 index for processing a csv into a virtual issue
 '''
-#set upload folder and allowed extensions
+# set upload folder and allowed extensions
 
 UPLOAD_FOLDER = 'app/static/uploads'
 ALLOWED_EXTENSIONS = set(['csv'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-#check if extension is allowed
+# check if extension is allowed
+
+
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
@@ -105,9 +103,11 @@ podcast index and process results
 
 '''
 
+
 @app.route('/podcast')
 def podcast():
     return render_template('podcastindex.html')
+
 
 @app.route('/podcastupload', methods=['GET', 'POST'])
 def podcastupload():
@@ -122,7 +122,7 @@ def podcastupload():
             file.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
             # Use tablefu to template out the uploaded CSV file
             global table
-            table = TableFu.from_file('app/static/uploads/'+ filename)
+            table = TableFu.from_file('app/static/uploads/' + filename)
             return render_template('podcastresults.html', table=table)
 
 
