@@ -60,6 +60,7 @@ def virtualissueautomate():
     global table
     # data = request.form['text']
     table = TableFu.from_file('app/vi-csv.csv')
+
     return render_template('vi-template.html', table=table, results=results)
 
 

@@ -39,26 +39,25 @@
 
 <h4>Preview</h4>
 
-{% for articleinfo in results %}
 
-    <div class="sideBox leftSide w125 padBox">
-        <a href="/doi/abs/{{ articleinfo['DOI'] }}">
-
-            <img src="{{ url_for('static', filename = 'img/virtualissue/' + articleinfo['Datecode'] +'/' + articleinfo['Clean_doi'] + '.jpeg' ) }}" style="width:150px;border: 1px solid #cccccc; margin: 10px 5px 10px 0px; padding: 5px 5px 5px 5px;" />
-
-        </a>
-    </div>
-
+{% for row in table.rows %}
+<div class="sideBox leftSide w125 padBox">
+    <a href="/doi/abs/{{ row['DOI'] }}"><img width="120"src="{{ row['toc_href']}}" /></a>
+</div>
 <p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
     <br /> {{ row['Authors']}}
     <br />
+
     {% if row['Year'] == '' %}
     <cite>{{ row['Journal'] }}</cite>, Article ASAP
     {% else %}
     <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}
+
     {% endif %}
     <br><strong>DOI: </strong> {{ row['DOI'] }}</p>
 <br class="clearBoth" />
+
 {% endfor %}
+
 
 {% endblock %}
