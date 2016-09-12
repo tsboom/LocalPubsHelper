@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-from constants import AUTHOR_XPATH, CODEN_MATCH
+import constants
 import pdb
 import urllib
 from pprint import pprint
