@@ -8,7 +8,6 @@ from bs4 import BeautifulSoup
 import constants
 import pdb
 import urllib
-from pprint import pprint
 import csv
 import os
 import sys
@@ -41,7 +40,6 @@ def createVI(myDOIs):
 
     # format results
     results = []
-
 
     '''
     Loop through the DOIS to find information from each article page. add that info to lists.
@@ -105,9 +103,7 @@ def createVI(myDOIs):
 
         authorsjoined = (''.join(authors_scrape))
 
-
-
-        # #Get citation info
+        # Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
         # journalcite = driver.find_elements_by_xpath(CITATION_XPATH)
 
@@ -180,7 +176,7 @@ def createVI(myDOIs):
             toc_href = img_box.find_element_by_css_selector(
                 'a').get_attribute('href')
         except:
-            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CLASS_NAME, "figBox"))
+            toc_image = WebDriverWait(driver, 10).until(EC.presence_of_element_located(By.CLASS_NAME, "figBox"))
             toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
             print 'no hi-res figure found'
 
@@ -222,18 +218,20 @@ def createVI(myDOIs):
         dict_writer.writerows(results)
 
     '''
-    check to see if there is an existing folder for coden and date, if not, create the folder
+    check to see if there is an existing folder for coden and date,
+    if not, create the folder
 
     '''
     # create folder for journal coden and date stamp
     try:
 
-        os.makedirs("app/static/img/generated/virtualissue/"+ coden + '/' + str(datecode)+ "/")
+        os.makedirs("app/static/img/generated/virtualissue/" + coden + '/' + \
+            str(datecode) + "/")
+
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise exc
         pass
-
 
     '''
     download images from list of image href
@@ -265,13 +263,10 @@ def createVI(myDOIs):
     ZIP images using shutil
 
     '''
-
-
     filedirectory = "app/static/img/generated/virtualissue/" + \
         coden + '/' + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
-
 
     return results
