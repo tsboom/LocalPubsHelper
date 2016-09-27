@@ -25,18 +25,11 @@ def createVI(myDOIs):
 
     global results
 
-
     # get current YYYYMMDD
 
     import datetime
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
-
-    # format results
-    results = []
-
-    AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
-                    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
 
     # format results
     results = []
@@ -49,7 +42,6 @@ def createVI(myDOIs):
 
     # remove empty strings from list
     myDOIs = [doi for doi in myDOIs if doi]
-
 
     for DOI in myDOIs:
 
