@@ -161,7 +161,7 @@ def createVI(myDOIs):
             driver.find_element_by_class_name('showFiguresLink').click()
 
             # get toc image href
-            img_box = WebDriverWait(driver, 10).until(
+            img_box = WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
             if img_box is None:
                 raise Exception
