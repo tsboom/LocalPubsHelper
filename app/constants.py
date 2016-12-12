@@ -111,4 +111,7 @@ CODEN_MATCH = {
 
 
 AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
-    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
+    # "//*[@id=\"authors\"]/span/span/span/x | " +
+    " //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | " +
+    " //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | "+
+    "//*[@id=\"authors\"]/span/span/a[@href='#cor3']")

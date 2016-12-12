@@ -98,12 +98,23 @@ def processDOI(myDOIs):
         for author in authors:
             authors_scrape.append(author.text.encode('utf-8'))
 
-        authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
-        authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
-        authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
 
 
-        authorsjoined = (''.join(authors_scrape))
+        # create array to hold formatted authors list (stars next to authors)
+        authorsStars = []
+
+        # iterate over authors_scrape and join * with author before it
+        for index, i in enumerate(authors_scrape):
+            if authors_scrape[index+1] == "*":
+                string = str(authors_scrape[index]) + str(authors_scrape[index+1])
+                del(authors_scrape[index+1])
+                # add string
+                authorsStars.append(string)
+            else:
+                authorsStars.append(str(authors_scrape[index]))
+
+        # join correctly formatted authors
+        authorsjoined = (''.join(authorsStars))
 
         # click figures link and form url, or set to empty string
         try:
