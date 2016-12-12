@@ -105,16 +105,27 @@ def processDOI(myDOIs):
 
         # iterate over authors_scrape and join * with author before it
         for index, i in enumerate(authors_scrape):
-            if authors_scrape[index+1] == "*":
-                string = str(authors_scrape[index]) + str(authors_scrape[index+1])
-                del(authors_scrape[index+1])
-                # add string
-                authorsStars.append(string)
+            if index != (len(authors_scrape)-1):
+                if authors_scrape[index+1] == "*":
+                    string = authors_scrape[index] + authors_scrape[index+1]
+                    del(authors_scrape[index+1])
+                    # add string
+                    authorsStars.append(string)
+                else:
+                    authorsStars.append(authors_scrape[index])
             else:
-                authorsStars.append(str(authors_scrape[index]))
+                authorsStars.append(authors_scrape[index])
 
         # join correctly formatted authors
-        authorsjoined = (''.join(authorsStars))
+        # add ', ' and 'and'
+        if len(authorsStars)==2:
+            authorsStars.insert(1, ' and ')
+            authorsjoined = (''.join(authorsStars))
+        else:
+            all_but_last = ', '.join(authorsStars[:-1])
+            last = authorsStars[-1]
+            authorsjoined = ', and '.join([all_but_last, last])
+
 
         # click figures link and form url, or set to empty string
         try:
