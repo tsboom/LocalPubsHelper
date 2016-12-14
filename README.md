@@ -13,9 +13,6 @@
 
 2. While inside of the project folder in terminal, enter the virtual environment by typing `source venv/bin/activate`
 
-3. Install the requirements and run the program.
-```
-pip install -r requirements.txt
-python run.py
-```
+3. Install the requirements `pip install -r requirements.txt` and run the program `python run.py`
+
 4. Browse to localhost:8000 to access the web app.
