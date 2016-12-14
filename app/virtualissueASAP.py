@@ -110,6 +110,8 @@ def createVI(myDOIs):
         if len(authorsStars)==2:
             authorsStars.insert(1, ' and ')
             authorsjoined = (''.join(authorsStars))
+        elif len(authorsStars)==1:
+            authorsjoined = (''.join(authorsStars))
         else:
             all_but_last = ', '.join(authorsStars[:-1])
             last = authorsStars[-1]
