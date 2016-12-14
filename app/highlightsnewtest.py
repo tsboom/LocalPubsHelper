@@ -98,12 +98,36 @@ def processDOI(myDOIs):
         for author in authors:
             authors_scrape.append(author.text.encode('utf-8'))
 
-        authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
-        authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
-        authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
 
 
-        authorsjoined = (''.join(authors_scrape))
+        # create array to hold formatted authors list (stars next to authors)
+        authorsStars = []
+
+        # iterate over authors_scrape and join * with author before it
+        for index, i in enumerate(authors_scrape):
+            if index != (len(authors_scrape)-1):
+                if authors_scrape[index+1] == "*":
+                    string = authors_scrape[index] + authors_scrape[index+1]
+                    del(authors_scrape[index+1])
+                    # add string
+                    authorsStars.append(string)
+                else:
+                    authorsStars.append(authors_scrape[index])
+            else:
+                authorsStars.append(authors_scrape[index])
+
+        # join correctly formatted authors
+        # add ', ' and 'and'
+        if len(authorsStars)==2:
+            authorsStars.insert(1, ' and ')
+            authorsjoined = (''.join(authorsStars))
+        elif len(authorsStars)==1:
+            authorsjoined = (''.join(authorsStars))
+        else:
+            all_but_last = ', '.join(authorsStars[:-1])
+            last = authorsStars[-1]
+            authorsjoined = ', and '.join([all_but_last, last])
+
 
         # click figures link and form url, or set to empty string
         try:
@@ -117,8 +141,8 @@ def processDOI(myDOIs):
             toc_href = img_box.find_element_by_css_selector(
                 'a').get_attribute('href')
         except:
-            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CLASS_NAME, "figBox"))
-            toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
+            # toc_image = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "figBox")))
+            # toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
             print 'no hi-res figure found'
 
         articleinfo = {
@@ -178,7 +202,7 @@ def processDOI(myDOIs):
 
     '''
 
-    filedirectory = "app/static/img/generated/" + coden + '/' + str(datecode) + "/"
+    filedirectory = "app/static/img/generated/" + coden + '/'
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)

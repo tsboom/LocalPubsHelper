@@ -61,6 +61,7 @@ CODEN_MATCH = {
     'acsbiochem': 'bichaw',
     'acsbioconjchem': 'bcches',
     'acsbiomac': 'bomaf6',
+    'acsbiomaterials': 'abseba',
     'acscatal': 'accacs',
     'acscentsci': 'acscii',
     'acschembio': 'acbcct',
@@ -75,6 +76,7 @@ CODEN_MATCH = {
     'acscombsci': 'acsccc',
     'acscgd': 'cgdefu',
     'acsenergyfuels': 'enfuem',
+    'acsenergylett': 'aelccp',
     'acsest': 'esthag',
     'acsestlett': 'estlcu',
     'acsiecr': 'iecred',
@@ -109,4 +111,7 @@ CODEN_MATCH = {
 
 
 AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
-    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
+    # "//*[@id=\"authors\"]/span/span/span/x | " +
+    " //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | " +
+    " //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | "+
+    "//*[@id=\"authors\"]/span/span/a[@href='#cor3']")

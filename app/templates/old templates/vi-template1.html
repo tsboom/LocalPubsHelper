@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<textarea class="form-control" rows="10" cols="10" name="text">
+<div><img alt="" src="http://pubs.acs.org/subscribe/eblasts/images/joceah/ch-banner.jpg" width="640px"></div><br />
+
+<h2>Recent Advances in Atomic Layer Deposition</h2>
+<!-- <h3><i>Joint collection between Chemistry of Materials, ACS Applied Materials &amp; Interfaces, and ACS Nano</i></h3> -->
+
+<p> Atomic layer deposition (ALD) is a powerful technique for fabricating atomically precise coatings on a variety of surfaces, with sub-nanometer precision in both film thickness and composition. Because of the self-limiting surface chemistry intrinsic to the ALD process, one can also conformally coat ultrahigh aspect ratio surfaces, including nanoporous solids and three-dimensional (3D) hierarchical structures. This degree of synthetic control makes it an ideal platform for performing fundamental investigations of nanoscale materials, as well as fabrication of complex functional coatings for a wide range of applications. Essentially, whenever surface and/or interfacial phenomena dominate application properties at the nanoscale, ALD represents one of the most powerful approaches for both fundamental and applied research. 
+In this ACS Select Virtual Issue, 31 recent publications are highlighted from <cite>Chemistry of Materials</cite>, <cite>ACS Applied Materials &amp; Interfaces</cite>, and <cite>ACS Nano</cite>, chosen to demonstrate the breadth and depth of emerging ALD research. Particular emphasis was placed on the novelty and impact in the research, to provide the reader with a sense of the state-of-the art in ALD research, and perspectives on future directions. 
+<br class="clearBoth" />
+-From the editorial by Neil P. Dasgupta, Han-Bo-Ram Lee, Stacey F. Bent, and Paul S. Weiss DOI: <a href="/doi/abs/10.1021/acs.chemmater.6b00673">10.1021/acs.chemmater.6b00673</a></p>
+
+<!-- <h2>Editorial</h2>
+
+<a href="editorialink">Editorial for TEMPORARYTEXT</a><br>
+Author Name<br>
+DOI: <a href="linktoarticle">10.1021/TEMPORARY</a> -->
+<br class="clearBoth" />
+<br class="clearBoth" />
+
+<h2>Articles</h2>
+{% for row in table.rows %}
+<div class="sideBox leftSide w125 padBox">
+    <a href="/doi/abs/{{ row['DOI'] }}"><img src="{{ row['Image']}}" /></a>
+</div>
+<p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
+    <br /> {{ row['Authors']}}
+    <br />
+    <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> ({{ row['Issue'] }}), pp {{ row['Pages'] }} <strong>DOI:</strong> {{ row['DOI'] }}</p>
+<br class="clearBoth" />
+{% endfor %}
+</textarea>
+{% endblock %}

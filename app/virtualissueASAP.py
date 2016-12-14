@@ -5,10 +5,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 from bs4 import BeautifulSoup
-from constants import AUTHOR_XPATH, CODEN_MATCH
+import constants
 import pdb
 import urllib
-from pprint import pprint
 import csv
 import os
 import sys
@@ -26,7 +25,6 @@ def createVI(myDOIs):
 
     global results
 
-
     # get current YYYYMMDD
 
     import datetime
@@ -36,13 +34,6 @@ def createVI(myDOIs):
     # format results
     results = []
 
-    AUTHOR_XPATH = ("//span[@class=\"hlFld-ContribAuthor\"]/span[@class=\"hlFld-ContribAuthor\"]/a | " +
-                    "//*[@id=\"authors\"]/span/span/span/x | //*[@id=\"authors\"]/span/span/a[@href='#cor1'] | //*[@id=\"authors\"]/span/span/a[@href='#cor2'] | //*[@id=\"authors\"]/span/span/a[@href='#cor3']")
-
-    # format results
-    results = []
-
-
     '''
     Loop through the DOIS to find information from each article page. add that info to lists.
 
@@ -51,7 +42,6 @@ def createVI(myDOIs):
 
     # remove empty strings from list
     myDOIs = [doi for doi in myDOIs if doi]
-
 
     for DOI in myDOIs:
 
@@ -99,15 +89,35 @@ def createVI(myDOIs):
             authors_scrape.append(author.text.encode('utf-8'))
 
 
-        authors_scrape = [re.sub(r"\Aand\b", ' and ', item) for item in authors_scrape]
-        authors_scrape = [re.sub(r"\A,$", ', ', item) for item in authors_scrape]
-        authors_scrape = [item.replace(', and', ', and ') for item in authors_scrape]
+        # create array to hold formatted authors list (stars next to authors)
+        authorsStars = []
 
-        authorsjoined = (''.join(authors_scrape))
+        # iterate over authors_scrape and join * with author before it
+        for index, i in enumerate(authors_scrape):
+            if index != (len(authors_scrape)-1):
+                if authors_scrape[index+1] == "*":
+                    string = authors_scrape[index] + authors_scrape[index+1]
+                    del(authors_scrape[index+1])
+                    # add string
+                    authorsStars.append(string)
+                else:
+                    authorsStars.append(authors_scrape[index])
+            else:
+                authorsStars.append(authors_scrape[index])
 
+        # join correctly formatted authors
+        # add ', ' and 'and'
+        if len(authorsStars)==2:
+            authorsStars.insert(1, ' and ')
+            authorsjoined = (''.join(authorsStars))
+        elif len(authorsStars)==1:
+            authorsjoined = (''.join(authorsStars))
+        else:
+            all_but_last = ', '.join(authorsStars[:-1])
+            last = authorsStars[-1]
+            authorsjoined = ', and '.join([all_but_last, last])
 
-
-        # #Get citation info
+        # Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
         # journalcite = driver.find_elements_by_xpath(CITATION_XPATH)
 
@@ -173,14 +183,14 @@ def createVI(myDOIs):
             driver.find_element_by_class_name('showFiguresLink').click()
 
             # get toc image href
-            img_box = WebDriverWait(driver, 10).until(
+            img_box = WebDriverWait(driver, 15).until(
                 EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
             if img_box is None:
                 raise Exception
             toc_href = img_box.find_element_by_css_selector(
                 'a').get_attribute('href')
         except:
-            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located(By.CLASS_NAME, "figBox"))
+            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CLASS_NAME, "figBox")))
             toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
             print 'no hi-res figure found'
 
@@ -222,18 +232,20 @@ def createVI(myDOIs):
         dict_writer.writerows(results)
 
     '''
-    check to see if there is an existing folder for coden and date, if not, create the folder
+    check to see if there is an existing folder for coden and date,
+    if not, create the folder
 
     '''
     # create folder for journal coden and date stamp
     try:
 
-        os.makedirs("app/static/img/generated/virtualissue/"+ coden + '/' + str(datecode)+ "/")
+        os.makedirs("app/static/img/generated/virtualissue/" + coden + '/' + \
+            str(datecode) + "/")
+
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise exc
         pass
-
 
     '''
     download images from list of image href
@@ -265,13 +277,10 @@ def createVI(myDOIs):
     ZIP images using shutil
 
     '''
-
-
     filedirectory = "app/static/img/generated/virtualissue/" + \
         coden + '/' + str(datecode) + "/"
 
     shutil.make_archive(datecode, 'zip', filedirectory)
     shutil.copy(datecode + '.zip', filedirectory)
-
 
     return results
