@@ -190,8 +190,9 @@ def createVI(myDOIs):
             toc_href = img_box.find_element_by_css_selector(
                 'a').get_attribute('href')
         except:
-            toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CLASS_NAME, "figBox")))
-            toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
+            # toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CLASS_NAME, "figBox")))
+            # toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
+            toc_href = ""
             print 'no hi-res figure found'
 
         articleinfo = {
@@ -267,11 +268,13 @@ def createVI(myDOIs):
         filename = "app/static/img/generated/virtualissue/" + coden + '/' + \
             str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
 
-
-
         href = articleinfo["toc_href"]
 
-        urllib.urlretrieve(href, filename)
+        try:
+            urllib.urlretrieve(href, filename)
+        except IOError:
+            print "No image found for " + DOI
+            pass
 
     '''
     ZIP images using shutil

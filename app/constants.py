@@ -75,6 +75,7 @@ CODEN_MATCH = {
     'acschemmater': 'cmatex',
     'acscombsci': 'acsccc',
     'acscgd': 'cgdefu',
+    'acsearthspacechem': 'aesccq',
     'acsenergyfuels': 'enfuem',
     'acsenergylett': 'aelccp',
     'acsest': 'esthag',
@@ -105,7 +106,8 @@ CODEN_MATCH = {
     'acsjproteome': 'jprobs',
     'acssensors': 'ascefj',
     'acssuschemeng': 'ascecg',
-    'acssynbio': 'asbcd6'
+    'acssynbio': 'asbcd6',
+    'acssensors': 'ascefj'
 }
 
 

@@ -59,6 +59,7 @@ def processDOI(myDOIs):
         DOI = DOI.strip()
 
         # collect journal prefixes
+
         cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
         journalprefix = cleanDOI[:-7]
 
@@ -144,6 +145,7 @@ def processDOI(myDOIs):
             # toc_image = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "figBox")))
             # toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
             print 'no hi-res figure found'
+            toc_href = ""
 
         articleinfo = {
             "DOI": DOI,
@@ -191,7 +193,11 @@ def processDOI(myDOIs):
         filename = "app/static/img/generated/" + coden + '/' + \
             str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
         href = articleinfo["toc_href"]
-        urllib.urlretrieve(href, filename)
+        try:
+            urllib.urlretrieve(href, filename)
+        except IOError:
+            print "No image found for " + DOI
+            pass
 
     # for href, y in urlfilenamepair:
     #         filename = y + ".jpeg"
@@ -202,9 +208,9 @@ def processDOI(myDOIs):
 
     '''
 
-    filedirectory = "app/static/img/generated/" + coden + '/'
-
-    shutil.make_archive(datecode, 'zip', filedirectory)
-    shutil.copy(datecode + '.zip', filedirectory)
+    # filedirectory = "app/static/img/generated/" + coden + '/'
+    #
+    # shutil.make_archive(datecode, 'zip', filedirectory)
+    # shutil.copy(datecode + '.zip', filedirectory)
 
     return results
