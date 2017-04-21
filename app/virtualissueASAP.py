@@ -66,6 +66,9 @@ def createVI(myDOIs):
         # driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
         # driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
         # driver = webdriver.PhantomJS()
+
+        print "\n\n -------- \n\n"
+
         print "instanciating webdriver"
         driver = webdriver.PhantomJS()
         print "setting window size"
@@ -74,14 +77,23 @@ def createVI(myDOIs):
         # go to full article page by adding URL prefix to DOI
         print "getting doi link"
         driver.get("http://pubs.acs.org/doi/full/" + DOI)
-        print DOI
+        print "\t" + DOI
 
         # wait ten seconds and get title text to add to results object
         print "waiting then getting title text"
-        title = WebDriverWait(driver, 25).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
-        html_title = title.get_attribute('innerHTML').encode('utf-8')
-        print html_title
+        try:
+            title = WebDriverWait(driver, 20).until(
+                EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
+            html_title = title.get_attribute('innerHTML').encode('utf-8')
+            print "\t" + html_title
+        except:
+            print "\n" + DOI.upper() + " IS AN INVALID DOI \n"
+            articleinfo = {
+                'DOI': DOI,
+                'Title': "Invalid DOI"
+            }
+            results.append(articleinfo)
+            continue
 
         # add title to list of titles (with special characters)
         # article_titles.append(title.get_attribute('innerHTML').encode('utf-8'))
@@ -125,7 +137,7 @@ def createVI(myDOIs):
             authorsjoined = ', and '.join([all_but_last, last])
 
 
-        print authorsjoined
+        print "\t" + authorsjoined
         # Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
         # journalcite = driver.find_elements_by_xpath(CITATION_XPATH)
@@ -144,7 +156,7 @@ def createVI(myDOIs):
         for i in journalscrape:
             journal = i.text.encode('utf-8')
 
-        print journal
+        print "\t" + journal
         # set up soup for BS4
 
         citationtag = driver.find_element_by_id("citation")
@@ -164,7 +176,7 @@ def createVI(myDOIs):
             year = ''
             print 'year not found'
 
-        print year
+        print "\t" + year
         # Get citation voume or set to empty string
         print "getting issue"
         try:
@@ -177,7 +189,7 @@ def createVI(myDOIs):
         except:
             volume = ''
             print 'volume not found'
-        print volume
+        print "\t" + volume
         # Get issue info or set to empty string
         print "getting issue info"
         try:
@@ -190,7 +202,7 @@ def createVI(myDOIs):
         except:
             issue_info = ''
             print 'issue not found'
-        print issue_info
+        print "\t" + issue_info
         # click figures link and form url, or set to empty string
         print "getting figures link"
         try:
@@ -203,12 +215,13 @@ def createVI(myDOIs):
                 raise Exception
             toc_href = img_box.find_element_by_css_selector(
                 'a').get_attribute('href')
+
         except:
             # toc_image = WebDriverWait(driver,10).until(EC.presence_of_element_located((By.CLASS_NAME, "figBox")))
             # toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
             toc_href = ""
             print 'no hi-res figure found'
-        print toc_href
+        print "\t" + toc_href
 
         articleinfo = {
             'DOI': DOI,
@@ -230,14 +243,10 @@ def createVI(myDOIs):
 
         driver.close()
         driver.quit()
-        print "\n"
-        print articleinfo
-        print "\n"
 
         results.append(articleinfo)
 
-    # print results
-    print results
+
 
     # write python dict to a csv file
     keys = results[0].keys()
@@ -268,22 +277,16 @@ def createVI(myDOIs):
 
     '''
 
-    # #download image into that directory
-    # href_list = []
-    # for i in results:
-    #     href_list.append(i['toc_href'])
-
-    # urlfilenamepair = zip(href_list, clean_journal)
-
-    # for href, y in urlfilenamepair:
-    #         filename = y + ".jpeg"
-    #         urllib.urlretrieve(href, filename)
-
     for articleinfo in results:
-        filename = "app/static/img/generated/virtualissue/" + coden + '/' + \
+        try:
+            filename = "app/static/img/generated/virtualissue/" + coden + '/' + \
             str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
-
-        href = articleinfo["toc_href"]
+        except:
+            pass
+        try:
+            href = articleinfo["toc_href"]
+        except:
+            pass
 
         try:
             urllib.urlretrieve(href, filename)
