@@ -66,21 +66,28 @@ def createVI(myDOIs):
         # driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
         # driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
         # driver = webdriver.PhantomJS()
+        print "instanciating webdriver"
         driver = webdriver.PhantomJS()
+        print "setting window size"
         driver.set_window_size(1120, 550)
 
         # go to full article page by adding URL prefix to DOI
+        print "getting doi link"
         driver.get("http://pubs.acs.org/doi/full/" + DOI)
+        print DOI
 
         # wait ten seconds and get title text to add to results object
-        title = WebDriverWait(driver, 20).until(
+        print "waiting then getting title text"
+        title = WebDriverWait(driver, 25).until(
             EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
         html_title = title.get_attribute('innerHTML').encode('utf-8')
+        print html_title
 
         # add title to list of titles (with special characters)
         # article_titles.append(title.get_attribute('innerHTML').encode('utf-8'))
 
         # get authors
+        print "getting authors"
         authors = driver.find_elements_by_xpath(constants.AUTHOR_XPATH)
 
         # join the text in the array of the correctly encoded authors
@@ -117,6 +124,8 @@ def createVI(myDOIs):
             last = authorsStars[-1]
             authorsjoined = ', and '.join([all_but_last, last])
 
+
+        print authorsjoined
         # Get citation info
         # CITATION_XPATH = "//*[@id=\"citation\"]"
         # journalcite = driver.find_elements_by_xpath(CITATION_XPATH)
@@ -128,18 +137,21 @@ def createVI(myDOIs):
         # fullcitation = (''.join(citationprep))
 
         # Get abbreviated Journal name
+        print "getting journal name"
         JOURNAL_XPATH = "//*[@id=\"citation\"]/cite"
         journalscrape = driver.find_elements_by_xpath(JOURNAL_XPATH)
 
         for i in journalscrape:
             journal = i.text.encode('utf-8')
 
+        print journal
         # set up soup for BS4
 
         citationtag = driver.find_element_by_id("citation")
         outcitationtag = citationtag.get_attribute("outerHTML")
         soup = BeautifulSoup(outcitationtag, "html.parser")
 
+        print "getting year"
         # set year to citation year or empty string
         try:
             year = soup.find("span", class_="citation_year").text
@@ -152,8 +164,9 @@ def createVI(myDOIs):
             year = ''
             print 'year not found'
 
+        print year
         # Get citation voume or set to empty string
-
+        print "getting issue"
         try:
             volume = soup.find("span", class_="citation_volume").text
             if volume is None:
@@ -164,9 +177,9 @@ def createVI(myDOIs):
         except:
             volume = ''
             print 'volume not found'
-
+        print volume
         # Get issue info or set to empty string
-
+        print "getting issue info"
         try:
             issue_info = soup.find(
                 "span", class_="citation_volume").next_sibling
@@ -177,8 +190,9 @@ def createVI(myDOIs):
         except:
             issue_info = ''
             print 'issue not found'
-
+        print issue_info
         # click figures link and form url, or set to empty string
+        print "getting figures link"
         try:
             driver.find_element_by_class_name('showFiguresLink').click()
 
@@ -194,6 +208,7 @@ def createVI(myDOIs):
             # toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
             toc_href = ""
             print 'no hi-res figure found'
+        print toc_href
 
         articleinfo = {
             'DOI': DOI,
