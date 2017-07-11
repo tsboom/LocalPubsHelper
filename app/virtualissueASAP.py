@@ -15,7 +15,7 @@ import shutil
 import zipfile
 import errno
 import re
-
+import datetime
 
 # debugging
 # import pdb #use pdb.set_trace() to break
@@ -27,7 +27,7 @@ def createVI(myDOIs):
 
     # get current YYYYMMDD
 
-    import datetime
+
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
 
@@ -76,7 +76,7 @@ def createVI(myDOIs):
 
         # go to full article page by adding URL prefix to DOI
         print "getting doi link"
-        driver.get("http://pubs.acs.org/doi/full/" + DOI)
+        driver.get("http://pubs.acs.org/doi/" + DOI)
         print "\t" + DOI
 
         # wait ten seconds and get title text to add to results object

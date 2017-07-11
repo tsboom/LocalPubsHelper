@@ -70,7 +70,7 @@ def processDOI(myDOIs):
                    "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
 
         # create article URL
-        article_link = ("/doi/abs/" + str(DOI))
+        article_link = ("/doi/" + str(DOI) + "?ref=highlight")
 
         # create img path for Flask, so that the images can be displayed on
         # Flask.
@@ -84,7 +84,7 @@ def processDOI(myDOIs):
         driver.set_window_size(1120, 550)
 
         # go to full article page by adding URL prefix to DOI
-        driver.get("http://pubs.acs.org/doi/full/" + DOI)
+        driver.get("http://pubs.acs.org/doi/" + DOI)
 
         # wait ten seconds and get title text to add to results object
         title = WebDriverWait(driver, 20).until(
