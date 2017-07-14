@@ -8,11 +8,14 @@ import pdb
 # import pdb #use pdb.set_trace() to break
 
 #constants
-DOI_PREFIX = 'http://pubs.acs.org/doi/full/'
+DOI_PREFIX = 'http://pubs.acs.org/doi/'
 # no figures DOI = "10.1021/acs.accounts.7b00142"
-DOI = "10.1021/acs.accounts.6b00581"
+# DOI = "10.1021/acs.accounts.6b00581"
 #enhanced figures DOI
 #DOI = "10.1021/jacs.7b03655"
+
+#DOi with lots of special characters
+DOI = "10.1021/jacs.7b04930"
 
 
 def get_html(DOI):
@@ -39,10 +42,6 @@ def get_title(soup):
     title = soup.find('span', {'class': 'hlFld-Title'})
     return title.text.encode('utf-8')
 
-
-# def get_toc_image(DOI):
-
-#
 
 
 def get_authors(soup):
@@ -77,20 +76,64 @@ def join_commas_and(authors):
         authors_joined = ', and '.join([all_but_last, last])
     return authors_joined
 
+
+def get_citation_journal(soup):
+    citation_journal = soup.select('#citation > cite')[0].text
+    return citation_journal
+
+
 def get_citation_year(soup):
-    citation_year = soup.find('span', {'class': 'citation_year'})
-    return citation_year.text.encode('utf-8')
+    try:
+        citation_year = soup.find('span', {'class': 'citation_year'})
+        if citation_year is None:
+            raise Exception
+        else:
+            return citation_year.text.encode('utf-8')
+    except:
+        citation_year = ''
+        print 'year not available'
 
 
 def get_citation_volume(soup):
-    citation_volume = soup.find('span', {'class': 'citation_volume'})
-    return citation_volume.text.encode('utf-8')
+    try:
+        citation_volume = soup.find('span', {'class': 'citation_volume'})
+        if citation_volume is None:
+            raise Exception
+        else:
+            return citation_volume.text.encode('utf-8')
+    except:
+        citation_volume = ''
+        print 'volume not available'
 
 def get_citation_issue(soup):
-    issue_info = soup.find("span", class_="citation_volume").next_sibling
-    return issue_info.encode("utf-8")
+    try:
+        issue_info = soup.find("span", class_="citation_volume").next_sibling
+        if issue_info is None:
+            raise Exception
+        else:
+            return issue_info.text.encode('utf-8')
+    except:
+        issue_info = ''
+        print 'issue not available'
 
-# def download_toc_image(DOI):
+def get_toc_gif(soup):
+    try:
+        toc_gif = soup.select('#abstractBox > .figure > a > img')[0]['src']
+        if toc_gif is None:
+            raise Exception
+        else return toc_gif
+    except:
+        toc_gif = ''
+        print 'image not available'
+
+
+# this function gets reused for each image (if you are on the VPN)
+def gif_to_jpeg(gif):
+    # get the large jpeg version of image based on URL string
+    jpeg = gif.replace('medium', 'large')
+    jpeg = gif.replace('.gif', '.jpeg')
+    return jpeg
+
 
 
 def run(DOI):
