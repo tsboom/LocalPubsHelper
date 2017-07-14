@@ -121,7 +121,8 @@ def get_toc_gif(soup):
         toc_gif = soup.select('#abstractBox > .figure > a > img')[0]['src']
         if toc_gif is None:
             raise Exception
-        else return toc_gif
+        else:
+             return toc_gif
     except:
         toc_gif = ''
         print 'image not available'
