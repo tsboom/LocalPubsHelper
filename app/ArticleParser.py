@@ -10,10 +10,12 @@ class ArticleParser(object):
         citation_issue: The issue number as a string
     """
 
-    def __init__(self, title, year, volume, issue):
+    def __init__(self, doi, title, year, volume, issue):
+        self.doi = doi
         self.title = title
-        self.authors = authors_joined
+        self.authors = author_names
         self.year = citation_year
+        self.volume = citation_volume
         self.issue = issue_info
 
     def get_title(soup):

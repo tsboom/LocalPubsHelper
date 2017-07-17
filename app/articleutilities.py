@@ -3,6 +3,8 @@ import constants
 from bs4 import BeautifulSoup
 import requests as r
 import pdb
+import urllib
+import datetime
 
 # debugging
 # import pdb #use pdb.set_trace() to break
@@ -31,11 +33,20 @@ def soup_setup(html):
     soup = BeautifulSoup(html, 'html.parser')
     return soup
 
-def look_up_coden(DOI):
+def clean_doi(DOI):
     cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
+    return cleanDOI
+
+def get_coden(cleanDOI):
     journalprefix = cleanDOI[:-7]
     coden = constants.CODEN_MATCH[journalprefix]
     return coden;
+
+def get_datecode():
+    date = datetime.date.today()
+    datecode = datetime.datetime.now().strftime("%Y%m%d")
+    return datecode
+
 
 
 def get_title(soup):
@@ -131,9 +142,30 @@ def get_toc_gif(soup):
 # this function gets reused for each image (if you are on the VPN)
 def gif_to_jpeg(gif):
     # get the large jpeg version of image based on URL string
-    jpeg = gif.replace('medium', 'large')
-    jpeg = gif.replace('.gif', '.jpeg')
-    return jpeg
+    image_url = gif.replace('medium', 'large')
+    image_url = gif.replace('.gif', '.jpeg')
+    return image_url
+
+
+def download_toc_image(image_url, coden, datecode, cleanDOI):
+    # create folder for journal coden and date stamp
+    try:
+        os.makedirs("app/static/img/generated/virtualissue/" + coden + '/' + \
+            str(datecode) + "/")
+
+    except OSError as exc:
+        if exc.errno != errno.EEXIST:
+            raise exc
+        pass
+    # desired file name
+    filename = "app/static/img/generated/" + coden + '/' + \
+    str(datecode) + "/" + cleanDOI + '.jpeg'
+
+    image_name = cleanDOI + '.jpeg'
+    #download image using urllib
+    urllib.urlretrieve(image_url, filename)
+    print cleanDOI + '.jpeg: downloaded'
+    return image_name
 
 
 
