@@ -1,1 +1,7418 @@
-<div id="figureViewer-wrap" style="top: 46.5px; left: 186.5px;"><div id="figureViewer">                    <div id="figureViewerNav">                        <a title="Close Figure Viewer" href="#" onclick="showFigures(event); return false;" class="close">Close</a>                        <div class="figureNav">                            <a class="prev disabled" title="Previous Figure" href="#"></a>                            <span>Figure <span class="index">1</span> of 9</span>       <a class="next" title="Next Figure" href="JavaScript:showImage(1)"></a>      </div>     </div>     <div id="figureCanvas">      <div class="figBox"><img alt="Figure" src="/appl/literatum/publisher/achs/journals/content/bcches/0/bcches.ahead-of-print/acs.bioconjchem.7b00258/20170713/images/medium/bc-2017-00258w_0011.gif"></div>                        <div id="figTools"><div class="highRes"><a href="/appl/literatum/publisher/achs/journals/content/bcches/0/bcches.ahead-of-print/acs.bioconjchem.7b00258/20170713/images/large/bc-2017-00258w_0011.jpeg"><span>High Resolution Image</span></a></div><div class="ppt"><a title="Download MS PowerPoint Slide" href="/action/downloadFigures?doi=10.1021/acs.bioconjchem.7b00258&amp;id=f_tgr1">      <span>PowerPoint Slide</span>      </a></div></div>      <div class="caption"></div>     </div>    </div>    <div id="figureViewer-footer">     <img alt="" src="/templates/jsp/_style2/_achs/images/figureViewer-bg3.gif">    </div></div>
+
+<!DOCTYPE html>
+<html lang="en" class="pb-page"  data-request-id="ac16c9d0-639c-4b3c-bebc-6b22d7a6ecb3"
+><head data-pb-dropzone="head"><meta name="pbContext" content=";page:string:Article/Chapter View;subPage:string:Abstract;wgroup:string:ACHS website Group;website:website:acspubs;pageGroup:string:Publication Pages;journal:journal:jacsat;issue:issue:10.1021/jacsat.2017.139.issue-29;article:article:10.1021/jacs.7b04930"/><meta data-pb-head="head-widgets-start"/>
+<link rel="schema.DC" href="http://purl.org/DC/elements/1.0/" /><meta name="dc.Title" content="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /><meta name="dc.Creator" content="Dominik J. Kubicki" /><meta name="dc.Creator" content="Daniel Prochowicz" /><meta name="dc.Creator" content="Albert Hofstetter" /><meta name="dc.Creator" content="Péter Péchy" /><meta name="dc.Creator" content="Shaik M. Zakeeruddin" /><meta name="dc.Creator" content="Michael Grätzel" /><meta name="dc.Creator" content="Lyndon Emsley" /><meta name="dc.Description" content="Mixed-cation organic lead halide perovskites attract unfaltering attention owing to their excellent photovoltaic properties. Currently, the best performing perovskite materials contain multiple cations and provide power conversion efficiencies up to around 22%. Here, we report the first quantitative, cation-specific data on cation reorientation dynamics in hybrid mixed-cation formamidinium (FA)/methylammonium (MA) lead halide perovskites. We use 14N, 2H, 13C, and 1H solid-state MAS NMR to elucidate cation reorientation dynamics, microscopic phase composition, and the MA/FA ratio, in (MA)x(FA)1–xPbI3 between 100 and 330 K. The reorientation rates correlate in a striking manner with the carrier lifetimes previously reported for these materials and provide evidence of the polaronic nature of charge carriers in PV perovskites." /><meta name="dc.Description" content="" /><meta name="dc.Publisher" content="American Chemical Society" /><meta name="dc.Date" scheme="WTN8601" content="July 11, 2017" /><meta name="dc.Type" content="research-article" /><meta name="dc.Format" content="text/HTML" /><meta name="dc.Identifier" scheme="doi" content="10.1021/jacs.7b04930" /><meta name="dc.Language" content="EN" /><meta name="dc.Coverage" content="world" /><meta name="citation_fulltext_world_readable" content=""/>
+
+
+
+
+            <link rel="meta" type="application/atom+xml" href="http://dx.doi.org/10.1021%2Fjacs.7b04930" />
+            <link rel="meta" type="application/rdf+json" href="http://dx.doi.org/10.1021%2Fjacs.7b04930" />
+            <link rel="meta" type="application/unixref+xml" href="http://dx.doi.org/10.1021%2Fjacs.7b04930" />
+
+    <title>Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR - Journal of the American Chemical Society (ACS Publications)</title>
+
+
+
+
+
+
+
+
+
+
+
+<meta charset="UTF-8">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta data-pb-head="head-widgets-end"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link rel="stylesheet" type="text/css" href="/wro/product.css"><link rel="stylesheet" type="text/css" href="/pb/css/t1500992084671-v1497472240000/head_1_46_183_203.css" id="pb-css" data-pb-css-id="t1500992084671-v1497472240000/head_1_46_183_203.css"/>
+
+
+<script type="text/javascript" src="/wro/product.js"></script>
+<script type='text/javascript'>var _sf_startpt=(new Date()).getTime()</script>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+
+
+
+
+
+
+
+
+            <script type="text/javascript">
+                (function (i, s, o, g, r, a, m) {
+                    i['GoogleAnalyticsObject'] = r;
+                    i[r] = i[r] || function () {
+                                (i[r].q = i[r].q || []).push(arguments)
+                            }, i[r].l = 1 * new Date();
+                    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+                    a.async = 1;
+                    a.src = g;
+                    m.parentNode.insertBefore(a, m)
+                })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+                ga('create', 'UA-7663985-4'
+
+
+                                , 'auto'
+
+                        );
+
+                ga('send', 'pageview');
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body class="pb-ui">
+
+
+
+
+
+
+
+
+    <div id="pb-page-content" data-ng-non-bindable>
+        <div data-pb-dropzone="main" data-pb-dropzone-name="Main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumAd none hide widget-none" id="8ffa8e02-92de-4357-aad5-3f0dbaea42df"  >
+
+
+
+
+
+        <div class="wrapped " id='dfp-global-variables'>
+
+            <div class="widget-body body body-none "><div class="pb-ad">
+            <script type="text/javascript">
+	var dartInstitutionType = 'none';
+	var dartMember = 'false';
+</script>
+        </div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none hide widget-none" id="7353141c-1e04-41fe-acd2-4be633212fe9"  >
+
+
+
+
+
+        <div class="wrapped " id='dfp-defineSlot-ad-settings'>
+
+            <div class="widget-body body body-none "><script type="text/javascript">
+$(function() {
+	var journalTitle = 'JACS';
+	var articleKeyword = $('.keywords');
+	var articleTitle = $('meta[name="dc.Title"]');
+	var articleDescription = $('meta[name="dc.Description"]');
+	var searchTerms = [];
+
+	if (journalTitle != '$' + '{journal.dartId}') {
+		if (articleKeyword.length > 0) {
+			$('.keywords').children('.keyword').each(function() {
+				searchTerms.push($(this).text().toString());
+			});
+		}
+		else if (articleDescription.length > 0) {
+			$(articleDescription).each(function() {
+				articleDescriptionKeywords = $(this).prop('content');
+				articleDescriptionKeywords = articleDescriptionKeywords.replace(/.,/g,"");
+				articleDescriptionKeywords = articleDescriptionKeywords.replace(/\s{2,}/g," ");
+				searchTerms = searchTerms.concat(articleDescriptionKeywords.split(' '));
+			});
+		}
+
+		if (articleTitle.length > 0) {
+			searchTerms = searchTerms.concat(articleTitle.prop('content').split(' '));
+		}
+	}
+
+	googletag.cmd.push(function() {
+		if (journalTitle == '$' + '{journal.dartId}') {
+			googletag.defineSlot('/8868/journal/default/article', [[970, 90], [728, 90]], 'dfp-journal-article-leaderboard').addService(googletag.pubads()).setTargeting('location', 'leaderboard1');
+		}
+		else if (searchTerms.length > 0) {
+			googletag.defineSlot('/8868/journal/JACS/article', [[970, 90], [728, 90]], 'dfp-journal-article-leaderboard').addService(googletag.pubads()).setTargeting('location', 'leaderboard1').setTargeting('Keyword', searchTerms);
+		}
+		else {
+			googletag.defineSlot('/8868/journal/JACS/article', [[970, 90], [728, 90]], 'dfp-journal-article-leaderboard').addService(googletag.pubads()).setTargeting('location', 'leaderboard1');
+		}
+		//googletag.pubads().enableSingleRequest();
+		googletag.pubads().collapseEmptyDivs();
+		googletag.pubads().setTargeting('inst',dartInstitutionType).setTargeting('memb',dartMember);
+		googletag.enableServices();
+	});
+	displayAd = $('<script>', {'type': 'text/javascript'});
+	$(displayAd).append("googletag.cmd.push(function() { googletag.display('dfp-journal-article-leaderboard'); });");
+	$('#dfp-journal-article-leaderboard').append(displayAd);
+});
+</script></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html alignCenter  widget-none  widget-compact-all" id="04bfcfa3-b2c6-4308-ba8f-d2b4563303e5"  >
+
+
+
+
+
+        <div class="wrapped " id='dfp-large-leaderboard'>
+
+            <div class="widget-body body body-none  body-compact-all"><div class="adInfoLargeLeaderboard">
+	<div class="advertisement">
+		<a href="http://acsmediakit.org/digital/acs-pubs/?utm_source=AdTop&amp;utm_medium=Pubs&amp;utm_campaign=CEN">ADVERTISEMENT</a>
+	</div>
+	<div class="dfp">
+		<div id='dfp-journal-article-leaderboard'>
+			<script type='text/javascript'>
+				googletag.cmd.push(function() { googletag.display('dfp-journal-article-leaderboard'); });
+			</script>
+		</div>
+	</div>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget pageHeader none  widget-none  widget-compact-all" id="a044fa95-d38d-478f-b3f7-a600a053203d"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><header class="page-header">
+    <div data-pb-dropzone="main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-two-columns none ACSTop widget-none  widget-compact-all" id="6694f0f6-790b-4772-884b-03e51ea2d9f2"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="pb-columns row-fluid ">
+    <div class="width_2_3">
+        <div data-pb-dropzone="left" class="pb-autoheight">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-inline-content none  widget-none  widget-compact-all" id="9a4402ad-cf74-4122-8431-1152edd75a15"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="inline-dropzone" data-pb-dropzone="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumNavigationLoginBar none  widget-none  widget-compact-all" id="adc37bbe-80d7-4bab-96ae-c0aef5c52c3b"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="loginBar">
+
+
+
+
+
+
+
+
+
+
+            <span class="loginLink">
+                <a href="https://admin-pubsdc3.acs.org/action/showLogin?uri=%2Fdoi%2Fabs%2F10.1021%252Fjacs.7b04930" id="loginButton">
+                    Log In
+                </a>
+            </span>
+            <span class="registerLink">
+
+                <a id="registerButton" class="registerButton" title="Register for a free ACS ID" href="https://account.acs.org/ssoamweb/account/signUp?url_success=http://admin-pubsdc3.acs.org/doi/abs/10.1021%2Fjacs.7b04930&url_cancel=http://admin-pubsdc3.acs.org/doi/abs/10.1021%2Fjacs.7b04930">Register</a>
+            </span>
+
+    <input type="hidden" id="forgotPasswordEndpoint" value="https://account.acs.org/ssoamweb/forgot/password">
+
+    <input type="hidden" id="homeInstitutionUrl" value="https://admin-pubsdc3.acs.org/action/ssostart?redirectUri=%2Fdoi%2Fabs%2F10.1021%2Fjacs.7b04930">
+    <input type="hidden" id="statusEndpoint" value="https://sso.acs.org/idp/status">
+    <input type="hidden" id="clientID" value="Literatum">
+    <input type="hidden" id="logoutUrl" value="https://admin-pubsdc3.acs.org/action/doLogout?logoutRedirectUrl=https%3A%2F%2Fsso.acs.org%2Fidp%2Fglogout%3Fappid%3DLiteratum%26returnURL%3D">
+    <input type="hidden" id="compiledCssId" value="/pb/css/t1500992084671-v1497472240000/head_1_46_183_203.css">
+    <input type="hidden" class="confirmRegisterMsg" value="To register on this site, you must create an ACS ID on the ACS Society website (www.acs.org). After completing your registration, you will be returned back to the page you were viewing on the ACS Publications website (pubs.acs.org)."/>
+
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumCartLink none  widget-none  widget-compact-all" id="56a4702b-94e6-4a32-ac3b-698cf3c282d7"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><a href="https://admin-pubsdc3.acs.org/action/showCart">
+
+        <div class="cartLabel " style="">
+                Cart
+        </div>
+    </a></div>
+        </div>
+    </div>
+
+</div></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+    <div class="width_1_3">
+        <div data-pb-dropzone="right" class="pb-autoheight">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none nav-society widget-none  widget-compact-all" id="50fb196a-f0ca-4c00-a4d5-a6291ca4bcde"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><ul class="inline-list">
+   <li><a href="http://www.acs.org" title="American Chemical Society"><span>ACS</span></a></li>
+   <li class="activeLink"><a href="/" title="ACS Publications"><span>ACS Publications</span></a></li>
+   <li><a href=" http://pubs.acs.org/journal/cgeabj" title="C&amp;EN Global Enterprise"><span>C&amp;EN</span></a></li>
+   <li><a href="http://www.cas.org/" title="Chemical Abstracts Service" target="cas"><span>CAS</span></a></li><!--t-->
+</ul></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none nav-pubs-wrap widget-none  widget-compact-all" id="928bdca7-c3cc-462a-aea7-502152e0ceec"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><script type="text/javascript">
+$(function(){
+	$('#nav-pubs-clicklayer').hover(
+		function() {
+			hideAZ = setTimeout(function() {
+				$('#nav-pubs').removeClass('showAzList showEbooksList');
+				$('#nav-pubs-clicklayer').toggle();
+			}, 1000);
+		}, function() {
+			clearTimeout(hideAZ);
+		}
+	).click(function(){
+		$('#nav-pubs').removeClass('showAzList showEbooksList');
+		$('#nav-pubs-clicklayer').toggle();
+	});
+});
+function showAZList() {
+	$('#nav-pubs').toggleClass('showAzList');
+	$('#nav-pubs-clicklayer').toggle();
+}
+$(function(){
+	$(".ebooks-link").click(function(e) {
+		e.preventDefault();
+		$('#nav-pubs').toggleClass('showEbooksList');
+		$('#nav-pubs-clicklayer').toggle();
+	});
+});
+</script>
+
+
+<div id="nav-pubs" class="menuXml">
+
+	<a href="/" title="ACS Publications Home" class="pubslogo-small"><img src="/pb-assets/images/pubslogo-small.png" alt="ACS Publications" /></a>
+
+	<ul class="primaryNav">
+		<li class="journal-az-link">
+			<div class="overlay"></div>
+			<a href="#" onclick="showAZList();return false;">ACS Journals <span class="arrow"></span></a>
+		</li>
+
+		<li class="ebooks-link">
+			<div class="overlay"></div>
+			<a href="#">ACS eBooks <span class="arrow"></span></a>
+		</li>
+
+		<li class="last">
+			<a href="/journal/cgeabj">C&amp;EN Global Enterprise</a>
+		</li>
+	</ul>
+
+	<div id="nav-pubs-clicklayer" style="display:none;"></div>
+	<div id="journal-az-layer">
+		<ul>
+			<li class="letter">A</li>
+			<li>
+				<a href="/journal/achre4">Accounts of Chemical Research</a>
+			</li>
+			<li>
+				<a href="/journal/aamick">ACS Applied Materials &amp; Interfaces</a>
+			</li>
+			<li>
+				<a href="/journal/abseba">ACS Biomaterials Science &amp; Engineering</a>
+			</li>
+			<li>
+				<a href="/journal/accacs">ACS Catalysis</a>
+			</li>
+			<li>
+				<a href="/journal/acscii">ACS Central Science</a>
+			</li>
+			<li>
+				<a href="/journal/acbcct">ACS Chemical Biology</a>
+			</li>
+			<li>
+				<a href="/journal/acncdm">ACS Chemical Neuroscience</a>
+			</li>
+			<li>
+				<a href="/journal/acsccc">ACS Combinatorial Science</a>
+				<ul>
+					<li>
+						<a href="/journal/jcchff">- Journal of Combinatorial Chemistry</a>
+					</li>
+				</ul>
+
+
+
+			</li>
+
+			<li><a href="/journal/aesccq">ACS Earth and Space Chemistry - New in 2017</a></li>
+
+<li>
+				<a href="/journal/aelccp">ACS Energy Letters</a>
+			</li>
+
+			<li>
+				<a href="/journal/aidcbc">ACS Infectious Diseases</a>
+			</li>
+			<li>
+				<a href="/journal/amlccd">ACS Macro Letters</a>
+			</li>
+			<li>
+				<a href="/journal/amclct">ACS Medicinal Chemistry Letters</a>
+			</li>
+			<li>
+				<a href="/journal/ancac3">ACS Nano</a>
+			</li>
+            <li>
+				<a href="/journal/acsodf">ACS Omega</a>
+			</li>
+			<li>
+				<a href="/journal/apchd5">ACS Photonics</a>
+			</li>
+			<li>
+				<a href="/journal/ascefj">ACS Sensors</a>
+			</li>
+			<li>
+				<a href="/journal/ascecg">ACS Sustainable Chemistry &amp; Engineering</a>
+			</li>
+			<li>
+				<a href="/journal/asbcd6">ACS Synthetic Biology</a>
+			</li>
+			<li>
+				<a href="/journal/ancham">Analytical Chemistry</a>
+				<ul>
+					<li>
+						<a href="/loi/ancham">- I&amp;EC Analytical Edition</a>
+					</li>
+				</ul>
+			</li>
+
+			<li class="letter">B</li>
+			<li>
+				<a href="/journal/bichaw">Biochemistry</a>
+			</li>
+			<li>
+				<a href="/journal/bcches">Bioconjugate Chemistry</a>
+			</li>
+			<li>
+				<a href="/journal/bomaf6">Biomacromolecules</a>
+			</li>
+			<li>
+				<a href="/journal/bipret">Biotechnology Progress</a>
+			</li>
+
+			<li class="letter">C</li>
+			<li>
+				<a href="/journal/crtoec">Chemical Research in Toxicology</a>
+			</li>
+			<li>
+				<a href="/journal/chreay">Chemical Reviews</a>
+			</li>
+			<li>
+				<a href="/journal/cmatex">Chemistry of Materials</a>
+			</li>
+			<li>
+				<a href="/journal/cgdefu">Crystal Growth &amp; Design</a>
+			</li>
+		</ul>
+
+		<ul>
+			<li class="letter">E</li>
+			<li>
+				<a href="/journal/enfuem">Energy &amp; Fuels</a>
+			</li>
+			<li>
+				<a href="/journal/esthag">Environmental Science &amp; Technology</a>
+			</li>
+			<li>
+				<a href="/journal/estlcu">Environmental Science &amp; Technology Letters</a>
+			</li>
+
+			<li class="letter">I</li>
+			<li>
+				<a href="/journal/iechad">Industrial &amp; Engineering Chemistry</a>
+				<ul>
+					<li>
+						<a href="/journal/iechad.1">- Journal of Industrial &amp; Engineering Chemistry</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/journal/iecred">Industrial &amp; Engineering Chemistry Research</a>
+				<ul>
+					<li>
+						<a href="/loi/iepdaw">- I&amp;EC Process Design and Development</a>
+					</li>
+					<li>
+						<a href="/loi/iecfa7">- I&amp;EC Fundamentals</a>
+					</li>
+					<li>
+						<a href="/loi/iepra6">- Product Research &amp; Development</a>
+					</li>
+					<li>
+						<a href="/loi/iepra6">- Product R&amp;D</a>
+					</li>
+					<li>
+						<a href="/loi/iepra6">- I&amp;EC Product Research and Development</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/journal/inocaj">Inorganic Chemistry</a>
+			</li>
+
+			<li class="letter">J</li>
+			<li>
+				<a href="/journal/jacsat">Journal of the American Chemical Society</a>
+			</li>
+			<li>
+				<a href="/journal/jafcau">Journal of Agricultural and Food Chemistry</a>
+			</li>
+			<li>
+				<a href="/journal/jceaax">Journal of Chemical &amp; Engineering Data</a>
+				<ul>
+					<li>
+						<a href="/loi/jceaax">- I&amp;EC Chemical &amp; Engineering Data Series</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/journal/jceda8">Journal of Chemical Education</a>
+			</li>
+			<li>
+				<a href="/journal/jcisd8">Journal of Chemical Information and Modeling</a>
+				<ul>
+					<li>
+						<a href="/loi/jcisd8">- Journal of Chemical Documentation</a>
+					</li>
+					<li>
+						<a href="/loi/jcisd8">- Journal of Chemical Information and Computer Sciences</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/journal/jctcce">Journal of Chemical Theory and Computation</a>
+			</li>
+			<li>
+				<a href="/journal/jmcmar">Journal of Medicinal Chemistry</a>
+			</li>
+			<li>
+				<a href="/journal/jnprdf">Journal of Natural Products</a>
+			</li>
+			<li>
+				<a href="/journal/joceah">The Journal of Organic Chemistry</a>
+			</li>
+		</ul>
+
+		<ul>
+			<li class="letter">J (continued)</li>
+			<li>
+				<a href="/journal/jpcafh">The Journal of Physical Chemistry A</a>
+			</li>
+			<li>
+				<a href="/journal/jpcbfk">The Journal of Physical Chemistry B</a>
+			</li>
+			<li>
+				<a href="/journal/jpccck">The Journal of Physical Chemistry C</a>
+				<ul>
+					<li>
+						<a href="/loi/jpchax">- The Journal of Physical Chemistry</a>
+					</li>
+					<li>
+						<a href="/loi/jpchax">- The Journal of Physical and Colloid Chemistry</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="/journal/jpclcd">The Journal of Physical Chemistry Letters</a>
+			</li>
+			<li>
+				<a href="/journal/jprobs">Journal of Proteome Research</a>
+			</li>
+
+			<li class="letter">L</li>
+			<li>
+				<a href="/journal/langd5">Langmuir</a>
+			</li>
+
+			<li class="letter">M</li>
+			<li>
+				<a href="/journal/mamobx">Macromolecules</a>
+			</li>
+			<li>
+				<a href="/journal/mpohbp">Molecular Pharmaceutics</a>
+			</li>
+
+			<li class="letter">N</li>
+			<li>
+				<a href="/journal/nalefd">Nano Letters</a>
+			</li>
+
+			<li class="letter">O</li>
+			<li>
+				<a href="/journal/orlef7">Organic Letters</a>
+			</li>
+			<li>
+				<a href="/journal/oprdfk">Organic Process Research &amp; Development</a>
+			</li>
+			<li>
+				<a href="/journal/orgnd7">Organometallics</a>
+			</li>
+		</ul>
+	</div>
+	<div id="ebooks-layer">
+		<ul>
+			<li>
+				<a href="/page/books/index.html">About ACS eBooks</a>
+			</li>
+			<li>
+				<a href="/isbn/9780841230460">ACS Reagent Chemicals</a>
+			</li>
+			<li>
+				<a href="/isbn/9780841239999">ACS Style Guide</a>
+			</li>
+			<li>
+				<a href="/series/advances">Advances in Chemistry</a>
+			</li>
+			<li>
+				<a href="/series/symposium">ACS Symposium Series</a>
+			</li>
+		</ul>
+	</div>
+
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-two-columns none pubsTop widget-none  widget-compact-all" id="a489a1a3-ebc5-4c6a-ba98-5e4aafb7c45e"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="pb-columns row-fluid gutterless">
+    <div class="width_13_24">
+        <div data-pb-dropzone="left" class="pb-autoheight">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none pagelogo widget-none  widget-compact-all" id="9c46435f-303e-45e1-bfa8-7ceb2b87a0ea"  >
+
+
+
+
+
+        <div class="wrapped " id='series-logo'>
+
+            <div class="widget-body body body-none  body-compact-all"><a href="/journal/jacsat"><img src="/covergifs/jacsat/title.gif" alt="Journal of the American Chemical Society" /></a></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+    <div class="width_11_24">
+        <div data-pb-dropzone="right" class="pb-autoheight">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-frame none qs-tabs widget-none  widget-compact-all" id="6f8be75c-ee63-44de-ad5f-0ed027c19d78"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div data-pb-dropzone="contents">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none  widget-none  widget-compact-all" id="757e478d-6239-4d7a-ac1c-9323ea098af3"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><a href="/search/advanced" class="advSearchLink">Advanced Search</a></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-tabs none  widget-none  widget-compact-all" id="3ab7fde8-8423-410a-89d0-b202c470a197"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="tabs tabs-widget " aria-live="polite" aria-atomic="true" aria-relevant="additions">
+    <ul class="tab-nav">
+
+            <li class="active">
+
+                        <a href="#3ab7fde8-8423-410a-89d0-b202c470a197-58132d06-cf2f-4e31-a696-f4f2aa0cdd9a" title="show Search" data-ga='[{"eventName":"_trackEvent"}, {"firstParam":"Quick Search"}, {"secondParam":"Search Tab"}]'>Search</a>
+
+            </li>
+
+            <li class="">
+
+                        <a href="#3ab7fde8-8423-410a-89d0-b202c470a197-b6de7b7c-de82-45a5-9538-313dd15c6659" title="show Citation" data-ga='[{"eventName":"_trackEvent"}, {"firstParam":"Quick Search"}, {"secondParam":"Citation Tab"}]'>Citation</a>
+
+            </li>
+
+            <li class="">
+
+                        <a href="#3ab7fde8-8423-410a-89d0-b202c470a197-c99a966e-255a-48ca-bc42-73e1dc1e0708" title="show Subject" data-ga='[{"eventName":"_trackEvent"}, {"firstParam":"Quick Search"}, {"secondParam":"Subject Tab"}]'>Subject</a>
+
+            </li>
+
+    </ul>
+    <div class="tab-content">
+
+
+
+                <div class="tab-pane active" id="3ab7fde8-8423-410a-89d0-b202c470a197-58132d06-cf2f-4e31-a696-f4f2aa0cdd9a">
+
+                    <div class="tab-pane-content" data-pb-dropzone="tab-58132d06-cf2f-4e31-a696-f4f2aa0cdd9a" data-pb-dropzone-name="Search">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget quickSearchWidget none  widget-none  widget-compact-all" id="418cb9c3-dbc8-4fc8-bf37-ee58a4195363"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="quickSearchFormContainer">
+
+
+
+
+
+    <form action="/action/doSearch" name="quickSearch" class="quickSearchForm " title="Quick Search" method="get"><span class="simpleSearchBoxContainer">
+                        <input name="AllField"
+               class="searchText magicsuggest main-search-field autocomplete"
+               value=""
+               type="search" id="searchText"
+               title="Type search term here"
+               placeholder="Enter search text / DOI" autocomplete="off"
+               data-history-items-conf="3"
+               data-publication-titles-conf="3"
+               data-topics-conf="3"
+               data-contributors-conf="3"
+               data-auto-complete-target="auto-complete"
+               data-auto-complete-max-words="7"
+               data-auto-complete-max-chars="32"/>
+                </span>
+
+
+
+
+
+
+<span class="citationSearchBoxContainer hidden">
+    <input name="quickLinkJournal"
+           class="journalName mediumTextInput  autocomplete"
+           value="Journal of the American Chemical Society"
+           type="search"
+           title="Journal or Book Series"
+           placeholder="Journal or Book Series"
+           data-auto-complete-target="Title"
+           autoComplete="off"
+           autoPopulate="true"/>
+
+    <input type="hidden" name="quickLink" value="true" />
+    <input class="year smallTextInput" title="Year" type="search" name="quickLinkYear" value="" autocomplete="false" placeholder="Year" />
+    <input class="volume smallTextInput" title="Volume" type="search" name="quickLinkVolume" value="" autocomplete="false" placeholder="Volume" />
+    <input class="issue smallTextInput enable" title="Issue" type="search" name="quickLinkIssue" value="" autocomplete="false" placeholder="Issue" />
+    <input class="page smallTextInput" title="Page" type="search" name="quickLinkPage" value="" autocomplete="false" placeholder="Page" />
+</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="searchDropDownDivRight">
+
+    <label for="searchInSelector" class="visuallyhidden">Search in:</label>
+
+    <select id="searchInSelector" class="custom-dropdown js__searchInSelector">
+
+
+        <option value="" data-search-in="default">Anywhere</option>
+
+
+
+            <option value="Title">
+                Title
+            </option>
+
+
+
+            <option value="Contrib">
+                Author
+            </option>
+
+
+
+            <option value="Abstract">
+                Abstract
+            </option>
+
+
+
+    </select>
+
+
+</span>
+
+
+
+
+
+
+
+
+
+<input class="mainSearchButton searchButtons pointer" title="search" type="submit" value="Search" />
+
+
+
+
+
+
+
+
+
+
+
+    <input type="hidden" name="type" value="within" />
+    <div id="qsScope">
+        <label for="qsTitleButton" id="qsProduct">
+            <input id="qsTitleButton" type="radio" name="publication" value="40001010" checked="checked" />
+            <span>J. Am. Chem. Soc.</span>
+        </label>
+        <label for="qsAllButton" id="qsAll">
+            <input id="qsAllButton" type="radio" name="publication" value="" />
+            <span>All Publications/Website</span>
+        </label>
+    </div></form>
+</div>
+
+
+
+
+<div class="advancedSearchLinkDropZone" data-pb-dropzone="advancedSearchLinkDropZone">
+
+</div></div>
+        </div>
+    </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="tab-pane " id="3ab7fde8-8423-410a-89d0-b202c470a197-b6de7b7c-de82-45a5-9538-313dd15c6659">
+
+                    <div class="tab-pane-content" data-pb-dropzone="tab-b6de7b7c-de82-45a5-9538-313dd15c6659" data-pb-dropzone-name="Citation">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget citationSearch none  widget-none  widget-compact-all" id="0cab95de-7577-441d-a5fe-3c4175aa325c"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="citationSearchContainer clear searchBox">
+
+    <form action="/action/quickLink" id="citationSearchForm" name="citationSearch" class="citationSearchForm" method="get"><fieldset>
+            <select name="quickLinkJournal" id="publicationSpan" class=" citationJournalName citation citation-search-title" data-placeholder="Journal or Book Series">
+
+
+                    <option value="">Select a Journal or Book</option>
+
+                            <option value="achre4">Acc. Chem. Res.</option>
+
+                            <option value="aamick">ACS Appl. Mater. Interfaces</option>
+
+                            <option value="abseba">ACS Biomater. Sci. Eng.</option>
+
+                            <option value="accacs">ACS Catal.</option>
+
+                            <option value="acscii">ACS Cent. Sci.</option>
+
+                            <option value="acbcct">ACS Chem. Biol.</option>
+
+                            <option value="acncdm">ACS Chem. Neurosci.</option>
+
+                            <option value="acsccc">ACS Comb. Sci.</option>
+
+                            <option value="aesccq">ACS Earth Space Chem.</option>
+
+                            <option value="aelccp">ACS Energy Lett.</option>
+
+                            <option value="aidcbc">ACS Infect. Dis.</option>
+
+                            <option value="amlccd">ACS Macro Lett.</option>
+
+                            <option value="amclct">ACS Med. Chem. Lett.</option>
+
+                            <option value="ancac3">ACS Nano</option>
+
+                            <option value="acsodf">ACS Omega</option>
+
+                            <option value="apchd5">ACS Photonics</option>
+
+                            <option value="reagents">ACS Reagent Chemicals</option>
+
+                            <option value="ascefj">ACS Sens.</option>
+
+                            <option value="ascecg">ACS Sustainable Chem. Eng.</option>
+
+                            <option value="symposium">ACS Symposium Series</option>
+
+                            <option value="asbcd6">ACS Synth. Biol.</option>
+
+                            <option value="advances">Advances in Chemistry</option>
+
+                            <option value="ancham">Anal. Chem.</option>
+
+                            <option value="bichaw">Biochemistry</option>
+
+                            <option value="bcches">Bioconjugate Chem.</option>
+
+                            <option value="bomaf6">Biomacromolecules</option>
+
+                            <option value="bipret">Biotechnol. Prog.</option>
+
+                            <option value="cgeabj">C&EN Global Enterp</option>
+
+                            <option value="crtoec">Chem. Res. Toxicol.</option>
+
+                            <option value="chreay">Chem. Rev.</option>
+
+                            <option value="cmatex">Chem. Mater.</option>
+
+                            <option value="cgdefu">Crystal Growth & Design</option>
+
+                            <option value="enfuem">Energy Fuels</option>
+
+                            <option value="esthag">Environ. Sci. Technol.</option>
+
+                            <option value="estlcu">Environ. Sci. Technol. Lett.</option>
+
+                            <option value="iechad">Ind. Eng. Chem.</option>
+
+                            <option value="iecred">Ind. Eng. Chem. Res.</option>
+
+                            <option value="iecnav">Ind. Eng. Chem., News Ed.</option>
+
+                            <option value="inocaj">Inorg. Chem.</option>
+
+                            <option value="jacsat" selected>J. Am. Chem. Soc.</option>
+
+                            <option value="jafcau">J. Agric. Food Chem.</option>
+
+                            <option value="jceaax">J. Chem. Eng. Data</option>
+
+                            <option value="jceda8">J. Chem. Educ.</option>
+
+                            <option value="jcisd8">J. Chem. Inf. Model.</option>
+
+                            <option value="jctcce">J. Chem. Theory Comput.</option>
+
+                            <option value="jcchff">J. Comb. Chem.</option>
+
+                            <option value="jmcmar">J. Med. Chem.</option>
+
+                            <option value="jnprdf">J. Nat. Prod.</option>
+
+                            <option value="joceah">J. Org. Chem.</option>
+
+                            <option value="jpchax">J. Phys. Chem.</option>
+
+                            <option value="jpcafh">J. Phys. Chem. A</option>
+
+                            <option value="jpcbfk">J. Phys. Chem. B</option>
+
+                            <option value="jpccck">J. Phys. Chem. C</option>
+
+                            <option value="jpclcd">J. Phys. Chem. Lett.</option>
+
+                            <option value="jprobs">J. Proteome Res.</option>
+
+                            <option value="langd5">Langmuir</option>
+
+                            <option value="mamobx">Macromolecules</option>
+
+                            <option value="mpohbp">Mol. Pharmaceutics</option>
+
+                            <option value="nalefd">Nano Lett.</option>
+
+                            <option value="neaca9">News Ed., Am. Chem. Soc</option>
+
+                            <option value="orlef7">Org. Lett.</option>
+
+                            <option value="oprdfk">Org. Process Res. Dev.</option>
+
+                            <option value="orgnd7">Organometallics</option>
+
+            </select>
+
+            <div class="citation-details float-right">
+                <input type="hidden" name="quickLink" value="true" /><input class="search-term smallTextInput" type="text" name="quickLinkVolume" value="" size="15" autocomplete="false" placeholder="vol" /><input class="search-term fist-page-input smallTextInput" type="text" name="quickLinkPage" value="" size="15" autocomplete="false" placeholder="page" />
+            </div>
+
+            <div class=" submitRow float-right clear">
+                <input id="citationSearchSubmitButton" class="searchButtons pointer" title="Citation Search" type="submit" value="Citation Search" disabled="disabled" />
+            </div>
+        </fieldset></form>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="tab-pane " id="3ab7fde8-8423-410a-89d0-b202c470a197-c99a966e-255a-48ca-bc42-73e1dc1e0708">
+
+                    <div class="tab-pane-content" data-pb-dropzone="tab-c99a966e-255a-48ca-bc42-73e1dc1e0708" data-pb-dropzone-name="Subject">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none cas-subjects widget-none  widget-compact-all" id="a2c67375-3889-40bd-9d92-6ae9bbd61c7d"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><script type="text/javascript">
+function toggleSubjects(li) {
+	if ($(li).hasClass("open")) {
+		$(li).removeClass("open");
+	}
+	else {
+		$(li).parent().find('.category').removeClass("open");
+		$(li).addClass("open");
+	}
+	return false;
+}
+$(function(){
+	$('#qs-subjects .close-tab').click(function() {
+		$('.qs-tabs .tab-nav a').first().click();
+	});
+});
+</script>
+
+<div class="container collection" id="qs-subjects" style="display: block;">
+
+	<a class="close-tab">x</a>
+
+    <div><strong>Select a <a href="http://cas.org" target="_blank">CAS</a> section from the 5 main topical divisions below:</strong></div>
+    <ul class="collectionList">
+
+        <li class="category open">
+            <a title="View this subject category" onclick="toggleSubjects($(this).parent());" href="#"><span class="plusMinus">&nbsp;</span>
+                <span class="categoryTitle">Applied</span>
+            </a>
+            <div class="wrapper">
+                <ul>
+
+                    <li>
+                        <a href="/topic/industrial_hygiene">Air Pollution and Industrial Hygiene</a>
+                    </li>
+                    <li>
+                        <a href="/topic/plant_equipment">Apparatus and Plant Equipment</a>
+                    </li>
+                    <li>
+                        <a href="/topic/building_materials">Cement, Concrete, and Related Building Materials</a>
+                    </li>
+                    <li>
+                        <a href="/topic/ceramics">Ceramics</a>
+                    </li>
+                    <li>
+                        <a href="/topic/thermal_energy">Electrochemical, Radiational, and Thermal Energy Technology</a>
+                    </li>
+                    <li>
+                        <a href="/topic/cosmetics">Essential Oils and Cosmetics</a>
+                    </li>
+                    <li>
+                        <a href="/topic/metallurgy">Extractive Metallurgy</a>
+                    </li>
+                    <li>
+                        <a href="/topic/ferrous">Ferrous Metals and Alloys</a>
+                    </li>
+                    <li>
+                        <a href="/topic/fossil_fuels">Fossil Fuels, Derivatives, and Related Products</a>
+                    </li>
+                    <li>
+                        <a href="/topic/industrial_inorg_chem">Industrial Inorganic Chemicals</a>
+                    </li>
+                    <li>
+                        <a href="/topic/mineralogical_geological">Mineralogical and Geological Chemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/nonferrous">Nonferrous Metals and Alloys</a>
+                    </li>
+                    <li>
+                        <a href="/topic/pharm_analysis">Pharmaceutical Analysis</a>
+                    </li>
+                    <li>
+                        <a href="/topic/pharmaceuticals">Pharmaceuticals</a>
+                    </li>
+                    <li>
+                        <a href="/topic/propellants">Propellants and Explosives</a>
+                    </li>
+                    <li>
+                        <a href="/topic/unit_operations">Unit Operations and Processes</a>
+                    </li>
+                    <li>
+                        <a href="/topic/waste">Waste Treatment and Disposal</a>
+                    </li>
+                    <li>
+                        <a href="/topic/water">Water</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+        <li class="category">
+            <a title="View this subject category" onclick="toggleSubjects($(this).parent());" href="JavaScript:void(0);"><span class="plusMinus">&nbsp;</span>
+                <span class="categoryTitle">Biochemistry</span>
+            </a>
+            <div class="wrapper">
+                <ul>
+
+                    <li>
+                        <a href="/topic/agrochem_bioregulators">Agrochemical Bioregulators</a>
+                    </li>
+                    <li>
+                        <a href="/topic/animal_nutrition">Animal Nutrition</a>
+                    </li>
+                    <li>
+                        <a href="/topic/biochem_genetics">Biochemical Genetics</a>
+                    </li>
+                    <li>
+                        <a href="/topic/biochem_methods">Biochemical Methods</a>
+                    </li>
+                    <li>
+                        <a href="/topic/enzymes">Enzymes</a>
+                    </li>
+                    <li>
+                        <a href="/topic/fermentation">Fermentation and Bioindustrial Chemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/fertilizers">Fertilizers, Soils, and Plant Nutrition</a>
+                    </li>
+                    <li>
+                        <a href="/topic/food_chemistry">Food and Feed Chemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/general_biochem">General Biochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/history_education">History, Education, and Documentation</a>
+                    </li>
+                    <li>
+                        <a href="/topic/immunochem">Immunochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/mammalian_biochem">Mammalian Biochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/mammalian_hormones">Mammalian Hormones</a>
+                    </li>
+                    <li>
+                        <a href="/topic/mammalian_path_biochem">Mammalian Pathological Biochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/microbial_biochem">Microbial, Algal, and Fungal Biochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/nonmammalian_biochem">Nonmammalian Biochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/pharmacology">Pharmacology</a>
+                    </li>
+                    <li>
+                        <a href="/topic/plant_biochem">Plant Biochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/radiation_biochem">Radiation Biochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/toxicology">Toxicology</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+        <li class="category">
+            <a title="View this subject category" onclick="toggleSubjects($(this).parent());" href="JavaScript:void(0);"><span class="plusMinus">&nbsp;</span>
+                <span class="categoryTitle">Macromolecular</span>
+            </a>
+            <div class="wrapper">
+                <ul>
+
+                    <li>
+                        <a href="/topic/wood_products">Cellulose, Lignin, Paper, and Other Wood Products</a>
+                    </li>
+                    <li>
+                        <a href="/topic/polymer_chem">Chemistry of Synthetic High Polymers</a>
+                    </li>
+                    <li>
+                        <a href="/topic/coatings_inks">Coatings, Inks, and Related Products</a>
+                    </li>
+                    <li>
+                        <a href="/topic/dyes">Dyes, Organic Pigments, Fluorescent Brighteners, and Photographic Sensitizers</a>
+                    </li>
+                    <li>
+                        <a href="/topic/industrial_carb">Industrial Carbohydrates</a>
+                    </li>
+                    <li>
+                        <a href="/topic/industrial_org_chem">Industrial Organic Chemicals, Leather, Fats, and Waxes</a>
+                    </li>
+                    <li>
+                        <a href="/topic/polymer_phys">Physical Properties of Synthetic High Polymers</a>
+                    </li>
+                    <li>
+                        <a href="/topic/plastics_uses">Plastics Fabrication and Uses</a>
+                    </li>
+                    <li>
+                        <a href="/topic/plastics_manufacture">Plastics Manufacture and Processing</a>
+                    </li>
+                    <li>
+                        <a href="/topic/deterfents">Surface Active Agents and Detergents</a>
+                    </li>
+                    <li>
+                        <a href="/topic/elastomers_rubber">Synthetic Elastomers and Natural Rubber</a>
+                    </li>
+                    <li>
+                        <a href="/topic/textiles_fibers">Textiles and Fibers</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+        <li class="category">
+            <a title="View this subject category" onclick="toggleSubjects($(this).parent());" href="JavaScript:void(0);"><span class="plusMinus">&nbsp;</span>
+                <span class="categoryTitle">Organic</span>
+            </a>
+            <div class="wrapper">
+                <ul>
+
+                    <li>
+                        <a href="/topic/alicyclic_compounds">Alicyclic Compounds</a>
+                    </li>
+                    <li>
+                        <a href="/topic/aliphatic_compounds">Aliphatic Compounds</a>
+                    </li>
+                    <li>
+                        <a href="/topic/alkaloids">Alkaloids</a>
+                    </li>
+                    <li>
+                        <a href="/topic/amino_acids">Amino Acids, Peptides, and Proteins</a>
+                    </li>
+                    <li>
+                        <a href="/topic/benzene">Benzene, Its Derivatives, and Condensed Benzenoid Compounds</a>
+                    </li>
+                    <li>
+                        <a href="/topic/biomolecules">Biomolecules and Their Synthetic Analogs</a>
+                    </li>
+                    <li>
+                        <a href="/topic/carbohydrates">Carbohydrates</a>
+                    </li>
+                    <li>
+                        <a href="/topic/general_organic">General Organic Chemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/heterocyclic_one">Heterocyclic Compounds (More than One Hetero Atom)</a>
+                    </li>
+                    <li>
+                        <a href="/topic/heterocyclic">Heterocyclic Compounds (One Hetero Atom)</a>
+                    </li>
+                    <li>
+                        <a href="/topic/organometallic">Organometallic and Organometalloidal Compounds</a>
+                    </li>
+                    <li>
+                        <a href="/topic/physical_organic">Physical Organic Chemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/steroids">Steroids</a>
+                    </li>
+                    <li>
+                        <a href="/topic/terpenes">Terpenes and Terpenoids</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+        <li class="category">
+            <a title="View this subject category" onclick="toggleSubjects($(this).parent());" href="JavaScript:void(0);"><span class="plusMinus">&nbsp;</span>
+                <span class="categoryTitle">Physical, Inorganic, and Analytical</span>
+            </a>
+            <div class="wrapper">
+                <ul>
+
+                    <li>
+                        <a href="/topic/catalysis">Catalysis, Reaction Kinetics, and Inorganic Reaction Mechanisms</a>
+                    </li>
+                    <li>
+                        <a href="/topic/crystallography">Crystallography and Liquid Crystals</a>
+                    </li>
+                    <li>
+                        <a href="/topic/electric_phenomena">Electric Phenomena</a>
+                    </li>
+                    <li>
+                        <a href="/topic/electrochemistry">Electrochemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/gen_phys_chem">General Physical Chemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/inorganic_analytical">Inorganic Analytical Chemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/inorganic_chem">Inorganic Chemicals and Reactions</a>
+                    </li>
+                    <li>
+                        <a href="/topic/magnetic_phenomena">Magnetic Phenomena</a>
+                    </li>
+                    <li>
+                        <a href="/topic/nuclear_phenomena">Nuclear Phenomena</a>
+                    </li>
+                    <li>
+                        <a href="/topic/nuclear_technology">Nuclear Technology</a>
+                    </li>
+                    <li>
+                        <a href="/topic/spectroscopy">Optical, Electron, and Mass Spectroscopy and Other Related Properties</a>
+                    </li>
+                    <li>
+                        <a href="/topic/organic_analytical">Organic Analytical Chemistry</a>
+                    </li>
+                    <li>
+                        <a href="/topic/solutions">Phase Equilibriums, Chemical Equilibriums, and Solutions</a>
+                    </li>
+                    <li>
+                        <a href="/topic/reprographic">Radiation Chemistry, Photochemistry, and Photographic and Other Reprographic Processes</a>
+                    </li>
+                    <li>
+                        <a href="/topic/surface_chem">Surface Chemistry and Colloids</a>
+                    </li>
+                    <li>
+                        <a href="/topic/thermodynamics">Thermodynamics, Thermochemistry, and Thermal Properties</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+
+    </ul>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+    </div>
+
+
+
+</div></div>
+        </div>
+    </div>
+
+</div></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumInstitutionBanner none cobrandText widget-none  widget-compact-all" id="50ab07c6-00b5-4eac-9a23-cb64cfd91f9f"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="welcome">
+
+
+
+
+
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none  widget-none  widget-compact-all" id="b2fe694b-bba5-4e20-a4db-ff6197429fe4"  >
+
+
+
+
+
+        <div class="wrapped " id='series-navigation'>
+
+            <div class="widget-body body body-none  body-compact-all"><div class="menuXml seriesNav">
+	<ul class="primaryNav">
+		<li class="home">
+			<a href="/journal/jacsat">
+				<span>Home</span>
+			</a>
+		</li>
+
+		<li>
+			<a class="expander" href="/loi/jacsat">Browse the Journal</a>
+			<ul>
+				<li><a href="/loi/jacsat">List of Issues</a></li>
+				<li><a href="/toc/jacsat/0/ja">Just Accepted Manuscripts</a></li>
+				<li><a href="/action/showMostReadArticles?journalCode=jacsat">Most Read Articles</a></li>
+				<li><a href="/action/showAuthorIndex?journalCode=jacsat">Author Index</a></li>
+				<li><a href="/action/showCoverGallery?journalCode=jacsat">Cover Art Gallery</a></li>
+			</ul>
+		</li>
+
+		<li>
+			<a href="/toc/jacsat/0/0">Articles ASAP</a>
+		</li>
+
+		<li>
+			<a href="/toc/jacsat/current">Current Issue</a>
+		</li>
+
+		<li>
+			<a class="expander" href="/page/jacsat/submission/index.html">Submission &amp; Review</a>
+			<ul>
+				<li><a href="/page/jacsat/submission/index.html">Information for Authors and Reviewers</a></li>
+				<li><a href="/paragonplus/submission/jacsat/jacsat_authguide.pdf">Author Guidelines [PDF]</a></li>
+				<li><a href="http://paragonplus.acs.org/login">Submit a Manuscript or Review</a></li>
+				<li><a href="/page/policy/ethics/index.html">Ethical Guidelines</a></li>
+				<li><a href="/page/copyright/index.html">Copyright &amp; Permissions/RightsLink</a></li>
+				<li><a href="/page/4authors/index.html">ACS Author &amp; Reviewer Resource Center</a></li>
+			</ul>
+		</li>
+
+		<li>
+			<a class="expander openaccess">Open Access</a>
+			<ul>
+			    <li><a href="/page/4authors/openaccess/index.html#jacsat"><cite>Journal of the American Chemical Society</cite> OA Policy</a></li>
+				<li><a href="http://acsopenaccess.org">ACS Open Access Programs</a></li>
+			</ul>
+		</li>
+
+		<li>
+			<a class="expander" href="/page/jacsat/about.html">About the Journal</a>
+			<ul>
+				<li><a href="/page/jacsat/about.html">About the Journal</a></li>
+				<li><a href="/page/jacsat/profile.html">Editor Profile</a></li>
+				<li><a href="/page/jacsat/editors.html">Editorial Board</a></li>
+				<li><a href="/pb-assets/documents/masthead/jacsat-masthead.pdf">Masthead [PDF]</a></li>
+				<li><a href="/pb-assets/documents/eab/jacsat-eab.pdf">Editorial Advisory Board [PDF]</a></li>
+				<li><a href="http://acsmediakit.org/">Advertising Media Kit</a></li>
+			</ul>
+		</li>
+
+	</ul>
+</div></div>
+        </div>
+    </div>
+
+    </div>
+</header></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget pageBody none article-page widget-none  widget-compact-all" id="623dc177-ba39-4f83-83c5-cf9808be195f"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><!--begin pagefulltext-->
+<div class="page-body pagefulltext">
+    <div data-pb-dropzone="main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-frame none  widget-regular  widget-border-toggle widget-compact-all" id="32798733-6699-4743-9ba0-bcb2ddfd5351"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-regular  body-border-toggle body-compact-all"><div data-pb-dropzone="contents">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-two-columns none article-type-and-nav widget-none  widget-compact-all" id="c19b0f7c-22ac-42b9-8bcf-dad150505eb2"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="pb-columns row-fluid gutterless">
+    <div class="width_1_2">
+        <div data-pb-dropzone="left" class="pb-autoheight">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget manuscriptType none  widget-none  widget-compact-all" id="da950b5f-ff19-4703-be7d-a15479a19082"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><h3 class="manuscriptType">Article</h3></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+    <div class="width_1_2">
+        <div data-pb-dropzone="right" class="pb-autoheight">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumBookIssueNavigation none  widget-none  widget-compact-all" id="6d0914e1-8b40-4071-9399-235e49d836e1"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="pager issueNavPageContainer">
+
+        <div class="issueNavigator">
+            <div class="journalNavLeftTd">
+
+
+
+                            <span class="prev placedLeft">
+                                 <a href="/doi/abs/10.1021/jacs.7b04926" title="Previous Article">
+                                     Previous Article
+                                 </a>
+                            </span>
+
+
+
+
+            </div>
+
+
+
+            <div class="journalNavRightTd">
+
+
+
+                            <div class="next">
+                                <a href="/doi/abs/10.1021/jacs.7b05120" title="Next Article">
+                                    Next Article
+                                </a>
+                            </div>
+
+
+
+
+            </div>
+        </div>
+
+
+
+
+            <div class="journalNavCenterTd">
+                <span class="journalNavTitle">
+
+
+
+
+                                    <a href="/toc/jacsat/139/29">Table of Contents</a>
+
+
+                </span>
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none  widget-none  widget-compact-all" id="7efd1d6e-21a6-48c5-8b37-77cf7a915c9a"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><script type="text/javascript">
+$(function(){
+	$('.literatumBookIssueNavigation .BookNavCenterTd b').text('Table of Contents');
+});
+</script></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-two-columns none article-main-cols widget-none  widget-compact-all" id="6901cc5c-a7f6-4109-bf08-278038ba53a6"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="pb-columns row-fluid gutterless">
+    <div class="width_17_24">
+        <div data-pb-dropzone="left" class="pb-autoheight">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumPublicationContentWidget none  widget-none  widget-compact-all" id="d2a196f9-55e7-492a-9643-735a41b61a8c"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><script type="text/javascript">
+<!-- // hide it from old browsers
+
+var anyDbId = -1;
+var sideParts = {
+    citation: "<tr><td class=\"black9pt\" width=\"15\" valign=\"top\">&nbsp;&bull;&nbsp;<\/td><td class=\"black9pt\" valign=\"top\"><a href=\"javascript:newWindow('{$linkoutUrl}')\">{$display}<\/a><\/td><\/tr>",
+    citingIsi: "<tr><td class=\"black9pt\" width=\"15\" valign=\"top\">&nbsp;&bull;&nbsp;<\/td><td class=\"black9pt\" valign=\"top\">Search for citing articles in:<br/>&nbsp;<a href=\"javascript:newWindow('/servlet/linkout?suffix=s0&dbid=128&doi={$doi}&url={$urlEnc}')\">ISI Web of Science<\/a> ({$citNum} or more)<\/a><\/td><\/tr>",
+    citingCrossref: "<tr><td class=\"black9pt\" width=\"15\" valign=\"top\">&nbsp;&bull;&nbsp;<\/td><td class=\"black9pt\" valign=\"top\"><a href=\"{$url}\">Citing articles in CrossRef<\/a><\/td><\/tr>",
+    quicksearch: "<option value=\"{$value}\">{$display}<\/option>",
+    related: ", <a href=\"javascript:newWindow('{$linkoutUrl}')\">{$display}<\/a>"
+};
+
+function genSide(part, dbid, linkoutUrl, display, doi, url, citNum, value) {
+    if (dbid != anyDbId && (140737488355327 & dbid) == 0) return;
+    var content = sideParts[part];
+    if (linkoutUrl) { content = content.replace(/{\$linkoutUrl}/g, linkoutUrl); }
+    if (display) { content = content.replace(/{\$display}/g, display); }
+    if (doi) { content = content.replace(/{\$doi}/g, doi); }
+    if (url) {
+        content = content.replace(/{\$url}/g, url);
+        content = content.replace(/{\$urlEnc}/g, encodeURIComponent(encodeURIComponent(url)));
+    }
+    if (citNum) { content = content.replace(/{\$citNum}/g, citNum); }
+    if (value) { content = content.replace(/{\$value}/g, value); }
+    document.write(content);
+}
+
+function hasSfxLinks() {
+	return false;
+}
+
+
+function genSfxLinks(id, url, doi) {
+    if (! doi) { doi = ""; }
+
+}
+function popSfxLink(prefix, id, url, doi) {
+    if (doi) {
+        url += "&id=doi:"+doi;
+    } else {
+        doi = "10.1021%2Fjacs.7b04930";
+    }
+    var redirect = prefix + encodeURIComponent("?sid=achs&genre=article"+url);
+    var href = "/servlet/linkout?suffix="+id+"&dbid=16384&doi="+doi+"&url=" + encodeURIComponent(redirect);
+    return newWindow(href);
+}
+
+var sfxRefDisplay = {
+64:"ADS",
+32:"CAS",
+8192:"CIS",
+256:"CSA",
+16:"CrossRef",
+128:"ISI",
+4096:"JSTOR",
+8:"PubMed",
+1099511627776: "Ichushi",
+17592186044416: "Medical Online",
+8796093022208: "J-Stage",
+2199023255552: "Medical Finder",
+4398046511104: "Pier Online"
+};
+
+window.onload=disableRefLinkWrite ;
+
+function genRefLink(dbid, id, key, textOfLink) {
+    if (140737488355327 & dbid != 0) {
+        if (typeof textOfLink === "undefined") {
+            if (sfxRefDisplay[dbid].substring(0,1) == "[") {
+                textOfLink = sfxRefDisplay[dbid];
+            } else {
+                textOfLink = "["+sfxRefDisplay[dbid]+"]";
+            }
+            // ToDo: move '[' and ']' to sfxRefDisplay (UPDATE: finish changing sfxRefDisplays and remove this branch)
+        }
+        else{ textOfLink = unescape(textOfLink)};
+
+        if(document.disableRefLinkWrite == null){
+            document.write("<a class='ref' href=\"javascript:popRefLink("+dbid+",'"+id+"','"+key+"')\">"+textOfLink+"<\/a>");
+        }
+    }
+}
+
+function disableRefLinkWrite () {
+    document.disableRefLinkWrite = true;
+}
+
+function popRefLink(dbid, id, key) {
+    var redirect = "/servlet/linkout?suffix=" + id + "&dbid=" + dbid + "&doi=10.1021%2Fjacs.7b04930&key=" + key;
+    return newWindow(redirect);
+}
+function popRefFull(rid, citart, ptype, area) {
+    return popRefImplFull(rid, citart, ptype, area, 600, 500);
+}
+function popRefImplFull(rid, citart, ptype, area, width, height) {
+    var doi = "10.1021%2Fjacs.7b04930";
+    if (! ptype) { ptype = ""; }
+    var pt = rid.charAt(0) + "jacs7b04930" + ptype;
+    return popupFull(rid, doi, pt, area, width, height);
+}
+function popRef(rid, citart, ptype, area) {
+    return popRefImpl(rid, citart, ptype, area, 600, 500);
+}
+function popRef2(rid, citart, ptype, area) {
+    return popRefImpl(rid, citart, ptype, area, 400, 100);
+}
+function popRefImpl(rid, citart, ptype, area, width, height) {
+    var doi = "10.1021%2Fjacs.7b04930";
+    if (! citart) { citart = "citart1"; }
+    if (! ptype) { ptype = ""; }
+    var pt = rid.charAt(0) + "jacs7b04930" + ptype;
+    return popupRef(citart, rid, doi, pt, area, width, height);
+}
+
+
+
+function genCitingCrossref() {
+}
+
+var citLinkDisplay = {
+
+    0:"SYSTEM",
+4:"SYSTEM",
+20:"SYSTEM",
+64:"ADS",
+32:"CAS",
+8192:"CIS",
+256:"CSA",
+16:"CrossRef",
+128:"ISI",
+4096:"JSTOR",
+8:"MEDLINE"
+};
+var feeBasedMask = 4480;
+
+function genCitLink(dbid, suffix, key) {
+    if (dbid != anyDbId && (feeBasedMask & dbid) != 0 && (140737488355327 & dbid) == 0) return;
+
+    var param = "/servlet/linkout?suffix=" + suffix + "&dbid=" + dbid + "&doi=10.1021%2Fjacs.7b04930&key=" + key;
+    var display = citLinkDisplay[dbid];
+    var img = "/templates/jsp/_style2/_achs/images/" + display + "_btn.gif";
+
+
+    if((typeof tollFreeLinking) != "undefined" && tollFreeLinking[key])
+    {
+        param = param + "&tollfreelink=" + tollFreeLinking[key];
+    }
+
+
+    document.write("<a class='ref' href='javascript:newWindow(\"" + param + "\")'>");
+    document.write("<" + "img src='"+img+"' width='85' height='20' align='BOTTOM' alt='"+display+" Abstract' border='0'/>");
+    document.write("<\/a>");
+}
+// stop hiding -->
+</script>
+<script type="text/javascript" src="/swfobject.js"></script>
+<script type="text/javascript">
+function addFlashMovie(id, flv) {
+    var flashvars = {file: flv ,type: 'flv'};
+    var params = {allowfullscreen :true};
+    var attributes = {};
+    swfobject.embedSWF('/flvplayer.swf', id, "352", "288", "7.0.0", false, flashvars, params, attributes);
+}
+
+function addFlashMovie(id, flv, image) {
+    var flashvars = {file: flv ,type: 'flv', image: image};
+    var params = {allowfullscreen :true};
+    var attributes = {};
+    swfobject.embedSWF('/flvplayer.swf', id, "352", "288", "7.0.0", false, flashvars, params, attributes);
+}
+</script>
+
+
+
+
+<script type="text/javascript">
+    window.MathJax = {
+
+        AuthorInit: function () {
+            $.getScript( '/templates/jsp/_style2/_achs/pb2/js/mathJaxConfig.js' );
+        }
+    };
+</script>
+
+<script type="text/javascript" async src="http://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <div class="publication-tabs ja publication-content-container">
+        <input type="hidden" class="taxonomiesList" value="" id="taxonomiesList"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tabs tabs-widget">
+
+
+
+        <div class="tab-content ">
+            <div class="tab tab-pane active">
+
+                        <article class="article">
+                                <h1 class="articleTitle"><span class="hlFld-Title">Cation Dynamics in Mixed-Cation (MA)<sub><i>x</i></sub>(FA)<sub>1–<i>x</i></sub>PbI<sub>3</sub> Hybrid Perovskites from Solid-State NMR</span></h1><!--AccessDenialMessagePlaceholder--><div id="articleMeta"><div id="authors"><span class="hlFld-ContribAuthor"><span class="hlFld-ContribAuthor"><a id="authors" href="/author/Kubicki%2C+Dominik+J">Dominik J. Kubicki</a></span><span><span class="NLM_xref-aff"><sup>†</sup></span></span><span>, </span></span><span class="hlFld-ContribAuthor"><span class="hlFld-ContribAuthor"><a id="authors" href="/author/Prochowicz%2C+Daniel">Daniel Prochowicz</a></span><span><span class="NLM_xref-aff"><sup>‡</sup></span></span><span><span class="NLM_xref-aff"><sup>§</sup></span></span><span>, </span></span><span class="hlFld-ContribAuthor"><span class="hlFld-ContribAuthor"><a id="authors" href="/author/Hofstetter%2C+Albert">Albert Hofstetter</a></span><span><span class="NLM_xref-aff"><sup>†</sup></span></span><span>, </span></span><span class="hlFld-ContribAuthor"><span class="hlFld-ContribAuthor"><a id="authors" href="/author/P%C3%A9chy%2C+P%C3%A9ter">Péter Péchy</a></span><span><span class="NLM_xref-aff"><sup>‡</sup></span></span><span>, </span></span><span class="hlFld-ContribAuthor"><span class="hlFld-ContribAuthor"><a id="authors" href="/author/Zakeeruddin%2C+Shaik+M">Shaik M. Zakeeruddin</a></span><span><span class="NLM_xref-aff"><sup>‡</sup></span></span><span>, </span></span><span class="hlFld-ContribAuthor"><span class="hlFld-ContribAuthor"><a id="authors" href="/author/Gr%C3%A4tzel%2C+Michael">Michael Grätzel</a></span><span><a class="ref" href="#cor1"><sup>*</sup></a></span><span><span class="NLM_xref-aff"><sup>‡</sup></span></span><span><span class="orcid-link-icon"> <a href="http://orcid.org/0000-0002-0068-0195" target="_blank"><img src="/templates/jsp/images/orcid.png" /></a></span>, and </span></span><span class="hlFld-ContribAuthor"><span class="hlFld-ContribAuthor"><a id="authors" href="/author/Emsley%2C+Lyndon">Lyndon Emsley</a></span><span><a class="ref" href="#cor2"><sup>*</sup></a></span><span><span class="NLM_xref-aff"><sup>†</sup></span></span><span> </span><span class="orcid-link-icon"> <a href="http://orcid.org/0000-0003-1360-2572" target="_blank"><img src="/templates/jsp/images/orcid.png" /></a></span></span></div><div class="affiliations"><div id="aff1"><sup>†</sup> Laboratory
+of Magnetic Resonance, Institute of Chemical Sciences and Engineering, <span class="institution">Ecole Polytechnique Fédérale de Lausanne
+(EPFL)</span>, CH-1015 Lausanne, <span class="country">Switzerland</span></div><div id="aff2"><sup>‡</sup> Laboratory
+of Photonics and Interfaces, Institute of Chemical Sciences and Engineering, <span class="institution">Ecole Polytechnique Fédérale de Lausanne
+(EPFL)</span>, CH-1015 Lausanne, <span class="country">Switzerland</span></div><div id="aff3"><sup>§</sup> Institute
+of Physical Chemistry, <span class="institution">Polish Academy of
+Sciences</span>, Kasprzaka 44/52, 01-224 Warsaw, <span class="country">Poland</span></div></div><div id="citation"><cite>J. Am. Chem. Soc.</cite>, <span class="citation_year">2017</span>, <span class="citation_volume">139</span> (29), pp 10055&ndash;10061</div><div id="doi"><strong>DOI: </strong>10.1021/jacs.7b04930</div><div id="pubDate">Publication Date (Web): June 23, 2017</div><div id="artCopyright">Copyright © 2017 American Chemical Society</div><div id="correspondence">*<a href="mailto:michael.graetzel@epfl.ch">michael.graetzel@epfl.ch</a>, *<a href="mailto:lyndon.emsley@epfl.ch">lyndon.emsley@epfl.ch</a></div></div><div id="articleBody"><div class="hlFld-Abstract"><h2 id="Abstract">Abstract</h2><div id="abstractBox"><div id="absImg"><img alt="Abstract Image" src="/appl/literatum/publisher/achs/journals/content/jacsat/2017/jacsat.2017.139.issue-29/jacs.7b04930/20170720/images/medium/ja-2017-04930y_0005.gif" /></div><p class="articleBody_abstractText">Mixed-cation organic lead halide perovskites attract unfaltering attention owing to their excellent photovoltaic properties. Currently, the best performing perovskite materials contain multiple cations and provide power conversion efficiencies up to around 22%. Here, we report the first quantitative, cation-specific data on cation reorientation dynamics in hybrid mixed-cation formamidinium (FA)/methylammonium (MA) lead halide perovskites. We use <sup>14</sup>N, <sup>2</sup>H, <sup>13</sup>C, and <sup>1</sup>H solid-state MAS NMR to elucidate cation reorientation dynamics, microscopic phase composition, and the MA/FA ratio, in (MA)<sub><i>x</i></sub>(FA)<sub>1–<i>x</i></sub>PbI<sub>3</sub> between 100 and 330 K. The reorientation rates correlate in a striking manner with the carrier lifetimes previously reported for these materials and provide evidence of the polaronic nature of charge carriers in PV perovskites.</p></div></div><div class="hlFld-Fulltext"><div class="supplNotes"> <h2 id="_i12"><a href="/doi/suppl/10.1021/jacs.7b04930">Supporting Information</a></h2><hr /><p class="last">The Supporting Information is available free of charge on the <a href="http://pubs.acs.org" class="ext-link">ACS Publications website</a> at DOI: <a href="http://pubs.acs.org/doi/abs/10.1021/jacs.7b04930" class="ext-link">10.1021/jacs.7b04930</a>.<ul class="NLM_list-list_type-label" id="silist"><li><p class="inline">Raw <sup>14</sup>N, <sup>13</sup>C, and <sup>1</sup>H NMR data (<a href="http://pubs.acs.org/doi/suppl/10.1021/jacs.7b04930/suppl_file/ja7b04930_si_001.zip" class="ext-link">ZIP</a>)</p></li><li><p class="inline">Complementary NMR data, details of simulations and DFT calculations, and key properties of NMR-active nuclei pertinent to photovoltaic materials (<a href="http://pubs.acs.org/doi/suppl/10.1021/jacs.7b04930/suppl_file/ja7b04930_si_002.pdf" class="ext-link">PDF</a>)</p></li></ul></p></div><div class="bottomViewLinks">View: <a href="/doi/ipdf/10.1021/jacs.7b04930">ACS ActiveView PDF</a> | <a href="/doi/pdf/10.1021/jacs.7b04930">PDF</a> | <a href="/doi/pdfplus/10.1021/jacs.7b04930">PDF w/ Links</a> | <a href="/doi/full/10.1021/jacs.7b04930">Full Text HTML</a></div></div></div><div id="figshare-widget"></div><script type="text/javascript">window.refViewer={'ref1':['cit1'],'ref2':['cit2'],'ref3':['cit3'],'ref4':['cit4'],'ref5':['cit5'],'ref6':['cit6'],'ref7':['cit7'],'ref8':['cit8'],'ref9':['cit9'],'ref10':['cit10'],'ref11':['cit11'],'ref12':['cit12'],'ref13':['cit13'],'ref14':['cit14'],'ref15':['cit15'],'ref16':['cit16'],'ref17':['cit17'],'ref18':['cit18'],'ref19':['cit19'],'ref20':['cit20'],'ref21':['cit21'],'ref22':['cit22'],'ref23':['cit23'],'ref24':['cit24'],'ref25':['cit25'],'ref26':['cit26'],'ref27':['cit27'],'ref28':['cit28'],'ref29':['cit29'],'ref30':['cit30'],'ref31':['cit31'],'ref32':['cit32'],'ref33':['cit33'],'ref34':['cit34'],'ref35':['cit35'],'ref36':['cit36'],'ref37':['cit37'],'ref38':['cit38'],'ref39':['cit39'],'ref40':['cit40'],'ref41':['cit41'],'ref42':['cit42'],'ref43':['cit43'],'ref44':['cit44'],'ref45':['cit45'],'ref46':['cit46'],'ref47':['cit47'],'ref48':['cit48'],'ref49':['cit49']}</script><div class="imageMetaContainer"><input type="hidden" class="og-meta-image" name="og:image" value="http://pubs.acs.org/appl/literatum/publisher/achs/journals/content/jacsat/2017/jacsat.2017.139.issue-29/jacs.7b04930/20170720/images/medium/ja-2017-04930y_0005.gif" /><input type="hidden" class="og-meta-url" name="og:url" value="http://pubs.acs.org/doi/full/10.1021/jacs.7b04930" /><input type="hidden" class="og-meta-title" name="og:title" value="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /><input type="hidden" class="og-meta-description" name="og:description" value="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /><input type="hidden" class="twitter-meta-image" name="twitter:image" value="http://pubs.acs.org/appl/literatum/publisher/achs/journals/content/jacsat/2017/jacsat.2017.139.issue-29/jacs.7b04930/20170720/images/medium/ja-2017-04930y_0005.gif" /><input type="hidden" class="twitter-meta-title" name="twitter:title" value="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /><input type="hidden" class="twitter-meta-description" name="twitter:description" value="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /></div>
+                        </article>
+                        <div id="supInfoBox" class="supInfoBoxOnFTP ">
+
+
+
+
+
+
+
+<div class="sup-info-attachements">
+
+    <ul>
+
+            <li class="decorationNone">
+                <h3>
+
+
+                    <div class='suppl-file-img img-zip'></div>
+                        Zip
+                </h3>
+                <ul>
+
+                        <li>
+                            <a href="/doi/suppl/10.1021/jacs.7b04930/suppl_file/ja7b04930_si_001.zip">
+
+                                ja7b04930_si_001.zip
+
+                                (17.35
+                                MB)
+                            </a>
+                        </li>
+
+                </ul>
+            </li>
+
+            <li class="decorationNone">
+                <h3>
+
+
+                    <div class='suppl-file-img img-pdf'></div>
+                        PDF
+                </h3>
+                <ul>
+
+                        <li>
+                            <a href="/doi/suppl/10.1021/jacs.7b04930/suppl_file/ja7b04930_si_002.pdf">
+
+                                ja7b04930_si_002.pdf
+
+                                (1.06
+                                MB)
+                            </a>
+                        </li>
+
+                </ul>
+            </li>
+
+    </ul>
+    <div class="supplementInfoMessage" data-pb-dropzone="supplementInfoMessage">
+
+    </div>
+</div>
+                        </div>
+
+            </div>
+            <div class="tab tab-pane" id="relatedContent">
+
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+    </div>
+<input id="viewLargeImageCaption" type="hidden" value="View Large Image" />
+<input class="orcid-show-icon" type="hidden" value="true"/></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget citingRelatedContent none  widget-none" id="a2112ca4-e4d1-425e-a4c8-243cbdcfe34e"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none "><div class="decorated-tabs tabs tabs-widget layout-tabs"><ul class="tab-nav citingRelatedNav"><li><a href="#tabs-2">Related Content</a></li></ul><div class="tab-content"><div id="tabs-2" class="tab-pane"><div id="relatedArticles"><ul class="additionalPubList recommendedPubList"><h3 class="relatedArticlesHead">Related Content:</h3><li><a href="/doi/abs/10.1021/jacs.7b05260?src=recsys">Pressure Effects on Structure and Optical Properties in Cesium Lead Bromide Perovskite Nanocrystals</a><div class="achsLabel">Journal of the American Chemical Society</div><span class="entryAuthor normal hlFld-ContribAuthor">Xiao</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Cao</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Qi</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Wang</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Liu</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Ma</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Yang</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Sui</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Zheng</span>, and <span class="entryAuthor normal hlFld-ContribAuthor">Zou</span><div class="recoPubMetaData"><span><span class="bold">2017</span> <em>139</em> (29), pp 10087&ndash;10094</span></div><div class="recoPubAbstract"><span><span class="bold">Abstract:</span> Metal halide perovskites (MHPs) are gaining increasing interest because of their extraordinary performance in optoelectronic devices and solar cells. However, developing an effective strategy for achieving the band-gap engineering of MHPs that will ...<sub></sub><sub></sub><sub></sub><sub></sub><sub></sub><sub></sub></span></div><div class="linkbar recoPublinkbar"><a href="/doi/abs/10.1021/jacs.7b05260?src=recsys">Abstract</a> | <a href="/doi/full/10.1021/jacs.7b05260?src=recsys">Full Text HTML</a> | <a href="/doi/pdfplus/10.1021/jacs.7b05260?src=recsys">PDF w/ Links</a> | <a href="/doi/pdf/10.1021/jacs.7b05260?src=recsys">Hi-Res PDF</a></div></li><li><a href="/doi/abs/10.1021/jacs.7b01815?src=recsys">Highly Oriented Low-Dimensional Tin Halide Perovskites with Enhanced Stability and Photovoltaic Performance</a><div class="achsLabel">Journal of the American Chemical Society</div><span class="entryAuthor normal hlFld-ContribAuthor">Liao</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Liu</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Zhou</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Yang</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Shang</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Shi</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Li</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Jiang</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Zhang</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Quan</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Quintero-Bermudez</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Sutherland</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Mi</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Sargent</span>, and <span class="entryAuthor normal hlFld-ContribAuthor">Ning</span><div class="recoPubMetaData"><span><span class="bold">2017</span> <em>139</em> (19), pp 6693&ndash;6699</span></div><div class="recoPubAbstract"><span><span class="bold">Abstract:</span> The low toxicity and a near-ideal choice of bandgap make tin perovskite an attractive alternative to lead perovskite in low cost solar cells. However, the development of Sn perovskite solar cells has been impeded by their extremely poor stability when ...</span></div><div class="linkbar recoPublinkbar"><a href="/doi/abs/10.1021/jacs.7b01815?src=recsys">Abstract</a> | <a href="/doi/full/10.1021/jacs.7b01815?src=recsys">Full Text HTML</a> | <a href="/doi/pdfplus/10.1021/jacs.7b01815?src=recsys">PDF w/ Links</a> | <a href="/doi/pdf/10.1021/jacs.7b01815?src=recsys">Hi-Res PDF</a></div></li><li><a href="/doi/abs/10.1021/jacs.7b04119?src=recsys">A Direct Bandgap Copper–Antimony Halide Perovskite</a><div class="achsLabel">Journal of the American Chemical Society</div><span class="entryAuthor normal hlFld-ContribAuthor">Vargas</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Ramos</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Pérez-Gutiérrez</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Alonso</span>, and <span class="entryAuthor normal hlFld-ContribAuthor">Solis-Ibarra</span><div class="recoPubMetaData"><span><span class="bold">2017</span> <em>139</em> (27), pp 9116&ndash;9119</span></div><div class="recoPubAbstract"><span><span class="bold">Abstract:</span> Since the establishment of perovskite solar cells (PSCs), there has been an intense search for alternative materials to replace lead and improve their stability toward moisture and light. As single-metal perovskite structures have yielded unsatisfactory ...<sub></sub><sub></sub><sub></sub><sup></sup><sup></sup><sub></sub></span></div><div class="linkbar recoPublinkbar"><a href="/doi/abs/10.1021/jacs.7b04119?src=recsys">Abstract</a> | <a href="/doi/full/10.1021/jacs.7b04119?src=recsys">Full Text HTML</a> | <a href="/doi/pdfplus/10.1021/jacs.7b04119?src=recsys">PDF w/ Links</a> | <a href="/doi/pdf/10.1021/jacs.7b04119?src=recsys">Hi-Res PDF</a></div></li><li><a href="/doi/abs/10.1021/jacs.7b04219?src=recsys">Lead-Free Mixed Tin and Germanium Perovskites for Photovoltaic Application</a><div class="achsLabel">Journal of the American Chemical Society</div><span class="entryAuthor normal hlFld-ContribAuthor">Ju</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Dai</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Ma</span>, and <span class="entryAuthor normal hlFld-ContribAuthor">Zeng</span><div class="recoPubMetaData"><span><span class="bold">2017</span> <em>139</em> (23), pp 8038&ndash;8043</span></div><div class="recoPubAbstract"><span><span class="bold">Abstract:</span> The power-conversion efficiency (PCE) of lead halide perovskite photovoltaics has reached 22.1% with significantly improved structural stability, thanks to a mixed cation and anion strategy. However, the mixing element strategy has not been widely seen in ...<sub></sub><sub></sub><sub></sub></span></div><div class="linkbar recoPublinkbar"><a href="/doi/abs/10.1021/jacs.7b04219?src=recsys">Abstract</a> | <a href="/doi/full/10.1021/jacs.7b04219?src=recsys">Full Text HTML</a> | <a href="/doi/pdfplus/10.1021/jacs.7b04219?src=recsys">PDF w/ Links</a> | <a href="/doi/pdf/10.1021/jacs.7b04219?src=recsys">Hi-Res PDF</a></div></li><li><a href="/doi/abs/10.1021/jacs.7b03856?src=recsys">Citric Acid Modulated Growth of Oriented Lead Perovskite Crystals for Efficient Solar Cells</a><div class="achsLabel">Journal of the American Chemical Society</div><span class="entryAuthor normal hlFld-ContribAuthor">Guo</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Sato</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Shoyama</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Halim</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Itabashi</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Shang</span>, and <span class="entryAuthor normal hlFld-ContribAuthor">Nakamura</span><div class="recoPubMetaData"><span><span class="bold">2017</span> <em>139</em> (28), pp 9598&ndash;9604</span></div><div class="recoPubAbstract"><span><span class="bold">Abstract:</span> Solar cells made of lead perovskite crystals have attracted much attention for their high performance, but far less attention as a subject of crystal engineering. Here, we report that citric acid (CA) and chloride anion, working together, modulate crystal ...<sub></sub><sub></sub><sub></sub><sup></sup><sup></sup></span></div><div class="linkbar recoPublinkbar"><a href="/doi/abs/10.1021/jacs.7b03856?src=recsys">Abstract</a> | <a href="/doi/full/10.1021/jacs.7b03856?src=recsys">Full Text HTML</a> | <a href="/doi/pdfplus/10.1021/jacs.7b03856?src=recsys">PDF w/ Links</a> | <a href="/doi/pdf/10.1021/jacs.7b03856?src=recsys">Hi-Res PDF</a></div></li><li><a href="/doi/abs/10.1021/jacs.7b01439?src=recsys">A Breakthrough Efficiency of 19.9% Obtained in Inverted Perovskite Solar Cells by Using an Efficient Trap State Passivator Cu(thiourea)I</a><div class="achsLabel">Journal of the American Chemical Society</div><span class="entryAuthor normal hlFld-ContribAuthor">Ye</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Rao</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Zhao</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Zhang</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Bao</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Sun</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Li</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Gu</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Wang</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Liu</span>, <span class="entryAuthor normal hlFld-ContribAuthor">Bian</span>, and <span class="entryAuthor normal hlFld-ContribAuthor">Huang</span><div class="recoPubMetaData"><span><span class="bold">2017</span> <em>139</em> (22), pp 7504&ndash;7512</span></div><div class="recoPubAbstract"><span><span class="bold">Abstract:</span> It is extremely significant to study the trap state passivation and minimize the trap states of perovskite to achieve high-performance perovskite solar cells (PSCs). Here, we have first revealed and demonstrated that a novel p-type conductor Cu(thiourea)I ...</span></div><div class="linkbar recoPublinkbar"><a href="/doi/abs/10.1021/jacs.7b01439?src=recsys">Abstract</a> | <a href="/doi/full/10.1021/jacs.7b01439?src=recsys">Full Text HTML</a> | <a href="/doi/pdfplus/10.1021/jacs.7b01439?src=recsys">PDF w/ Links</a> | <a href="/doi/pdf/10.1021/jacs.7b01439?src=recsys">Hi-Res PDF</a></div></li></ul></div></div></div></div><div class="imageMetaContainer"><input type="hidden" class="og-meta-image" name="og:image" value="http://pubs.acs.org/appl/literatum/publisher/achs/journals/content/jacsat/2017/jacsat.2017.139.issue-29/jacs.7b04930/20170720/images/medium/ja-2017-04930y_0005.gif" /><input type="hidden" class="og-meta-url" name="og:url" value="http://pubs.acs.org/doi/full/10.1021/jacs.7b04930" /><input type="hidden" class="og-meta-title" name="og:title" value="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /><input type="hidden" class="og-meta-description" name="og:description" value="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /><input type="hidden" class="twitter-meta-image" name="twitter:image" value="http://pubs.acs.org/appl/literatum/publisher/achs/journals/content/jacsat/2017/jacsat.2017.139.issue-29/jacs.7b04930/20170720/images/medium/ja-2017-04930y_0005.gif" /><input type="hidden" class="twitter-meta-title" name="twitter:title" value="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /><input type="hidden" class="twitter-meta-description" name="twitter:description" value="Cation Dynamics in Mixed-Cation (MA)x(FA)1–xPbI3 Hybrid Perovskites from Solid-State NMR" /></div></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+    <div class="width_7_24">
+        <div data-pb-dropzone="right" class="pb-autoheight">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-frame none article-rightCol widget-regular  widget-compact-all" id="067d2636-8e51-4c5b-ab96-1f9f356e2d63"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-regular  body-compact-all"><div data-pb-dropzone="contents">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-bookmark-share alignCenter  widget-none" id="38e82894-a98f-40d3-9bce-ee8aa23396f5"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none "><!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+        <a class="addthis_button_twitter"></a>
+        <a class="addthis_button_facebook"></a>
+        <a class="addthis_button_google_plusone_share"></a>
+        <a class="addthis_button_email"></a>
+    <a class="addthis_button_compact"></a>
+</div>
+<script type="text/javascript">
+    var script = document.createElement('script');
+    script.type='text/javascript';
+    script.src='//s7.addthis.com/js/250/addthis_widget.js#pubid=ra-553ffb6a26ba3f77';
+    script.async = true;
+    $('head').append(script)
+</script>
+<!-- AddThis Button END --></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget publicationFormatLinks none  widget-none  widget-compact-all" id="e665b162-cd85-4a56-ab94-9d58c9e3b43a"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="publicationFormatCont">
+
+
+
+            <label class="sideConetntHeader">Article Options</label>
+
+
+    <ul class="publicationFormatList icons">
+
+
+            <li class="icon-item icon-item-24px active-view-pdf">
+                <a href="/doi/ipdf/10.1021/jacs.7b04930" title="ACS ActiveView PDF" target="_blank">
+                    ACS ActiveView PDF
+                    <div class="icon-24px"></div>
+                </a>
+                <div class="details">Hi-Res Print, Annotate, Reference QuickView</div>
+            </li>
+
+
+
+            <li class="icon-item icon-item-24px subordinate pdf-high-res">
+
+                <a href="/doi/pdf/10.1021/jacs.7b04930" title="High-Res PDF: 1128 KB" target="_blank">
+                    PDF <span class="details">(1128 KB)</span>
+
+                    <div class="icon-24px"></div>
+                </a>
+            </li>
+
+
+
+            <li class="icon-item icon-item-24px subordinate pdf-low-res">
+
+                <a href="/doi/pdfplus/10.1021/jacs.7b04930" title="Low-Res PDF: 443 KB" target="_blank">
+                    PDF w/ Links <span class="details">(443 KB)</span>
+
+                    <div class="icon-24px"></div>
+                </a>
+            </li>
+
+
+
+            <li class="icon-item icon-item-24px subordinate full-text-html ">
+                <a href="/doi/full/10.1021/jacs.7b04930" title="Full Text HTML">
+                    Full Text HTML
+                    <div class="icon-24px"></div>
+                </a>
+            </li>
+
+    </ul>
+
+    <ul class="publicationFormatrightList">
+        <li class="active">
+            <a href="/doi/abs/10.1021/jacs.7b04930" title="View the Abstract">
+                Abstract
+            </a>
+        </li>
+
+            <li class="">
+                <a href="/doi/suppl/10.1021/jacs.7b04930">
+                    Supporting Info
+                </a>
+            </li>
+
+
+
+            <li>
+
+
+                        <a title="Open Figure Viewer in Full Text HTML" href="/doi/full/10.1021/jacs.7b04930#showFigures">
+                            Figures
+                        </a>
+
+
+            </li>
+
+
+
+
+                    <li>
+
+                        <a title="Open References in Full Text HTML" href="/doi/full/10.1021/jacs.7b04930#showReferences" class="showRefLink">
+                                References
+                        </a>
+                    </li>
+
+
+
+
+    </ul>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumArticleToolsWidget none  widget-none  widget-compact-all" id="9f81f65c-f41b-4b98-a9f0-28dc0dbb08ed"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="articleTools">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="toolbar-section toolbar-tools-sharing">
+    <label class="toolbar-section-header">Tools &amp; Sharing</label>
+    <ul class="icons">
+
+
+                    <li class="icon-item icon-item-24px add-favorites">
+                        <a href="/personalize/addFavoritePublication?doi=10.1021%2Fjacs.7b04930" title="Add to Favorites">
+                            Add to Favorites
+                            <div class="icon-24px"></div>
+                        </a>
+                    </li>
+
+
+                    <li class="icon-item icon-item-24px download-citation">
+                        <a href="/action/showCitFormats?href=http%3A%2F%2Fadmin-pubsdc3.acs.org%2Fdoi%2Fabs%2F10.1021%2Fjacs.7b04930&amp;doi=10.1021%2Fjacs.7b04930" title="Download Citation">
+                            Download Citation
+                            <div class="icon-24px"></div>
+                        </a>
+                    </li>
+
+
+
+            <li class="icon-item icon-item-24px email-colleague citation-alerts">
+                <a href="/action/showMailPage?href=%2Fdoi%2Fabs%2F10.1021%252Fjacs.7b04930&amp;title=Cation+Dynamics+in+Mixed-Cation+%28MA%29x%28FA%291%E2%80%93xPbI3+Hybrid+Perovskites+from+Solid-State+NMR&amp;doi=10.1021%2Fjacs.7b04930" title="Email a Colleague">
+
+
+                    Email a Colleague
+                    <div class="icon-24px"></div>
+                </a>
+            </li>
+
+
+
+
+                <li class="icon-item icon-item-24px order-reprints">
+                    <a id="orderReprints" title="Order Commercial Reprints"
+                       href="http://services.acs.org/pubshelp/passthru.cgi?action=kb&item=1190"
+                       target="_blank">
+                        Order Reprints
+                        <div class="icon-24px"></div>
+                    </a>
+                </li>
+
+
+
+                    <li class="icon-item icon-item-24px rights-permissions">
+                        <a id="rightsAndPermissions" title="Rights &amp; Permissions" href="/servlet/linkout?type=rightslink&amp;url=startPage%3D10055%26pageCount%3D7%26copyright%3DAmerican%2BChemical%2BSociety%26author%3DDominik%2BJ.%2BKubicki%252C%2BDaniel%2BProchowicz%252C%2BAlbert%2BHofstetter%252C%2Bet%2Bal%26orderBeanReset%3Dtrue%26imprint%3DAmerican%2BChemical%2BSociety%26volumeNum%3D139%26issueNum%3D29%26contentID%3Djacs.7b04930%26title%3DCation%2BDynamics%2Bin%2BMixed-Cation%2B%2528MA%2529x%2528FA%25291%25E2%2580%2593xPbI3%2BHybrid%2BPerovskites%2Bfrom%2BSolid-State%2BNMR%26issn%3D0002-7863%26publisherName%3Dacs%26publication%3Djacsat%26rpt%3Dn%26endPage%3D10061%26publicationDate%3DJuly%2B2017"
+                           target="_blank">
+                            Rights & Permissions
+                            <div class="icon-24px"></div>
+                        </a>
+                    </li>
+
+
+
+                <li class="icon-item icon-item-24px citation-alerts">
+                    <a href="/action/addCitationAlert?doi=10.1021%2Fjacs.7b04930" title="Citation Alerts">
+                        Citation Alerts
+                        <div class="icon-24px"></div>
+                    </a>
+                </li>
+
+
+    </ul>
+</div>
+
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none toolbar widget-none  widget-compact-all" id="c81a0122-0045-4ad2-9ed7-5743378e5b2e"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="chemworx-sidebar chemworx-entry icon-item-24px">
+  <a href="#" onclick="ACSPubs.platinum.addCitation(['10.1021/jacs.7b04930']);return false;">
+    <span class="icon-24px"></span>
+    Add to ACS ChemWorx</a>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumSciFinderWidget none  widget-none  widget-compact-all" id="3adc9478-c3fb-4127-b9b7-650d0b059113"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div id="casSection" class="toolbar-section toolbar-sci-finder">
+            <div class="toolbar-section-header">
+
+                        <img class="sciFinderLogo" src="/pb-assets/images/new-scifinder.png" alt="SciFinder Subscribers" />
+
+                <a href="https://scifinder.cas.org/" target="_blank">
+                    <button type="submit">Sign in</button>
+                </a>
+            </div>
+            <ul class="cas-links">
+
+
+                    <li class="first">
+                        <a href="/action/clickThrough?id=202424&amp;url=https%3A%2F%2Fscifinder.cas.org%2Fscifinder%2Fview%2Flink_v1%2Freference.jsf%3Fl%3DBmxxGlm8wGpw7nk5D-SxFLVg90H21EOLACvtfcHk0lht9Wkugp6rvA&amp;loc=%2FControllerServlet&amp;pubId=40001010&amp;placeholderId=3130&amp;productId=0" title="Retrieve Detailed Record of this Article" target="scifinder">Retrieve Detailed Record of this Article</a>
+                    </li>
+
+
+                    <li class="last">
+                        <a href="/action/clickThrough?id=202448&amp;url=https%3A%2F%2Fscifinder.cas.org%2Fscifinder%2Fview%2Flink_v1%2Fcited.jsf%3Fl%3DAkUi5EvKt81oKPlj93mNSRKm2HxY5VvntrnDmCxc-CThi25Vg2O3Mno3TdE_EswC&amp;loc=%2FControllerServlet&amp;pubId=40001010&amp;placeholderId=3130&amp;productId=0" title="Retrieve All References Cited for this Article" target="scifinder">Retrieve All References Cited for this Article</a>
+                    </li>
+
+            </ul>
+
+                <form id="sci-finder-search--modes" class="sci-finder-form" action="#" >
+                    <h5>Explore by:</h5>
+
+                        <label for="sci-finder-article-author">
+                            <input onclick="toggleSFinterface(this);" id="sci-finder-article-author" type="radio" name="sci-finder-explore" value="article-authors" checked="checked" />
+                            Author of this
+
+                                    Article
+
+                        </label>
+
+                    <label for="sci-finder-any-author">
+                        <input onclick="toggleSFinterface(this);" id="sci-finder-any-author" type="radio" name="sci-finder-explore" value="any-author" />
+                        Any Author
+                    </label>
+                    <label for="sci-finder-research-topic">
+                        <input onclick="toggleSFinterface(this);" id="sci-finder-research-topic" type="radio" name="sci-finder-explore" value="research-topic" />
+                        Research Topic
+                    </label>
+                    <hr/>
+                </form>
+
+
+                    <form action="/action/sciFinderSearch" id="sci-finder-search--article-authors" name="sfArtAuthorsLayer" class="sci-finder-form" method="post" target="scifinder"><label for="science-finder-article-author" class="science-finder-article-author">
+                            <select id="science-finder-article-author" name="authorName">
+
+
+                                    <option>Kubicki, Dominik J.</option>
+
+                                    <option>Prochowicz, Daniel</option>
+
+                                    <option>Hofstetter, Albert</option>
+
+                                    <option>Péchy, Péter</option>
+
+                                    <option>Zakeeruddin, Shaik M.</option>
+
+                                    <option>Grätzel, Michael</option>
+
+                                    <option>Emsley, Lyndon</option>
+
+                            </select>
+
+                        </label>
+                        <button type="submit">Search</button>
+                        <input type="hidden" name="searchAuthorsFromContent" value="Search" /></form>
+
+
+                <form action="/action/sciFinderSearch" id="science-finder-search--article-authors" name="science-finder-search--article-authors" class="sci-finder-form hidden" method="post" target="scifinder" onsubmit="return validateSciFinderContent();"><label for="sci-finder-author-last-name">
+                        <span class="sci-finder-name">Last *</span>
+                        <input id="sci-finder-author-last-name" type="text" name="lastName" value="" size="15" />
+
+                    </label>
+                    <label for="sci-finder-author-first-name">
+                        <span class="sci-finder-name">First</span>
+                        <input id="sci-finder-author-first-name" type="text" name="firstName" value="" size="15" />
+                    </label>
+                    <label for="sci-finder-author-middle-name">
+                        <span class="sci-finder-name">Middle</span>
+                        <input id="sci-finder-author-middle-name" type="text" name="middleName" value="" size="15" />
+                    </label>
+                    <button type="submit">Search</button>
+                    <input type="hidden" name="searchAnyAuthor" value="Search" /></form>
+
+                <form action="/action/sciFinderSearch" id="sci-finder-search--topics" name="sfTopicLayer" class="sci-finder-form hidden" method="post" target="scifinder" onsubmit="return validateSciFinderContent();"><label for="sci-finder-topic">
+                        <span>Topic *</span>
+                        <input id="sci-finder-topic" type="text" name="topic" value="" size="15" />
+
+                    </label>
+                    <label for="sci-finder-patents-only">
+                        <input id="sci-finder-patents-only" type="checkbox" name="patentsOnly" value="" size="15" />
+                        <span>Patents only search</span>
+                    </label>
+                    <button type="submit">Search</button>
+                    <input type="hidden" name="searchTopic" value="Search" /></form>
+
+        </div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-frame none  widget-none  widget-border-toggle widget-compact-all" id="cd9ede2c-2a1d-4310-867b-8e5effc7cf54"  >
+
+
+
+        <div class="wrapped " >
+            <h1 class="widget-header header-none  header-border-toggle header-compact-all">Metrics</h1>
+            <div class="widget-body body body-none  body-border-toggle body-compact-all"><div data-pb-dropzone="contents">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-frame none metrics-main widget-none  widget-compact-all" id="657f3034-5703-45e5-a18e-4d77374a21b8"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div data-pb-dropzone="contents">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumContentItemDownloadCount none  widget-none" id="ee87036d-9dc1-4a7f-a75c-773ce7320897"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none ">Article Views: 741 Times</div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget literatumContentItemHistory none  widget-none" id="764a4ee4-9265-43f8-8a38-36480fcd64fa"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none "><div>Received 12 May 2017</div>
+
+
+
+
+
+
+
+
+    <div>Published online 23 June 2017</div>
+
+
+
+
+
+
+
+
+        <div>Published in print 26 July 2017</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none  widget-none" id="47804402-b891-4f3f-8b75-1a6175119e4d"  >
+
+
+
+
+
+        <div class="wrapped " id='Metrics Tooltip'>
+
+            <div class="widget-body body body-none "><span class="tooltip">
+Learn more about these metrics
+<span>Article Views are the COUNTER-compliant sum of full text article downloads since November 2008 (both PDF and HTML) across all institutions and individuals. These metrics are regularly updated to reflect usage leading up to the last few days.<br /><br />The Altmetric Attention Score is a quantitative measure of the attention that a research article has received online. Clicking on the donut icon will load a page at altmetric.com with additional details about the score and the social media presence for the given article. Find more information on <a href="https://help.altmetric.com/support/solutions/articles/6000060969-how-is-the-altmetric-attention-score-calculated" target="_blank"> the Altmetric Attention Score and how the score is calculated</a>.
+</span>
+</span>
+<style>
+span.tooltip {
+    outline: none;
+    text-decoration: none;
+    border-bottom: dotted 1px blue;
+    position: relative;
+}
+
+span.tooltip strong {
+    line-height: 30px;
+}
+
+span.tooltip > span {
+    width: 300px;
+    padding: 10px 20px;
+    margin-top: -150px;
+    margin-left: -300px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 10;
+    position: absolute;
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    border-radius: 3px;
+    box-shadow: 2px 2px 2px #999;
+    -webkit-transition-property: opacity, margin-top, visibility, margin-left;
+    -webkit-transition-duration: 0.4s, 0.3s, 0.4s, 0.3s;
+    -webkit-transition-timing-function: ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+    transition-property: opacity, margin-top, visibility, margin-left;
+    transition-duration: 0.4s, 0.3s, 0.4s, 0.3s;
+    transition-timing-function:
+        ease-in-out, ease-in-out, ease-in-out, ease-in-out;
+}
+
+/*span.tooltip > span:hover,*/
+span.tooltip:hover > span {
+    opacity: 1;
+    text-decoration: none;
+    visibility: visible;
+    overflow: visible;
+    margin-top: -200px;
+    display: inline;
+    margin-left: -400px;
+}
+
+span.tooltip span b {
+    width: 15px;
+    height: 15px;
+    margin-left: 260px;
+    margin-top: 153px;
+    display: block;
+    position: absolute;
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+    transform: rotate(135deg);
+    -webkit-box-shadow: inset -1px 1px 0 #fff;
+    -moz-box-shadow: inset 0 1px 0 #fff;
+    -o-box-shadow: inset 0 1px 0 #fff;
+    box-shadow: inset 0 1px 0 #fff;
+    display: none\0/;
+    *display: none;
+}
+
+span.tooltip > span {
+color: #000000;
+background: #FBF5E6;
+background: -webkit-linear-gradient(top, #FBF5E6, #FFFFFF);
+background: linear-gradient(top, #FBF5E6, #FFFFFF);
+border: 2px solid #CFB57C;
+}
+
+span.tooltip span b {
+background: #FFFFFF;
+border-top: 2px solid #CFB57C;
+border-right: 2px solid #CFB57C;
+}
+</style>
+<script>
+    $('.tooltip').hover(function(event){
+      ga('send', 'event', 'Altmetrics', 'Journal of the American Chemical Society', 'Learn more about these metrics');
+    });
+</script></div>
+        </div>
+    </div>
+
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none  widget-none  widget-compact-all" id="30d38454-dd94-4103-b07a-40a80d946c45"  >
+
+
+
+
+
+        <div class="wrapped " id='altmetric'>
+
+            <div class="widget-body body body-none  body-compact-all"><div class="altmetric-toggle">
+    <div id="toggler" class="toggle">+</div>
+    <img id="metric-small" class="metric-small" src="http://pubs.acs.org:80/pb-assets/images/altmetrics-logo.png" />
+    <span class="altmetric-toggle-text">More Article Metrics</span>
+</div>
+<div class="altmetric-wrap">
+	<div data-badge-details="right" data-badge-type="medium-donut" data-doi="10.1021/jacs.7b04930" data-condensed="true" data-link-target='_blank' target="_blank" class="altmetric-embed"></div>
+</div>
+
+<script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+<script type="text/javascript">
+$(function(){
+	$('.altmetric-toggle').click(function(){
+		var button = $('.altmetric-toggle');
+		var buttonText = $('.altmetric-toggle-text');
+		if ($(buttonText).text() == 'More Article Metrics') {
+			$(button).addClass('open');
+			$(buttonText).text('Hide More Article Metrics');
+			$('#toggler').addClass('toggle-rotate');
+			$('.metrics-main').slideUp();
+			$('.altmetric-wrap').slideDown();
+		}
+		else {
+			$(button).removeClass('open');
+			$(buttonText).text('More Article Metrics');
+			$('#toggler').removeClass('toggle-rotate');
+			$('.metrics-main').slideDown();
+			$('.altmetric-wrap').slideUp();
+		}
+	});
+});
+</script>
+<style>
+.altmetric-toggle{
+    height:20px;
+}
+#toggler {
+  position: relative;
+  font-size: 24px;
+  font-weight: bold;
+  margin-right: 5px;
+  margin-left: -10px;
+  transition: transform 100ms ease-in-out;
+  float: left;
+  line-height: 20px;
+  color:#666666;
+}
+
+.toggle-rotate {
+  transform: rotate(45deg);
+}
+.metric-small{
+    float:left;
+    margin-left:15px;
+    margin-top: -1px;
+    margin-bottom: 4px;
+}
+.altmetric-toggle-text{
+    float:left;
+  color:#006ea9;
+  font-size:15px;
+  height:20px;
+  line-height:24px;
+  margin-left:5px;
+}
+</style></div>
+        </div>
+    </div>
+
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget layout-frame none  widget-none  widget-compact-all" id="e256cbbb-9f21-4c9a-af7c-47ed5b7cfa9e"  >
+
+
+
+
+
+        <div class="wrapped " id='combolist2'>
+
+            <div class="widget-body body body-none  body-compact-all"><div data-pb-dropzone="contents">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-rss-feed-reader none cen_latest_news hide widget-none  widget-compact-all" id="2ed58af7-de11-400f-9f95-6c88201821cb"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><!--content loaded via ajax-->
+<div class="general-rss-feed-reader general-rss-feed-readerjs" id="2ed58af7-de11-400f-9f95-6c88201821cb">
+    <div class="rss-body"></div>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-rss-feed-reader none axial_rss hide widget-none  widget-compact-all" id="1f3786df-bb08-4b49-b274-4f0a589a4347"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><!--content loaded via ajax-->
+<div class="general-rss-feed-reader general-rss-feed-readerjs" id="1f3786df-bb08-4b49-b274-4f0a589a4347">
+    <div class="rss-body"></div>
+</div></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none  widget-none  widget-compact-all" id="02a27881-ff24-4337-8d5f-d2c1994112d2"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><style type="text/css">
+	.combo-bi-container {
+		min-height: 640px;
+	    width: 100%;
+	    overflow: hidden;
+	}
+
+	.combo-bi-container-slider {
+		width: 645px;
+    	height: auto;
+    	position:relative;
+    	transition: all .8s ease-in-out;
+		transition-delay: .1s;
+	}
+
+	.show-right {
+		right: 322px;
+	}
+
+	.show-left {
+
+	}
+
+	 #axiallist, #cen_list {
+	 	/*position: absolute;*/
+	 	display: none;
+	 	display: inline-block;
+	 	position: relative;
+	 }
+
+	  #axiallist {
+	  	float: right;
+	  }
+
+	  #cen_list {
+	  	float: left;
+	  }
+
+	    .journal-active {
+	    	display: block;
+			opacity: 1;
+
+			transition-delay: .2s;
+			-webkit-transition: .2s;
+			-o-transition: .2s;
+			-moz-transition: .2s;
+			-webkit-transition: opacity 1.5s ease-in;
+			-moz-transition: opacity 1.5s ease-in;
+			-o-transition: opacity  1.5ease-in;
+			 transition: opacity 1.5s ease-in;
+		}
+
+		.journal-in-active {
+	    	display:none;
+			opacity: 0;
+
+			transition-delay: .1s;
+			-webkit-transition: .1s;
+			-o-transition: .1s;
+			-moz-transition: .1s;
+			-webkit-transition: opacity 2s ease-out;
+			-moz-transition: opacity 2s ease-out;
+			-o-transition: opacity 2s ease-out;
+			 transition: opacity 2s ease-out;
+		}
+
+		.cl-nodata-fadeout {
+			opacity: 0;
+			transition-delay: .1s;
+			-webkit-transition: .1s;
+			-o-transition: .1s;
+			-moz-transition: .1s;
+			-webkit-transition: opacity 2s ease-out;
+			-moz-transition: opacity 2s ease-out;
+			-o-transition: opacity 2s ease-out;
+			 transition: opacity 2s ease-out;
+		}
+
+		.j-hidden {
+			display: none;
+			opacity: 0;
+		}
+
+	.combo-rss-wrapper {
+		width: 320px;
+    	min-height: 624px;
+    	border: 1px solid lightgrey;
+	}
+
+	.combo-rss-header {
+		height: 100px;
+	 	width: 96%;;
+	}
+		.shadow {
+			  -webkit-box-shadow: 0 6px 4px -4px lightgrey;
+			  -moz-box-shadow: 0 6px 4px -4px lightgrey;
+			  box-shadow: 0 6px 4px -4px lightgrey;
+		}
+
+		.cen-color {
+			background-color: #EC272D;
+		}
+
+		.axial-color {
+			background-color:#00a2e0;
+		}
+
+		.title_image {
+			width:210px;
+			height: 76px;
+			margin: 0 auto;
+			display: table;
+			position: relative;
+		}
+
+
+		.ax-header-img, .cen-header-img {
+			height: 50px;
+			margin: 0 auto;
+    		padding-top: 10px;
+			display: block;
+		}
+
+		.cen-header-img {
+			z-index: 200;
+		}
+
+		.ax-header-img {
+			z-index: 100;
+			position: relative;
+		    top: 10px;
+		    left:0;
+		}
+
+
+			.switch-wrap {
+				display: block;
+				height: 20px;
+			}
+
+			.switch {
+				display: inline-block;
+				font-family: Helvetica;
+				text-decoration: none;
+				color: white;
+				font-weight: 100;
+				font-size: 12px;
+				letter-spacing: 1px;
+
+			}
+
+			#latest-news {
+				float: right;
+				margin-right: 20px;
+			}
+
+			#current-issue {
+				float: left;
+				margin-left: 10px;
+			}
+
+			#latest-news a:hover, #current-issue a:hover {
+				text-decoration: none !important;
+				color: white !important;
+			}
+
+		.indicator-line {
+			height: 4px;
+			width: 50%;
+			transition: all 1s ease-in;
+			transition-delay: .2s;
+			background: #D1D1D1; /*#ffc900   cen blue: #425469*/
+		}
+
+		.change-line {
+			transform: translateX(152px);
+		}
+
+	.combo-rss-body {
+		width: 320px;
+		height: 600px;
+		overflow: hidden;
+    	display: block;
+	}
+
+	#rss-combolist-wrap {
+		width: 648px;
+		height: 585px;
+		position: relative;
+		transition: all 1s ease-in;
+		transition-delay: .3s;
+	}
+		.ax-wrap {
+			width: 300px;
+		}
+
+		.mov-right {
+			right: 320px;
+		}
+		.mov-left {
+			/*left: 0px;*/
+		}
+
+
+	#cencurrent, #cenlatest {
+		width: 320px;
+		height: auto;
+		display: inline-block;
+		position: relative;
+		float: left;
+	}
+
+	#latest {
+		width: 320px;
+		height: auto;
+		display: inline-block;
+		float: right;
+		position: relative;
+	}
+
+
+		.axlist,.cencurrent, .cenlatest { /*ul*/
+		    padding: 0 10px 0 10px !important;
+		    width: 100%;
+		}
+
+		/*.cencurrent {
+			padding-top: 10px !important;
+		}
+*/
+		.axlist li:last-child{
+			border-bottom: none;
+		}
+
+		 #axlist {
+		 	width: 100%;
+		 	/*min-height: 586px;*/
+		 }
+
+		.combo-list-item {
+			list-style: none;
+			border: none;
+		    min-height: 64px;
+		    margin: 0 !important;
+		    width: 87%;
+		}
+
+			.cl-border {
+				border-bottom: 1px solid lightgrey !important;
+			}
+
+		.cl-img-area {
+			float: left;
+			display: inline-block;
+			width: 72px;
+			overflow: hidden;
+			margin-bottom: 6px;
+			height: 100px;
+		}
+
+		.cl-img-area-coverart {
+			float: left;
+			display: inline-block;
+			width: 94px;
+			/*overflow: hidden;*/
+			margin-bottom: 6px;
+		}
+
+		.cl-section {
+			width:40px;
+		    background:white;
+		    position: relative;
+		    top: -2px;
+		    left: 0;
+		    z-index: 100;
+		    color: #645555;
+		    font-size: 9px;
+		    font-family: Helvetica;
+		}
+
+		.cl-section-cover {
+			width: 40px;
+		    background: white;
+		    position: relative;
+		    top: 16px;
+		    left: 100px;
+		    z-index: 100;
+		    color: #645555;
+		    font-size: 9px;
+		    font-family: Helvetica;
+		}
+
+		.cl-borderline {
+			width: 150px;
+			display: inline-block;
+			float: right;
+			margin-right: 0px;
+		}
+
+		.cl-borderline-first {
+			width: 100px;
+		    display: inline-block;
+		    float: right;
+		    position: relative;
+		    top: 18px;
+		}
+
+		.cl-borderline-last {
+			width: 160px;
+			display: inline-block;
+			float: right;
+			margin-right: 0px;
+		}
+
+		.cl-item-right {
+		    width: 200px;
+		    height: 100px;
+		    float: right;
+		    display: inline-block;
+		    margin-right: -2px;
+		    font-weight: 400;
+		}
+
+		.cl-item-right-cover {
+		    width: 180px;
+		    height: 100px;
+		    float: right;
+		    display: inline-block;
+		    margin-right: -2px;
+		    font-weight: 400;
+		    margin-top: 10px;
+		}
+
+		.ax-extend {
+			margin-left: 8px;
+			width: 280px;
+		}
+
+			.cl-a-image {
+			   /*height: 100px;*/
+               width: 72px;
+			   display: block;
+			}
+
+			.cl-a-image-cover {
+				height: 124px;
+			    display: block;
+			    position: relative;
+			    top: -5px;
+			}
+
+			.story-title {
+				text-decoration: none !important;
+			}
+			.story-title h2 {
+				font-size: 12px;
+				line-height: 13px;
+			    font-family: Helvetica;
+			    text-decoration: none;
+			    padding: 0;
+			    margin: 0;
+			    margin-bottom: 4px;
+			}
+
+
+			.lnews-color {
+				color: #556185;
+			}
+
+			.story-title-ax-color {
+				color: #00a2e0;
+			}
+
+			.story-title-cen-color {
+				color: #645555 !important;
+			}
+
+			.combo-list-inner-wrap {
+				display: inline-block;
+				height: auto;
+				padding-top: 10px;
+				width: 100%;
+			}
+
+			.small-logo {
+				float: right;
+				display: block;
+			}
+
+			.cl-desc {
+				font-family: Arial;
+    			font-size: 12px
+			}
+
+			.last {
+				border-bottom: none !important;
+			}
+
+		.cl-footer {
+			height: 40px;
+			background: white;
+			display: block;
+			text-align: center;
+			/*margin-top: 20px;*/
+			padding-top: 2px;
+			position: relative;
+    		top: -20px;
+		}
+
+		.ax-footer {
+			background: white;
+		    position: absolute;
+		    bottom: 4px;
+		    left: 50%;
+		    margin-left: -50px;
+		}
+
+
+		#cen-more-from, #ax-more-from{
+			font-family: Helvetica;
+			padding-top: 14px;
+			/*font-family: Arial;*/
+		    font-size: 11px;
+		    text-decoration: none;
+		    color: grey;
+		    display: block;
+		    /*position: relative;
+    		top: -4px;*/
+		}
+
+
+</style>
+
+<div class="combo-bi-container">
+		<div class="combo-bi-container-slider">
+			<div id="cen_list" class="combo-rss-wrapper j-hidden">
+				<div class="combo-rss-header shadow cen-color">
+					<div class="title_image"><img src="/pb-assets/images/CEN-Logo.png" class="cen-header-img"/></div>
+					<div class="switch-wrap"><a href="#" class="switch" id="current-issue">CURRENT ISSUE</a><a href="#" class="switch" id="latest-news">LATEST NEWS</a></div> <!--switch-->
+					<div class="indicator-line"></div>
+				</div>
+				<div class="combo-rss-body">
+					<div id="rss-combolist-wrap">
+					<div id="cencurrent"></div>
+					<div id="cenlatest"></div>
+
+					</div>
+					<!-- <div class="cl-footer">
+						<a id="cen-more-from" href="#">MORE FROM ACS AXIAL</a>
+					</div> -->
+				</div>
+			</div>
+
+			<div id="axiallist" class="combo-rss-wrapper j-hidden" ><!--  style="display:none;" -->
+				<div class="combo-rss-header shadow axial-color">
+					<div class="title_image"><img src="/pb-assets/images/Axial-Logo.png" class="ax-header-img"/></div>
+				</div>
+				<div class="combo-rss-body">
+					<div id="rss-combolist-wrap ax-wrap">
+					<div id="axlist"></div>
+
+					</div>
+					<!-- <div class="ax-footer">
+						<a id="ax-more-from" href="#">MORE FROM C&amp;EN</a>
+					</div> -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script>
+
+$(document).ready(function() {
+
+
+	var comboListBuilder = {
+
+		//cenCurrentIssueArray:[],
+		axialListArray:[],
+		cenNewsArray:[],
+		journalChoice: "",
+
+		init: function(){
+
+			$("#current-issue, #latest-news").on("click", function(event){
+				event.preventDefault();
+				//console.log(event.target.id);
+				comboListBuilder.switchItnow(event.target.id);
+
+			});
+
+			$("#cen-more-from, #ax-more-from").bind("click", function(event){
+					event.preventDefault();
+					$("#axiallist, #cen_list").removeClass("j-hidden");
+					var value = 0;
+				 	var $slider = $(".combo-bi-container-slider");
+
+					if (event.target.id === "ax-more-from") {
+						//switch to cen
+						if ($slider.hasClass("show-right") ) {
+							value = 322;
+						} else {
+							value = 0;
+						}
+
+						$slider.css("transform", "translateX(" +  value + "px)");
+
+						$("#axiallist").removeClass("journal-active");
+						$('#cen_list').addClass("journal-active");
+						$("#axiallist").addClass("journal-in-active");
+						$("#cen_list").removeClass("journal-in-active");
+
+
+					} else if (event.target.id === "cen-more-from") {
+						// switch to axial
+						if ($slider.hasClass("show-right") ) {
+							value = 0;
+						} else {
+							value = -322;
+						}
+
+						$slider.css("transform", "translateX(" +  value + "px)");
+
+						$("#cen_list").removeClass("journal-active");
+						$('#axiallist').addClass("journal-active");
+						$("#cen_list").addClass("journal-in-active");
+						$('#axiallist').removeClass("journal-in-active");
+					}
+
+			});
+
+			// Set classes initially - This will need to change
+			// Currently adding classes for the different sliding panels only for the c&en
+
+			if (this.journalChoice === "axial") {
+
+				//$(".indicator-line").addClass("change-line");
+				//$('#rss-combolist-wrap').addClass("mov-right");
+
+			} else if (this.journalChoice === "cenge") {
+				$('.combo-rss-header').addClass("cen-color");
+				$(".indicator-line").removeClass("change-line");
+				$('#rss-combolist-wrap').addClass("mov-left");
+
+			}
+
+			$("[id^=climage-]").error(function () {
+				  $(this).unbind("error").attr("src", "/pb-assets/images/default.jpg"); ///pb-assets/images/default.jpg
+			});
+
+
+		},
+
+		getLists: function() {
+			var self = this;
+
+			var title, image, description, cl_section, tag,  clborderline;
+		   	console.log("Getting the Lists...");
+		   	// var fullTextPath = "/doi/full/";  //http://pubs.acs.org/doi/full/
+   			// var coverart = "http://pubs.acs.org/action/showCoverImage?journalCode=cgeabj";
+
+   					    //Get contents of Latest news
+	    	$('.cen_latest_news').find('.listOfPublications li a').each(function() {
+	    	    if ($(this).next().html() === undefined || $(this).attr('href') === undefined || $(this).html() === undefined) {
+	    	         return true;
+	    	     } else {
+	    		  var description = $(this).next().html();
+	    		  var link = $(this).attr('href') + "?utm_source=PubsWidget&utm_medium=Pubs&utm_campaign=CEN";
+	    		 // console.log("C&EN URL: " + link );
+	    		 // description = description.replace(/<\/?[^>]+(>|$)/g, ""); //there is a p tag in the axial feed that does not exist in the c&en feed.
+
+	         	    var tag = "<div class='combo-list-inner-wrap'><a class='story-title lnews-color' href='" + link + "' class='jounral1_items'" + ' title="'+ $(this).html() + '"><h2 class="story-title-cen-color">' +  $(this).html() + "</h2></a><p class='cl-desc'>"+ description +"</p></div>";
+		    		    comboListBuilder.cenNewsArray.push(tag);
+		    		    // console.log(tag);
+	    	     }
+	     	});
+
+	 		//Get contents for Axial
+	    	$('.axial_rss').find('.listOfPublications li a').each(function() {
+	    	     if ($(this).next().html() === undefined || $(this).attr('href') === undefined || $(this).html() === undefined) {
+	    	         return true;
+	    	     } else {
+	    	         console.log(this);
+	    	          var description = $(this).next().html();
+	    		  description = description.replace(/<\/?[^>]+(>|$)/g, ""); //there is a p tag in the axial feed that does not exist in the c&en feed.
+	    		var link = $(this).attr('href') + '?utm_source=Widget&utm_medium=Pubs&utm_campaign=Axial';
+	    		//console.log(link);
+	         	var tag = "<div class='combo-list-inner-wrap'><a class='story-title' href='" + link + "' class='jounral1_items'" + ' title="'+ $(this).html() + '"><h2 class="story-title-ax-color">' +  $(this).html() + "</h2></a><p class='cl-desc'>"+ description +"</p></div>";
+		    		    comboListBuilder.axialListArray.push(tag);
+		    		    // console.log(tag);
+
+	    	     }
+
+	     	});
+
+
+			//Get contents of CEN Current issue
+			var feed = "/iapps/rss/cgeabj.xml";
+		    //console.log("Running Ajax");
+		    $.ajax(feed, {
+		        accepts:{
+		            xml:"application/rss+xml"
+		        },
+		        dataType:"xml",
+		        success: handleCenData,
+		        error: function(){
+		        	$('.combo-bi-container').hide();
+		        }
+		    });
+
+		    function handleCenData (data) {
+
+		        if (!data) {
+		        		console.log("Something is wrong with the data ?? ");
+		        } else {
+		        	var cenAjaxHolder = [];
+		            var coverStory = {}, science = {}, business = {}, policy ={};
+		            var csIndex, sciIndex, bizIndex, poliIndex;
+		            var fullTextPath = "/doi/full/";  //http://pubs.acs.org/doi/full/
+   					var coverart = "/action/showCoverImage?journalCode=cgeabj";
+
+		            $(data).find("item").each(function (index) {
+		                var el = $(this);
+		              	var title = el.find("title").text();
+		              	var link = el.find("link").text();
+		              	link = link.split("http://dx.doi.org/");
+		    			link = fullTextPath + link[1] + "?ref=PubsWidget";
+
+		              	var description = el.find("description").text();
+
+		              	//image
+		              	var regexp = /<img[^>]+src="(http:\/\/[^">]+)"/g;
+		              	var image = description.match(regexp);
+
+		              	description =  description.replace(/<\/?[^>]+(>|$)/g, "");
+		    			description = description.replace(/^(.{100}[^\s]*).*/, "$1");
+		    			description += "...";
+
+						if (image != null) {
+							image = image[0];
+							image = image.split("src=");
+							image = image[1].replace(/^"(.*)"$/, '$1');
+						}
+
+		              	if (title == "COVER STORY") {
+		              		csIndex =  index;
+		              		coverStory.section = title;
+		              	}
+
+			              	if (index == (csIndex+ 1)) {
+			              		coverStory.title = title;
+			              		coverStory.description = description;
+			              		coverStory.link = link;
+			              		coverStory.image = coverart;
+			              		coverStory.clborderline = "cl-borderline-first";
+			              		coverStory.index  = index;
+
+			              	}
+
+		              	if (title == "SCIENCE CONCENTRATES") {
+		              		sciIndex = index;
+		              		science.section = title;
+		              	}
+
+			              	if (index == (sciIndex+ 1) ) {
+			              		science.title = title;
+			              		science.description = description;
+			              		science.link = link;
+			              		if (image) { //This should not be on production - the images are too blurry
+			              			image = image.toLowerCase();
+			              			image = image.replace("medium", "small");
+			              			science.image = image.replace("jpeg", "gif");
+			              			//console.log(science.image);
+			              		}
+			              		science.clborderline= "cl-borderline";
+			              		science.index  = index;
+			              	}
+
+		              	if (title == "CONCENTRATES") {
+		              		return true;
+		              	}
+
+		              	if (title == "BUSINESS CONCENTRATES") {
+		              		bizIndex = index;
+		              		business.section = title;
+		              	}
+
+			              	if (index == (bizIndex+ 1) ) {
+			              		business.title = title;
+			              		business.description = description;
+			              		business.link = link;
+			              		if (image) {
+			              			image = image.toLowerCase();
+			              			image = image.replace("medium", "small");
+			              			business.image = image.replace("jpeg", "gif");
+			              			//console.log(business.image);
+			              		}
+			              		business.clborderline= "cl-borderline";
+			              		business.index  = index;
+			              	}
+
+		              	if (title == "POLICY CONCENTRATES") {
+		              		poliIndex = index;
+		              		policy.section = title;
+		              	}
+
+			              	if (index == (poliIndex+ 1) ) {
+			              		policy.title = title;
+			              		policy.description = description;
+			              		policy.link = link;
+			              		if (image) {
+			              			image = image.toLowerCase();
+			              			image = image.replace("medium", "small");
+			              			policy.image = image.replace("jpeg", "gif");
+			              			//console.log(policy.image);
+			              		}
+
+			              		policy.clborderline = "cl-borderline";
+			              		policy.index  = index;
+			              	}
+
+		            });
+
+					//create ui elements from the data
+					createUI_Element_Cover(coverStory);
+					createUI_Element(science);
+					createUI_Element(business);
+					createUI_Element(policy);
+					//self.cenCurrentIssueArray
+					//Build this list
+					if (cenAjaxHolder) {
+						comboListBuilder.buildList(cenAjaxHolder, "cencurrent");
+					}
+
+					//Handle bad images
+					$("[id^=climage-]").error(function () {
+				  		$(this).unbind("error").attr("src", "/pb-assets/images/default.jpg"); ///pb-assets/images/default.jpg
+					});
+
+				}
+
+				//cl-section is the name
+				function createUI_Element_Cover(dataObject) {
+
+					//console.log("Creating UI Elem: cover story " );
+					var tag = "<span class='cl-section-cover'>" + dataObject.section + "</span><hr class='" + dataObject.clborderline + "'/><div class='combo-list-inner-wrap'><div class='cl-img-area-coverart'><a href='"+ dataObject.link +"' target='_blank'><img src='"+ dataObject.image +"'  id='climage-" + dataObject.index +"'  class='cl-a-image-cover' /></a></div><div class='cl-item-right-cover'><a class='story-title' target='_blank' href='" + dataObject.link +  "'title='"+ dataObject.title + "'><h2 class='story-title-cen-color'>" +  dataObject.title + "</h2></a><p class='cl-desc'>"+ dataObject.description +"</p></div></div>";
+		    		    cenAjaxHolder.push(tag);
+				}
+
+				function createUI_Element(dataObject) {
+					//console.log("Creating UI Elem: sections  " );
+					var tag = "<span class='cl-section'>" +dataObject.section + "</span><hr class='" + dataObject.clborderline + "'/><div class='combo-list-inner-wrap'><div class='cl-img-area'><a href='"+ dataObject.link +"' target='_blank'><img src='"+ dataObject.image +"'  id='climage-" + dataObject.index +"'  class='cl-a-image' /></a></div><div class='cl-item-right'><a class='story-title' target='_blank' href='" + dataObject.link +  "'title='"+ dataObject.title + "'><h2 class='story-title-cen-color'>" +  dataObject.title + "</h2></a><p class='cl-desc'>"+ dataObject.description +"</p></div></div>";
+		    		    cenAjaxHolder.push(tag);
+				}
+
+		   }
+
+
+
+	  	   if ( comboListBuilder.axialListArray.length != 0 && comboListBuilder.cenNewsArray.length != 0) {
+
+	  	   		//self.numberOfArticles(self.cenCurrentIssueArray, 10);
+	  	   		self.numberOfArticles(self.axialListArray, 6);
+	  	   		self.numberOfArticles(self.cenNewsArray, 6);
+
+	  	   		this.journalChoice  = comboListBuilder.randomChoice();
+	 			//self.buildList(self.cenCurrentIssueArray, "cencurrent");
+	 			self.buildList(self.cenNewsArray, "cenlatest");
+	 			self.buildList(self.axialListArray, "axlist");
+
+	 			self.init();
+
+	  	    } else {
+	  	    	// Hide if no data
+	  	    	$('.combo-bi-container').addClass("journal-in-active");
+	  	    }
+
+	   },
+
+	   switchItnow: function(elem){
+	   		var $inter_wrapper = $("#rss-combolist-wrap");
+	   		var value = 320;
+	    	if (elem === "current-issue") {
+
+	    		 $(".indicator-line").removeClass("change-line");
+
+	    		if ($inter_wrapper.hasClass("mov-right")) {
+	    			$inter_wrapper.css("transform", "translateX(" +  value + "px)");
+	    		}
+
+	    		if ($inter_wrapper.hasClass("mov-left")) {
+	    			value = 0;
+	    			$inter_wrapper.css("transform", "translateX(" +  value + "px)");
+	    		}
+	    	}
+
+	    	else if (elem === "latest-news") {
+	    		$(".indicator-line").addClass("change-line");
+
+
+				if ($inter_wrapper.hasClass("mov-right")) {
+					value = 0;
+					$inter_wrapper.css("transform", "translateX(" +  value + "px)");
+				}
+
+	    		if ($inter_wrapper.hasClass("mov-left")) {
+	    			value = -320;
+	    			$inter_wrapper.css("transform", "translateX(" +  value + "px)");
+	    		}
+
+	    	}
+
+	    },
+
+	    randomChoice: function() {
+		      var min = Math.ceil(1);
+			  var max = Math.floor(10);
+			  var value =  Math.floor(Math.random() * (max - min)) + min;
+			  if (value > 7) {
+			  		value = "axial";
+
+					$("#axiallist").removeClass("j-hidden"); //journal-active
+					$(".combo-bi-container-slider").addClass("show-right");
+
+					$("#rss-combolist-wrap").addClass("mov-left");
+					$(".indicator-line").removeClass("change-line");
+
+
+			  } else {
+			  		value = "cenge";
+			  		//$("#cen_list").show();
+			  		//$("#cen_list").removeClass("journal-in-active"); //journal-in-active
+			  		$("#cen_list").removeClass("j-hidden"); //journal-active
+			  }
+			  //console.log("Value " + value);
+			  return value;
+		},
+
+
+
+		buildList: function (journ, jname) {
+	        console.log("Building the List ...");
+			var $thelist = $('<ul class="' + jname + '"></ul>');
+			var holder ='';
+
+	      	for (var i = 0; i < journ.length; i++) {
+			     var li = '<li class="combo-list-item">' + journ[i] + '</li>';
+			     if (i == journ.length - 1) {
+			     	li = '<li class="combo-list-item last">' + journ[i] + '</li>';
+			     	// console.log(displayArray[i]);
+			     }
+
+			     if (jname != "cencurrent") {
+			     	if (i == journ.length - 1) {
+			     		li = '<li class="combo-list-item  cl-border last">' + journ[i] + '</li>';
+			     	} else {
+			     	 	li = '<li class="combo-list-item  cl-border">' + journ[i] + '</li>';
+			     	}
+			     }
+
+			    $thelist.append(li);
+			 };
+
+			 	$("#"+ jname +"").append($thelist);
+
+			 //console.log($thelist);
+	    },
+
+	    numberOfArticles: function(arrayToTrim, numberOfArticles) {
+	    	if (arrayToTrim.length != 0) {
+	    		//console.log("arrayToTrim.length " + arrayToTrim.length)
+
+				var limit = numberOfArticles;
+
+				if (limit === arrayToTrim.length) {
+					return false;
+				} else {
+					limit = arrayToTrim.length - limit;
+					//console.log("limit " + limit)
+					//
+					for (var i = 0; i < limit; i++) {
+						arrayToTrim.pop();
+						//console.log(i);
+					}
+				}
+	    	}
+	    }
+
+	};
+
+	//Script Starts here
+        $(window).load(function(){
+			setTimeout(function(){
+				if ($('.axial_rss').length != 0  &&  $('.cen_latest_news').length != 0) {
+					comboListBuilder.getLists();
+				}
+			}, 100);
+		});
+
+});
+
+
+</script></div>
+        </div>
+    </div>
+
+</div></div>
+        </div>
+    </div>
+
+</div></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+</div></div>
+        </div>
+    </div>
+
+</div></div>
+        </div>
+    </div>
+
+    </div>
+</div><!--end pagefulltext--></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget pageFooter none  widget-none  widget-compact-all" id="65b3a46e-5016-4d9a-9cc0-1224e4bbf46a"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><footer class="page-footer">
+    <div data-pb-dropzone="main">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none  widget-none  widget-compact-all" id="711aa7bf-5b37-481e-81f0-992b43dca726"  >
+
+
+
+        <div class="wrapped " >
+
+            <div class="widget-body body body-none  body-compact-all"><div class="acs-footer-wrap follow-bar">
+    <div class="acs-footer">
+        <div id="pageFooterFollowBar">
+            <ul>
+                <li class="follow-acs"><a href="/page/follow.html" title="Follow ACS"></a></li>
+                <li class="follow-e-alerts"><a href="/page/follow.html" title="e-Alerts" onclick="ga('send','event', 'Footer', 'Follow Bar', 'E-Alerts Tab'); setTimeout(function(){this.location = 'http://pubs.acs.org/page/follow.html#e-alerts'}, 100); return false;"></a></li>
+                <li class="follow-facebook"><a href="/page/follow.html?widget=follow-pane-facebook" title="Facebook" onclick="ga('send','event', 'Footer', 'Follow Bar', 'Facebook Tab'); setTimeout(function(){this.location = 'http://pubs.acs.org/page/follow.html?widget=follow-pane-facebook'}, 100); return false;"></a></li>
+                <li class="follow-twitter"><a href="/page/follow.html?widget=follow-pane-twitter" title="Twitter" onclick="ga('send','event', 'Footer', 'Follow Bar', 'Twitter Tab'); setTimeout(function(){this.location = 'http://pubs.acs.org/page/follow.html?widget=follow-pane-twitter'}, 100); return false;"></a></li>
+                <li class="follow-rss"><a href="/page/follow.html?widget=follow-pane-rss" title="RSS Feeds" onclick="ga('send','event', 'Footer', 'Follow Bar', 'RSS Feeds Tab'); setTimeout(function(){this.location = 'http://pubs.acs.org/page/follow.html?widget=follow-pane-rss'}, 100); return false;"></a></li>
+                <li class="follow-podcasts"><a href="/page/follow.html?widget=follow-pane-podcasts" title="Podcasts" onclick="ga('send','event', 'Footer', 'Follow Bar', 'Podcasts Tab'); setTimeout(function(){this.location = 'http://pubs.acs.org/page/follow.html?widget=follow-pane-podcasts'}, 100); return false;"></a></li>
+                <li class="follow-youtube"><a href="/page/follow.html?widget=follow-pane-youtube" title="YouTube" onclick="ga('send','event', 'Footer', 'Follow Bar', 'YouTube Tab'); setTimeout(function(){this.location = 'http://pubs.acs.org/page/follow.html?widget=follow-pane-youtube'}, 100); return false;"></a></li>
+                <li class="follow-tools"><a href="/page/follow.html?widget=follow-pane-mobile" title="Mobile" onclick="ga('send','event', 'Footer', 'Follow Bar', 'Mobile Tab'); setTimeout(function(){this.location = 'http://pubs.acs.org/page/follow.html?widget=follow-pane-mobile'}, 100); return false;"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="acs-footer-wrap footer-links">
+    <div class="acs-footer">
+        <div id="pageFooterLinks">
+            <div id="pageFooterAddress">
+                <img src="http://pubs.acs.org/templates/jsp/_style2/_achs/images/pubslogo-small.png">
+                <p>1155 Sixteenth Street N.W.<br>Washington, DC 20036</p>
+                <p><span class="beian">京ICP备13047075</span></p>
+                <p><a href="http://www.acs.org/content/acs/en/copyright.html" title="ACS Copyright Information">Copyright © 2017<br>American Chemical Society</a></p>
+            </div>
+
+            <ul class="products">
+                <li><h3>Products</h3></li>
+                <li><a href="/action/showPublications?display=journals">Journals A–Z</a></li>
+                <li><a href="/page/books/index.html">eBooks</a></li>
+                <li><a href="/cen">C&amp;EN</a></li>
+                <li><a href="/cen-archives">C&amp;EN Archives</a></li>
+                <li><a href="/page/4librarians/products/archives/index.html">ACS Legacy Archives</a></li>
+                <li><a href="/r/acsmobile">ACS Mobile</a></li>
+                <li><a href="/page/audio-video/index.html">Video</a></li>
+            </ul>
+            <ul class="user-resources">
+                <li><h3>User Resources</h3></li>
+                <li><a href="/page/about-us.html">About Us</a></li>
+                <li><a href="/page/membership/index.html">ACS Members</a></li>
+                <li><a href="/page/4librarians/index.html">Librarians</a></li>
+                <li><a href="/page/4authors/index.html">Authors &amp; Reviewers</a></li>
+                <!-- <li><a href="/page/4authors/index.html">Students</a></li> -->
+                <li><a href="/page/demo/index.html">Website Demos</a></li>
+                <li><a href="http://www.acs.org/content/acs/en/privacy.html">Privacy Policy</a></li>
+                <li><a href="/?mobileUi=1">Mobile Site</a></li>
+            </ul>
+            <ul class="support">
+                <li><h3>Support</h3></li>
+                <li><a href="#" class="help">Get Help</a></li>
+                <li><a href="http://acsmediakit.org/digital/acs-pubs/?utm_source=Footer&amp;utm_medium=Pubs&amp;utm_campaign=CEN">For Advertisers</a></li>
+                <li><a href="/page/4librarians/contact-us/index.html">Institutional Sales</a></li>
+                <li class="help" href="#"><a href="#" class="help help-chat">Live Chat</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="acs-footer-wrap partners">
+    <div class="acs-footer">
+        <ul>
+            <li><h3>Partners</h3></li>
+            <li><a href="http://www.atypon.com" title="Atypon"><img src="/pb-assets/images/footer/atypon-logo.png" alt="Atypon"></a></li>
+            <li><a href="http://www.chorusaccess.org" title="CHORUS"><img src="/pb-assets/images/footer/chorus-logo.png" alt="CHORUS"></a></li>
+            <li><a href="http://publicationethics.org/" title="COPE"><img src="/pb-assets/images/footer/cope-logo.png" alt="COPE"></a></li>
+            <li><a href="http://www.projectcounter.org/" title="COUNTER"><img src="/pb-assets/images/footer/counter-logo.png" alt="COUNTER"></a></li>
+            <li><a href="http://www.crossref.org/" title="CrossRef"><img src="/pb-assets/images/footer/crossref-logo.png" alt="CrossRef"></a></li>
+            <li><a href="http://www.crossref.org/crosscheck/index.html" title="CrossCheck Depositor"><img src="/pb-assets/images/footer/crosscheck-logo.png" alt="CrossCheck Depositor"></a></li>
+            <li><a href="http://www.orcid.org/" title="Orcid"><img src="/pb-assets/images/footer/orcid-logo.png" alt="Orcid"></a></li>
+            <li><a href="http://www.portico.org/" title="Portico"><img src="/pb-assets/images/footer/portico-logo.png" alt="Portico"></a></li>
+        </ul>
+    </div>
+</div>
+
+<script src="https://1131784da7184e34e737-f2bb466c03e9d6b8c5e18a9c4f84e1a0.ssl.cf1.rackcdn.com/chat-pubs.js"></script>
+<script>
+ACSPubs.login.listenerActive = false;
+ACSPubs.login.listen = function (callback){
+        var done = false;
+        if(ACSPubs.login.listenerActive == false){
+            ACSPubs.login.listenerActive= true;
+            var interval = setInterval(function(){
+                if(document.cookie.match(/(?:^|;) ?ERIGHTS=([^;$]+)(?:;|$)/)){
+                    done = true;
+                    listenerActive = false;
+                    clearInterval(interval);
+                    return callback();
+                }
+            }, 1000);
+        }
+    };</script></div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widget general-html none hide widget-none" id="fe197482-aec7-44dd-8734-ca0859abfaa5"  >
+
+
+
+
+
+        <div class="wrapped " id='link-to-top'>
+
+            <div class="widget-body body body-none "><script type="text/javascript">
+function backToTop() {
+    var offset1 = $('body').scrollTop();
+	var offset2 = $('html').scrollTop();
+	var offset = offset1 + offset2; /* because one of these will be zero, depending on browser */
+    var winWidth = $(window).width();
+    var winHeight = $(window).height();
+    var viewportBottom = offset + winHeight;
+    var linkTrigger = winHeight * 2;
+    var linkToTop = '<a id="linkToTop" style="display:none;" title="Return to top" href="#" onclick="$(\'body,html\').animate({scrollTop: $(\'body,html\').offset().top});return false;">&nbsp;<\/a>';
+
+    // insert link to top when scrolled past 2x the viewport height
+    // only show it if the user's window is big enough (<1110px)
+    if ($('#linkToTop').length && $('#linkToTop').is(':visible')) {
+        if (winWidth < 1110) {
+            $('#linkToTop').remove();
+		}
+        else if (viewportBottom < linkTrigger) {
+            $('#linkToTop').fadeOut();
+		}
+	}
+   	else if (winWidth > 1110 && viewportBottom > linkTrigger) {
+		if ($('#linkToTop').length==0) {
+			$('body').append(linkToTop);
+		}
+		$('#linkToTop').fadeIn();
+    }
+};
+$(function() {
+	setInterval("backToTop()", 1000);
+});
+
+// a general show/hide toggle function
+function toggleView(link, animate) {
+    var target = $(link).parents('div:eq(0)').find('.toggled');
+    var linkText = $(link).html();
+
+	if ($(target).is(':visible')) {
+		$(link).html(linkText.replace("Hide","View"));
+	}
+	else {
+		$(link).html(linkText.replace("View","Hide"));
+	}
+
+    if (!animate) {
+        $(target).toggle();
+	}
+	else {
+		$(target).fadeToggle();
+	}
+}
+</script>
+
+<script type="text/javascript">
+
+    var _elqQ = _elqQ || [];
+    _elqQ.push(['elqSetSiteId', '1913652004']);
+    _elqQ.push(['elqTrackPageView']);
+    (function () {
+    function async_load() {
+    var s = document.createElement('script'); s.type = 'text/javascript';
+    s.async = true; s.src = '//img.en25.com/i/elqCfg.min.js';
+    var x = document.getElementsByTagName('script')[0]; x.parentNode.insertBefore (s, x);
+    }
+    if (window.addEventListener) window.addEventListener('DOMContentLoaded',
+    async_load, false);
+    else if (window.attachEvent) window.attachEvent('onload', async_load);
+    })();
+
+</script></div>
+        </div>
+    </div>
+
+    </div>
+</footer></div>
+        </div>
+    </div>
+
+        </div>
+    </div>
+</body>
+</html>

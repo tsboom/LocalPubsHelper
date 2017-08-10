@@ -1,3 +1,19 @@
+import pdb
+# debugging
+# import pdb #use pdb.set_trace() to break
+
+
+class Article(object):
+    def __init__(self, title = None, authors = None, year = None, volume = None, issue = None, toc_gif = None):
+        #set everything to self. whatever
+        self.title = title
+        self.authors = authors
+        self.year = year
+        self.volume = volume
+        self.issue = issue
+        self.toc_gif = toc_gif
+
+
 class ArticleParser(object):
     """
     All of the information scraped from an Article on ACS Publications
@@ -5,25 +21,39 @@ class ArticleParser(object):
     Attributes:
         title: The title as a string
         authors: The list of authors as a string
-        citation_year: The citation year as a string
-        citation_volume: The volume number as a string
-        citation_issue: The issue number as a string
+        year: The citation year as a string
+        volume: The volume number as a string
+        issue: The issue number as a string
+        toc_gif: The toc GIF image URL as a string
     """
 
-    def __init__(self, doi, title, year, volume, issue):
-        self.doi = doi
-        self.title = title
-        self.authors = author_names
-        self.year = citation_year
-        self.volume = citation_volume
-        self.issue = issue_info
+    # sets soup as instance variable
+    def __init__(self, soup):
+        self.soup = soup
 
-    def get_title(soup):
-        title = soup.find('span', {'class': 'hlFld-Title'})
-        return title.text.encode('utf-8')
+    # parse the soup and return an article
+    def parse_article(self):
 
-    def get_authors(soup):
-        authors_soup = soup.select('#authors > span.hlFld-ContribAuthor')
+        # create an article instance using named parameters
+        article = Article(
+            title = self.get_title(),
+            authors = self.get_authors(),
+            year = self.get_citation_year(),
+            # volume = self.get_citation_volume(),
+            # issue = self.get_citation_issue(),
+            toc_gif = self.get_toc_gif()
+        )
+        return article
+
+    def get_title(self):
+        title = self.soup.find('span', {'class': 'hlFld-Title'})
+        title = title.text.encode('utf-8')
+        return title
+
+    # remove all soup params and change references to soup to self.soup
+    # make all these def self.method_name
+    def get_authors(self):
+        authors_soup = self.soup.select('#authors > span.hlFld-ContribAuthor')
         author_names = []
         for author in authors_soup:
             name_tag = author.find('span', {'class': 'hlFld-ContribAuthor'})
@@ -40,17 +70,38 @@ class ArticleParser(object):
             author_names.append(author_name)
         return author_names
 
-    def get_citation_year(soup):
-        citation_year = soup.find('span', {'class': 'citation_year'})
-        citation_year = citation_year.text.encode('utf-8')
-        return citation_year
+    def get_citation_journal(self):
+        citation_journal = self.soup.select('#citation > cite')[0].text
+        return citation_journal
 
-    def get_citation_volume(soup):
-        citation_volume = soup.find('span', {'class': 'citation_volume'})
-        citation_volume = citation_volume.text.encode('utf-8')
-        return citation_volume
+    def get_citation_year(self):
+        try:
+            citation_year = self.soup.find('span', {'class': 'citation_year'})
+            citation_year = citation_year.text.encode('utf-8')
+            return citation_year
+        except:
+            citation_year = self.soup.select('#citation')[0].text
+            return citation_year
 
-    def get_citation_issue(soup):
-        issue_info = soup.find("span", class_="citation_volume").next_sibling
+    def get_citation_volume(self):
+        try:
+            citation_volume = self.soup.find('span', {'class': 'citation_volume'})
+            citation_volume = citation_volume.text.encode('utf-8')
+            return citation_volume
+        except:
+            citation_volume = self.soup.select('#citation')[1].text
+            return citation_volume
+
+
+    def get_citation_issue(self):
+        issue_info = self.soup.find("span", class_="citation_volume").next_sibling
         issue_info = issue_info.encode("utf-8")
         return issue_info
+
+    def get_toc_gif(self):
+        try:
+            toc_gif = self.soup.select('#abstractBox > .figure > a > img')[0]['src']
+            return toc_gif
+        except:
+            toc_gif = "No gif found"
+            return toc_gif

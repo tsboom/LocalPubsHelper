@@ -1,6 +1,17 @@
 
 # constants
 
+
+# constants to help format URL strings
+
+DOI_PREFIX = 'http://pubs.acs.org/doi/'
+
+
+
+
+
+
+
 #dictionary to match stripped dois with their corresponding coden (for URL formation)
 
 CODEN_MATCH = {

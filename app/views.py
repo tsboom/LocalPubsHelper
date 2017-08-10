@@ -10,6 +10,7 @@ from highlightsnewtest import processDOI
 from virtualissueASAP import createVI
 import os
 import sys
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
