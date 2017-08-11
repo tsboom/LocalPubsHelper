@@ -16,6 +16,8 @@ import zipfile
 import errno
 import re
 import datetime
+from ArticleParser import ArticleParser
+from articleutilities import *
 
 # debugging
 # import pdb #use pdb.set_trace() to break
@@ -25,13 +27,7 @@ def createVI(myDOIs):
 
     global results
 
-    # get current YYYYMMDD
-
-
-    date = datetime.date.today()
-    datecode = datetime.datetime.now().strftime("%Y%m%d")
-
-    # format results
+    # create empty array to hold results dicts
     results = []
 
     '''
@@ -47,13 +43,10 @@ def createVI(myDOIs):
 
         DOI = DOI.strip()
 
+        cleanDOI= clean_doi(DOI)
 
-        # collect journal prefixes
-        cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
-        journalprefix = cleanDOI[:-7]
-        clean_journal.append(cleanDOI)
-
-        coden = constants.CODEN_MATCH[journalprefix]
+        coden = get_coden(cleanDOI)
+        datecode = get_datecode()
 
         # create image URL for PB using coden and today's date.
         img_url = ("/pb-assets/images/selects/" + str(coden) +
@@ -62,91 +55,37 @@ def createVI(myDOIs):
         # create article URL
         article_link = ("/doi/abs/" + str(DOI))
 
-        # open selenium window
-        # driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
-        # driver = webdriver.PhantomJS(executable_path="/usr/local/bin/phantomjs")
-        # driver = webdriver.PhantomJS()
-
-        print "\n\n -------- \n\n"
-
-        print "instanciating webdriver"
-        driver = webdriver.PhantomJS()
-        print "setting window size"
-        driver.set_window_size(1120, 550)
-
-        # go to full article page by adding URL prefix to DOI
-        print "getting doi link"
-        driver.get("http://pubs.acs.org/doi/" + DOI)
-        print "\t" + DOI
-
-        # wait ten seconds and get title text to add to results object
-        print "waiting then getting title text"
-        try:
-            title = WebDriverWait(driver, 20).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
-            html_title = title.get_attribute('innerHTML').encode('utf-8')
-            print "\t" + html_title
-        except:
-            print "\n" + DOI.upper() + " IS AN INVALID DOI \n"
-            articleinfo = {
-                'DOI': DOI,
-                'Title': "Invalid DOI"
-            }
-            results.append(articleinfo)
-            continue
-
-        # add title to list of titles (with special characters)
-        # article_titles.append(title.get_attribute('innerHTML').encode('utf-8'))
-
-        # get authors
-        print "getting authors"
-        authors = driver.find_elements_by_xpath(constants.AUTHOR_XPATH)
-
-        # join the text in the array of the correctly encoded authors
-        authors_scrape = []
-        for author in authors:
-            authors_scrape.append(author.text.encode('utf-8'))
+        # create img path for Flask, so that the images can be displayed on
+        # Flask.
+        img_path = "img/generated/" + coden + '/' + \
+            str(datecode) + "/" + str(cleanDOI) + ".jpeg"
 
 
-        # create array to hold formatted authors list (stars next to authors)
-        authorsStars = []
+        # set up beautiful soup
+        html = get_html(DOI)
+        soup = soup_setup(html)
 
-        # iterate over authors_scrape and join * with author before it
-        for index, i in enumerate(authors_scrape):
-            if index != (len(authors_scrape)-1):
-                if authors_scrape[index+1] == "*":
-                    string = authors_scrape[index] + authors_scrape[index+1]
-                    del(authors_scrape[index+1])
-                    # add string
-                    authorsStars.append(string)
-                else:
-                    authorsStars.append(authors_scrape[index])
-            else:
-                authorsStars.append(authors_scrape[index])
+        # instantiate article objects
+        article_parser = ArticleParser(soup)
+        article = article_parser.parse_article()
 
-        # join correctly formatted authors
-        # add ', ' and 'and'
-        if len(authorsStars)==2:
-            authorsStars.insert(1, ' and ')
-            authorsjoined = (''.join(authorsStars))
-        elif len(authorsStars)==1:
-            authorsjoined = (''.join(authorsStars))
-        else:
-            all_but_last = ', '.join(authorsStars[:-1])
-            last = authorsStars[-1]
-            authorsjoined = ', and '.join([all_but_last, last])
+        # title
+        html_title = article.title
+
+        # authors array
+        authors_array = article.authors
+
+        # join authors
+        authors_joined = join_commas_and(authors_array)
 
 
-        print "\t" + authorsjoined
-        # Get citation info
-        # CITATION_XPATH = "//*[@id=\"citation\"]"
-        # journalcite = driver.find_elements_by_xpath(CITATION_XPATH)
+        # get picture link
+        gif_url = "https://pubs.acs.org" + article.toc_gif
 
-        # citationprep = []
-        # for part in journalcite:
-        #     citationprep.append(part.text.encode('utf-8'))
+        toc_href = gif_to_jpeg(gif_url)
 
-        # fullcitation = (''.join(citationprep))
+
+
 
         # Get abbreviated Journal name
         print "getting journal name"

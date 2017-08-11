@@ -24,10 +24,10 @@ from articleutilities import *
 
 def processDOI(myDOIs):
 
-    global imgurls
-    global articlelink
-    global articletitles
-    global authorslist
+    # global imgurls
+    # global articlelink
+    # global articletitles
+    # global authorslist
     global results
 
     '''
@@ -39,10 +39,6 @@ def processDOI(myDOIs):
 
     # create empty array to hold results dicts
     results = []
-
-
-
-
     '''
     Loop through DOIS and find info about each article. add that information to a python dictionary
 
@@ -122,48 +118,5 @@ def processDOI(myDOIs):
         download_toc_image(toc_href, coden, datecode, cleanDOI)
 
     print results
-
-
-
-    # '''
-    # check to see if there is an existing folder for coden and date, if not, create the folder
-    #
-    # '''
-    # # create folder for journal coden and date stamp
-    # try:
-    #     os.makedirs("app/static/img/generated/" + coden + '/' + str(datecode) + "/")
-    # except OSError as exc:
-    #     if exc.errno != errno.EEXIST:
-    #         raise exc
-    #     pass
-    #
-    # '''
-    # download images from list of image href
-    #
-    # '''
-    #
-    # for articleinfo in results:
-    #     filename = "app/static/img/generated/" + coden + '/' + \
-    #         str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
-    #     href = articleinfo["toc_href"]
-    #     try:
-    #         urllib.urlretrieve(href, filename)
-    #     except IOError:
-    #         print "No image found for " + DOI
-    #         pass
-    #
-    # # for href, y in urlfilenamepair:
-    # #         filename = y + ".jpeg"
-    # #         urllib.urlretrieve(href, filename)
-
-    '''
-    ZIP images using shutil
-
-    '''
-
-    # filedirectory = "app/static/img/generated/" + coden + '/'
-    #
-    # shutil.make_archive(datecode, 'zip', filedirectory)
-    # shutil.copy(datecode + '.zip', filedirectory)
 
     return results

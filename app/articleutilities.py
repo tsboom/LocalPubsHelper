@@ -5,6 +5,8 @@ import requests as r
 import pdb
 import urllib
 import datetime
+import os
+import errno
 
 # debugging
 # import pdb #use pdb.set_trace() to break
