@@ -115,7 +115,12 @@ def processDOI(myDOIs):
         results.append(articleinfo)
 
         create_img_folder(coden, datecode)
-        download_toc_image(toc_href, coden, datecode, cleanDOI)
+
+        try:
+            download_toc_image(toc_href, coden, datecode, cleanDOI)
+        except:
+            pass
+
 
     print results
 
