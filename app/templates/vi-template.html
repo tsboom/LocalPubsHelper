@@ -17,17 +17,14 @@
 <textarea class="form-control" rows="10" cols="10" name="text">
     {% for row in table.rows %}
     <div class="sideBox leftSide w125 padBox">
-        <a href="/doi/{{ row['DOI'] }}"><img src="{{ row['Image']}}" /></a>
+        <a href="/doi/abs/{{ row['DOI'] }}"><img src="{{ row['Image']}}" /></a>
     </div>
-    <p><a href="/doi/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
-        <br /> {{ row['Authors']}}
-        <br />
-        {% if row['Year'] == '' %}
-        <cite>{{ row['Journal'] }}</cite>, Article ASAP
-        {% else %}
-        <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}
-        {% endif %}
-        <br><strong>DOI: </strong> {{ row['DOI'] }}</p>
+    <p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a><br />
+    {{ row['Authors']}}<br />
+    {% if row['Year'] == '' %}<cite>{{ row['Journal'] }}</cite>, Article ASAP<br>
+    {% else %}<cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}<br>
+    {% endif %}
+    <strong>DOI: </strong> {{ row['DOI'] }}</p>
     <br class="clearBoth" />
 
     {% endfor %}
@@ -56,6 +53,3 @@
 <br class="clearBoth" />
 
 {% endfor %}
-
-
-{% endblock %}
