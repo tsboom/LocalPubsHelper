@@ -86,12 +86,7 @@ def create_img_folder(coden, datecode):
             raise exc
         pass
 
-def download_toc_image(toc_href, coden, datecode, cleanDOI):
-
-    # desired file name
-    filename = "app/static/img/generated/" + coden + '/' + \
-    str(datecode) + "/" + cleanDOI + '.jpeg'
-
+def download_toc_image(filename, toc_href, coden, datecode, cleanDOI):
     image_name = cleanDOI + '.jpeg'
     #download image using urllib
     urllib.urlretrieve(toc_href, filename)

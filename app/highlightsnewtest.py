@@ -1,18 +1,18 @@
 #! python2.7
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.by import By
+# from selenium import webdriver
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.support.ui import WebDriverWait
+# from selenium.webdriver.support import expected_conditions as EC
+# from selenium.common.exceptions import TimeoutException
+# from selenium.webdriver.common.by import By
 import pdb
 import urllib
 import errno
 import os
 import sys
-import shutil
-import zipfile
+# import shutil
+# import zipfile
 import constants
 import re
 from ArticleParser import ArticleParser
@@ -24,21 +24,11 @@ from articleutilities import *
 
 def processDOI(myDOIs):
 
-    # global imgurls
-    # global articlelink
-    # global articletitles
-    # global authorslist
     global results
-
-    '''
-
-    dealing with creating custom URLS for each DOI
-
-    '''
-    # Steps to prepare....
-
     # create empty array to hold results dicts
+
     results = []
+
     '''
     Loop through DOIS and find info about each article. add that information to a python dictionary
 
@@ -116,6 +106,9 @@ def processDOI(myDOIs):
 
         create_img_folder(coden, datecode)
 
+        # desired file name
+        filename = "app/static/img/generated/" + coden + '/' + \
+        str(datecode) + "/" + cleanDOI + '.jpeg'
         try:
             download_toc_image(toc_href, coden, datecode, cleanDOI)
         except:

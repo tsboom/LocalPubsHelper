@@ -4,11 +4,12 @@ import pdb
 
 
 class Article(object):
-    def __init__(self, title = None, authors = None, year = None, volume = None, issue = None, toc_gif = None):
+    def __init__(self, title = None, authors = None, year = None, volume = None, journal = None, issue = None, toc_gif = None):
         #set everything to self. whatever
         self.title = title
         self.authors = authors
         self.year = year
+        self.journal = journal
         self.volume = volume
         self.issue = issue
         self.toc_gif = toc_gif
@@ -39,8 +40,9 @@ class ArticleParser(object):
             title = self.get_title(),
             authors = self.get_authors(),
             year = self.get_citation_year(),
-            # volume = self.get_citation_volume(),
-            # issue = self.get_citation_issue(),
+            journal = self.get_citation_journal(),
+            volume = self.get_citation_volume(),
+            issue = self.get_citation_issue(),
             toc_gif = self.get_toc_gif()
         )
         return article
