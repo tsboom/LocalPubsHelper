@@ -35,4 +35,18 @@
 
 <h4>Preview</h4>
 
+{% for article in results %}
+<div class="sideBox leftSide w125 padBox">
+    <a href="/doi/abs/{{ article['DOI'] }}"><img style="width: 125px;"src="{{ article['toc_href']}}" /></a>
+</div>
+<p><a href="/doi/abs/{{ article['DOI'] }}"><strong>{{ article['Title'] }}</strong></a><br />
+{{ article['Authors']}}<br />
+{% if article['Year'] == '' %}<cite>{{ article['Journal'] }}</cite>, Article ASAP<br>
+{% else %}<cite>{{ article['Journal'] }}</cite>, <strong>{{ article['Year'] }}</strong>, <em>{{ article['Volume'] }}</em> {{ article['Issue-info']}}<br>
+{% endif %}
+<strong>DOI: </strong> {{ article['DOI'] }}</p>
+<br class="clearBoth" />
+
+{% endfor %}
+
 {% endblock %}

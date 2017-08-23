@@ -110,7 +110,7 @@ def processDOI(myDOIs):
         filename = "app/static/img/generated/" + coden + '/' + \
         str(datecode) + "/" + cleanDOI + '.jpeg'
         try:
-            download_toc_image(toc_href, coden, datecode, cleanDOI)
+            download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
         except:
             pass
 
