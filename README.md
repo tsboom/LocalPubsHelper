@@ -12,9 +12,13 @@
 1. Download ZIP file and extract it
 
 2. While inside of the project folder in terminal:
-- Create a virtual environment. `virtualenv venv`
-- Enter the virtual environment by typing `source venv/bin/activate`
+    - Create a virtual environment. `virtualenv venv`
+    - Enter the virtual environment by typing `source venv/bin/activate`
 
-3. Install the requirements `pip install -r requirements.txt` and run the program `python run.py`
+3. Install the requirements `pip install -r requirements.txt`
 
-4. Browse to localhost:8000 to access the web app.
+4. To use the development branch, type `git checkout dev`
+
+4. Run the program `python run.py`
+
+5.  Browse to localhost:8000 to access the web app.
