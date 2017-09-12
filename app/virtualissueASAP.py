@@ -62,6 +62,7 @@ def createVI(myDOIs):
 
         # instantiate article objects
         article_parser = ArticleParser(soup)
+
         article = article_parser.parse_article()
 
         # title
@@ -83,88 +84,27 @@ def createVI(myDOIs):
         # get journal name
         journal = article.journal
 
-        # get citation year
-        year = article.year
 
-        # get citation volume
-        volume = article.volume
+        """
+            I'm not sure about this next part. Should i do an if/else liek this? The process should be different depending on if
+            the article is an Article ASAP or not. My program puts "Article ASAP" inside of the view template. which is bad I think.
+        """
+        # check to see if article is an Article ASAP
+        journal_string = soup.select('#citation')[0].text
+        if "Article ASAP" not in journal_string:
+            # get citation year
+            year = article.year
 
-        # get issue info and pages
-        issue_info = article.issue
+            # get citation volume
+            volume = article.volume
 
-        # # Get abbreviated Journal name
-        # print "getting journal name"
-        # # JOURNAL_XPATH = "//*[@id=\"citation\"]/cite"
-        # # journalscrape = driver.find_elements_by_xpath(JOURNAL_XPATH)
-        # # for i in journalscrape:
-        # #     journal = i.text.encode('utf-8')
-        #
-        #
-        #
-        # print "\t" + journal
-        # # set up soup for BS4
-        #
-        # citationtag = driver.find_element_by_id("citation")
-        # outcitationtag = citationtag.get_attribute("outerHTML")
-        # soup = BeautifulSoup(outcitationtag, "html.parser")
-        #
-        # print "getting year"
-        # # set year to citation year or empty string
-        # try:
-        #     year = soup.find("span", class_="citation_year").text
-        #     if year is None:
-        #         raise Exception
-        #     else:
-        #         year = year.encode("utf-8")
-        #
-        # except:
-        #     year = ''
-        #     print 'year not found'
-        #
-        # print "\t" + year
-        # # Get citation voume or set to empty string
-        # print "getting issue"
-        # try:
-        #     volume = soup.find("span", class_="citation_volume").text
-        #     if volume is None:
-        #         raise Exception
-        #     else:
-        #         volume = volume.encode("utf-8")
-        #
-        # except:
-        #     volume = ''
-        #     print 'volume not found'
-        # print "\t" + volume
-        # # Get issue info or set to empty string
-        # print "getting issue info"
-        # try:
-        #     issue_info = soup.find(
-        #         "span", class_="citation_volume").next_sibling
-        #     if issue_info is None:
-        #         raise Exception
-        #     issue_info = issue_info.encode("utf-8")
-        #
-        # except:
-        #     issue_info = ''
-        #     print 'issue not found'
-        # print "\t" + issue_info
-        # # click figures link and form url, or set to empty string
-        # print "getting figures link"
-        # try:
-        #     driver.find_element_by_class_name('showFiguresLink').click()
-        #
-        #     # get toc image href
-        #     img_box = WebDriverWait(driver, 15).until(
-        #         EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
-        #     if img_box is None:
-        #         raise Exception
-        #     toc_href = img_box.find_element_by_css_selector(
-        #         'a').get_attribute('href')
-        #
-        # except:
-        #     toc_href = ""
-        #     print 'no hi-res figure found'
-        # print "\t" + toc_href
+            # get issue info and pages
+            issue_info = article.issue
+
+        else:
+            year = ''
+            volume = ''
+            issue_info = ''
 
         articleinfo = {
             'DOI': DOI,

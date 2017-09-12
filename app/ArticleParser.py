@@ -82,8 +82,13 @@ class ArticleParser(object):
             citation_year = citation_year.text.encode('utf-8')
             return citation_year
         except:
-            citation_year = self.soup.select('#citation')[0].text
-            return citation_year
+            try:
+                # for old format articles
+                citation_year = self.soup.select('#citation')[0].text
+                return citation_year
+            except:
+                # for Articles ASAP
+                return citation_year == ''
 
     def get_citation_volume(self):
         try:
@@ -91,14 +96,21 @@ class ArticleParser(object):
             citation_volume = citation_volume.text.encode('utf-8')
             return citation_volume
         except:
-            citation_volume = self.soup.select('#citation')[1].text
-            return citation_volume
+            try:
+                citation_volume = self.soup.select('#citation')[1].text
+                return citation_volume
+            except:
+                return citation_volume == ''
 
 
     def get_citation_issue(self):
-        issue_info = self.soup.find("span", class_="citation_volume").next_sibling
-        issue_info = issue_info.encode("utf-8")
-        return issue_info
+        try:
+            issue_info = self.soup.find("span", class_="citation_volume").next_sibling
+            issue_info = issue_info.encode("utf-8")
+            return issue_info
+        except:
+            issue_info = ''
+            return issue_info
 
     def get_toc_gif(self):
         try:

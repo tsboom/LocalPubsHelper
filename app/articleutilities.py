@@ -44,6 +44,10 @@ def get_coden(cleanDOI):
     coden = constants.CODEN_MATCH[journalprefix]
     return coden;
 
+# 
+# def get_figure_number(DOI):
+
+
 def get_datecode():
     date = datetime.date.today()
     datecode = datetime.datetime.now().strftime("%Y%m%d")
