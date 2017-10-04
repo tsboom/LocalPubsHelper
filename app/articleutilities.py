@@ -3,6 +3,10 @@ import constants
 from bs4 import BeautifulSoup
 import requests as r
 import pdb
+import urllib
+import datetime
+import os
+import errno
 
 # debugging
 # import pdb #use pdb.set_trace() to break
@@ -31,36 +35,26 @@ def soup_setup(html):
     soup = BeautifulSoup(html, 'html.parser')
     return soup
 
-def look_up_coden(DOI):
+def clean_doi(DOI):
     cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
+    return cleanDOI
+
+def get_coden(cleanDOI):
     journalprefix = cleanDOI[:-7]
     coden = constants.CODEN_MATCH[journalprefix]
     return coden;
 
-
-def get_title(soup):
-    title = soup.find('span', {'class': 'hlFld-Title'})
-    return title.text.encode('utf-8')
+# 
+# def get_figure_number(DOI):
 
 
+def get_datecode():
+    date = datetime.date.today()
+    datecode = datetime.datetime.now().strftime("%Y%m%d")
+    return datecode
 
-def get_authors(soup):
-    authors_soup = soup.select('#authors > span.hlFld-ContribAuthor')
-    author_names = []
-    for author in authors_soup:
-        name_tag = author.find('span', {'class': 'hlFld-ContribAuthor'})
-        authors_tag = name_tag.contents[0]
-        author_name = authors_tag.contents
-        entire_name_symbols = author.text.strip()
-        # check to see if a star is in the entire name,
-        # then add the star to the name only
-        if '*' in entire_name_symbols:
-            author_name = author_name[0] + '*'
-        else:
-            author_name = author_name[0]
-        author_name.encode('utf-8')
-        author_names.append(author_name)
-    return author_names
+
+
 
 def join_commas_and(authors):
     # join correctly formatted authors
@@ -77,78 +71,34 @@ def join_commas_and(authors):
     return authors_joined
 
 
-def get_citation_journal(soup):
-    citation_journal = soup.select('#citation > cite')[0].text
-    return citation_journal
 
-
-def get_citation_year(soup):
-    try:
-        citation_year = soup.find('span', {'class': 'citation_year'})
-        if citation_year is None:
-            raise Exception
-        else:
-            return citation_year.text.encode('utf-8')
-    except:
-        citation_year = ''
-        print 'year not available'
-
-
-def get_citation_volume(soup):
-    try:
-        citation_volume = soup.find('span', {'class': 'citation_volume'})
-        if citation_volume is None:
-            raise Exception
-        else:
-            return citation_volume.text.encode('utf-8')
-    except:
-        citation_volume = ''
-        print 'volume not available'
-
-def get_citation_issue(soup):
-    try:
-        issue_info = soup.find("span", class_="citation_volume").next_sibling
-        if issue_info is None:
-            raise Exception
-        else:
-            return issue_info.text.encode('utf-8')
-    except:
-        issue_info = ''
-        print 'issue not available'
-
-def get_toc_gif(soup):
-    try:
-        toc_gif = soup.select('#abstractBox > .figure > a > img')[0]['src']
-        if toc_gif is None:
-            raise Exception
-        else:
-             return toc_gif
-    except:
-        toc_gif = ''
-        print 'image not available'
 
 
 # this function gets reused for each image (if you are on the VPN)
 def gif_to_jpeg(gif):
     # get the large jpeg version of image based on URL string
-    jpeg = gif.replace('medium', 'large')
-    jpeg = gif.replace('.gif', '.jpeg')
-    return jpeg
+    image_url = gif.replace('medium', 'large')
+    image_url = image_url.replace('.gif', '.jpeg')
+    return image_url
 
 
+def create_img_folder(coden, datecode):
+    try:
+        os.makedirs("app/static/img/generated/" + coden + '/' + str(datecode) + "/")
+    except OSError as exc:
+        if exc.errno != errno.EEXIST:
+            raise exc
+        pass
 
-def run(DOI):
+def download_toc_image(filename, toc_href, coden, datecode, cleanDOI):
+    image_name = cleanDOI + '.jpeg'
+    #download image using urllib
+    urllib.urlretrieve(toc_href, filename)
+    print cleanDOI + '.jpeg: downloaded'
+
+
+def setup():
+    DOI = "10.1021/jacs.7b04930"
     html = get_html(DOI)
     soup = soup_setup(html)
-    title = get_title(soup)
-    year = get_citation_year(soup)
-    volume = get_citation_volume(soup)
-    issue = get_citation_issue(soup)
-    author_names = get_authors(soup)
-    authors_joined = join_commas_and(author_names)
-    print title
-    print year, volume, issue
-    print authors_joined
-
-
-run(DOI)
+    return soup

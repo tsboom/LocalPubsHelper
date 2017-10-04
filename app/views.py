@@ -8,14 +8,32 @@ from table_fu import TableFu
 from werkzeug.utils import secure_filename
 from highlightsnewtest import processDOI
 from virtualissueASAP import createVI
+from pymongo import MongoClient
 import os
 import sys
+import datetime
+import json
+from bson import json_util
+
+
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
 # import pdb #use pdb.set_trace() to break
+"""
+database stuff.
+make sure mongo daemon is started in a terminal window (type mongod)
+"""
+client = MongoClient('localhost', 27017)
 
-# index page starts with box to paste DOIs for highlights
+db = client.pubshelper
+
+#create a collection within the database called highlights
+highlights = db.highlights
+
+#create a collection within the db called virtualissues
+virtualissues = db.virtualissues
+
 
 
 @app.route('/')
@@ -35,6 +53,9 @@ def highlights():
     # run python process
     results = processDOI(myDOIs)
 
+    #save results to db
+    saved_results = db.highlights.insert_one({"data": results, "datetime": datetime.datetime.utcnow() })
+
     return render_template('results.html', results=results)
 
 # virtual issue index and virtual issue process results
@@ -53,11 +74,10 @@ def virtualissueautomate():
     # run python process
     results = createVI(myDOIs)
 
-    global table
-    # data = request.form['text']
-    table = TableFu.from_file('app/vi-csv.csv')
+    #save results to db
+    saved_results = db.virtualissues.insert_one({"data": results, "datetime": datetime.datetime.utcnow() })
 
-    return render_template('vi-template.html', table=table, results=results)
+    return render_template('vi-template.html', results=results)
 
 
 '''
@@ -125,6 +145,35 @@ def podcastupload():
             table = TableFu.from_file('app/static/uploads/' + filename)
             return render_template('podcastresults.html', table=table)
 
+
+'''
+
+API stuff
+
+'''
+
+
+@app.route('/api/dois', methods=['POST'])
+def get_dois():
+    #get DOIs from react application input box, insert JSON into mongo??
+    return "hello"
+
+@app.route('/api/highlights', methods=['GET'])
+def highlights_results():
+    #find most recent highlight result
+    highlights_results = db.highlights.find().sort("datetime", -1).limit(1)
+    data = highlights_results[0]["data"]
+
+    return jsonify({"highlights_results": data})
+
+
+@app.route('/api/virtualissue', methods=['GET'])
+def virtualissue_results():
+    #find most recent highlight result
+    vi_results = db.virtualissues.find().sort("datetime", -1).limit(1)
+    data = vi_results[0]["data"]
+
+    return jsonify({"virtualissue_results": data})
 
 if __name__ == '__main__':
     app.run()

@@ -1,20 +1,16 @@
 #! python2.7
 
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
-from selenium.webdriver.common.by import By
 import pdb
 import urllib
 import errno
 import os
 import sys
-import shutil
-import zipfile
+# import shutil
+# import zipfile
 import constants
 import re
+from ArticleParser import ArticleParser
+from articleutilities import *
 
 # debugging
 # import pdb #use pdb.set_trace() to break
@@ -22,30 +18,10 @@ import re
 
 def processDOI(myDOIs):
 
-    global imgurls
-    global articlelink
-    global articletitles
-    global authorslist
     global results
-
-    '''
-
-    dealing with creating custom URLS for each DOI
-
-    '''
-    # Steps to prepare....
-
     # create empty array to hold results dicts
+
     results = []
-
-    # get current YYYYMMDD
-    import datetime
-    date = datetime.date.today()
-    datecode = datetime.datetime.now().strftime("%Y%m%d")
-
-    # create list of urls with stripped dois, and list of stripped dois
-    clean_journal = []
-    clean_doi_list = []
 
     '''
     Loop through DOIS and find info about each article. add that information to a python dictionary
@@ -58,12 +34,10 @@ def processDOI(myDOIs):
 
         DOI = DOI.strip()
 
-        # collect journal prefixes
+        cleanDOI= clean_doi(DOI)
 
-        cleanDOI = DOI.replace("10.1021/", "").replace(".", "")
-        journalprefix = cleanDOI[:-7]
-
-        coden = constants.CODEN_MATCH[journalprefix]
+        coden = get_coden(cleanDOI)
+        datecode = get_datecode()
 
         # create image URL for PB using coden and today's date.
         img_url = ("/pb-assets/images/" + str(coden) + "/" +
@@ -77,81 +51,37 @@ def processDOI(myDOIs):
         img_path = "img/generated/" + coden + '/' + \
             str(datecode) + "/" + str(cleanDOI) + ".jpeg"
 
-        # Open Phantom JS
 
-        # driver = webdriver.PhantomJS(service_log_path='/home/deploy/pubshelper/ghostdriver.log', executable_path="/home/deploy/pubshelper/phantomjs")
-        driver = webdriver.PhantomJS()
-        driver.set_window_size(1120, 550)
+        # set up beautiful soup
+        html = get_html(DOI)
+        soup = soup_setup(html)
 
-        # go to full article page by adding URL prefix to DOI
-        driver.get("http://pubs.acs.org/doi/" + DOI)
+        # instantiate article objects
+        article_parser = ArticleParser(soup)
+        article = article_parser.parse_article()
 
-        # wait ten seconds and get title text to add to results object
-        title = WebDriverWait(driver, 20).until(
-            EC.presence_of_element_located((By.CLASS_NAME, "hlFld-Title")))
-        html_title = title.get_attribute('innerHTML').encode('utf-8')
+        # title
+        html_title = article.title
 
-        # get authors
-        authors = driver.find_elements_by_xpath(constants.AUTHOR_XPATH)
+        # authors array
+        authors_array = article.authors
 
-        # join the text in the array of the correctly encoded authors
-        authors_scrape = []
-        for author in authors:
-            authors_scrape.append(author.text.encode('utf-8'))
+        # join authors
+        authors_joined = join_commas_and(authors_array)
 
 
+        # get picture link
+        gif_url = "https://pubs.acs.org" + article.toc_gif
 
-        # create array to hold formatted authors list (stars next to authors)
-        authorsStars = []
-
-        # iterate over authors_scrape and join * with author before it
-        for index, i in enumerate(authors_scrape):
-            if index != (len(authors_scrape)-1):
-                if authors_scrape[index+1] == "*":
-                    string = authors_scrape[index] + authors_scrape[index+1]
-                    del(authors_scrape[index+1])
-                    # add string
-                    authorsStars.append(string)
-                else:
-                    authorsStars.append(authors_scrape[index])
-            else:
-                authorsStars.append(authors_scrape[index])
-
-        # join correctly formatted authors
-        # add ', ' and 'and'
-        if len(authorsStars)==2:
-            authorsStars.insert(1, ' and ')
-            authorsjoined = (''.join(authorsStars))
-        elif len(authorsStars)==1:
-            authorsjoined = (''.join(authorsStars))
-        else:
-            all_but_last = ', '.join(authorsStars[:-1])
-            last = authorsStars[-1]
-            authorsjoined = ', and '.join([all_but_last, last])
+        toc_href = gif_to_jpeg(gif_url)
 
 
-        # click figures link and form url, or set to empty string
-        try:
-            driver.find_element_by_class_name('showFiguresLink').click()
-
-            # get toc image href
-            img_box = WebDriverWait(driver, 10).until(
-                EC.presence_of_element_located((By.CLASS_NAME, "highRes")))
-            if img_box is None:
-                raise Exception
-            toc_href = img_box.find_element_by_css_selector(
-                'a').get_attribute('href')
-        except:
-            # toc_image = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, "figBox")))
-            # toc_href = toc_image.find_element_by_css_selector('img').get_attribute('src')
-            print 'no hi-res figure found'
-            toc_href = ""
 
         articleinfo = {
             "DOI": DOI,
             "Title": html_title,
             "article-link": article_link,
-            "Authors": str(authorsjoined),
+            "Authors": str(authors_joined),
             "toc_href": str(toc_href),
             "Image": img_url,
             "Flask-image-path": img_path,
@@ -167,50 +97,17 @@ def processDOI(myDOIs):
 
         results.append(articleinfo)
 
-    print results
+        create_img_folder(coden, datecode)
 
-    driver.close()
-    driver.quit()
-
-    '''
-    check to see if there is an existing folder for coden and date, if not, create the folder
-
-    '''
-    # create folder for journal coden and date stamp
-    try:
-        os.makedirs("app/static/img/generated/" + coden + '/' + str(datecode) + "/")
-    except OSError as exc:
-        if exc.errno != errno.EEXIST:
-            raise exc
-        pass
-
-    '''
-    download images from list of image href
-
-    '''
-
-    for articleinfo in results:
+        # desired file name
         filename = "app/static/img/generated/" + coden + '/' + \
-            str(datecode) + "/" + articleinfo["Clean_doi"] + '.jpeg'
-        href = articleinfo["toc_href"]
+        str(datecode) + "/" + cleanDOI + '.jpeg'
         try:
-            urllib.urlretrieve(href, filename)
-        except IOError:
-            print "No image found for " + DOI
+            download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
+        except:
             pass
 
-    # for href, y in urlfilenamepair:
-    #         filename = y + ".jpeg"
-    #         urllib.urlretrieve(href, filename)
 
-    '''
-    ZIP images using shutil
-
-    '''
-
-    # filedirectory = "app/static/img/generated/" + coden + '/'
-    #
-    # shutil.make_archive(datecode, 'zip', filedirectory)
-    # shutil.copy(datecode + '.zip', filedirectory)
+    print results
 
     return results

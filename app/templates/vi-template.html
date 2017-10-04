@@ -7,55 +7,46 @@
     </div>
 <div class="col-xs-3">
 
-    <a href="{{ url_for('static', filename = 'img/virtualissue/' + results[0]['Coden'] +'/' + results[0]['Datecode'] +'/' + results[0]['Datecode'] + '.zip') }}">
+    <!-- <a href="{{ url_for('static', filename = 'img/virtualissue/' + results[0]['Coden'] +'/' + results[0]['Datecode'] +'/' + results[0]['Datecode'] + '.zip') }}">
         <button type="button" class="btn btn-primary btn-sm btn-block" style="margin: 10px;">Download ZIP file of all images</button>
-    </a>
+    </a> -->
 
 </div>
 
 <div id="container-fluid">
 <textarea class="form-control" rows="10" cols="10" name="text">
-    {% for row in table.rows %}
+    {% for article in results %}
     <div class="sideBox leftSide w125 padBox">
-        <a href="/doi/{{ row['DOI'] }}"><img src="{{ row['Image']}}" /></a>
+        <a href="/doi/abs/{{ article['DOI'] }}"><img src="{{ article['Image']}}" /></a>
     </div>
-    <p><a href="/doi/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
-        <br /> {{ row['Authors']}}
-        <br />
-        {% if row['Year'] == '' %}
-        <cite>{{ row['Journal'] }}</cite>, Article ASAP
-        {% else %}
-        <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}
-        {% endif %}
-        <br><strong>DOI: </strong> {{ row['DOI'] }}</p>
+    <p><a href="/doi/abs/{{ article['DOI'] }}"><strong>{{ article['Title'] }}</strong></a><br />
+    {{ article['Authors']}}<br />
+    {% if article['Year'] == '' %}<cite>{{ article['Journal'] }}</cite>, Article ASAP<br>
+    {% else %}<cite>{{ article['Journal'] }}</cite>, <strong>{{ article['Year'] }}</strong>, <em>{{ article['Volume'] }}</em> {{ article['Issue-info']}}<br>
+    {% endif %}
+    <strong>DOI: </strong> {{ article['DOI'] }}</p>
     <br class="clearBoth" />
 
     {% endfor %}
+
 
 </textarea>
 </div>
 
 <h4>Preview</h4>
 
-
-{% for row in table.rows %}
+{% for article in results %}
 <div class="sideBox leftSide w125 padBox">
-    <a href="/doi/abs/{{ row['DOI'] }}"><img width="120"src="{{ row['toc_href']}}" /></a>
+    <a href="/doi/abs/{{ article['DOI'] }}"><img style="width: 125px;"src="{{ article['toc_href']}}" /></a>
 </div>
-<p><a href="/doi/abs/{{ row['DOI'] }}"><strong>{{ row['Title'] }}</strong></a>
-    <br /> {{ row['Authors']}}
-    <br />
-
-    {% if row['Year'] == '' %}
-    <cite>{{ row['Journal'] }}</cite>, Article ASAP
-    {% else %}
-    <cite>{{ row['Journal'] }}</cite>, <strong>{{ row['Year'] }}</strong>, <em>{{ row['Volume'] }}</em> {{ row['Issue-info']}}
-
-    {% endif %}
-    <br><strong>DOI: </strong> {{ row['DOI'] }}</p>
+<p><a href="/doi/abs/{{ article['DOI'] }}"><strong>{{ article['Title'] }}</strong></a><br />
+{{ article['Authors']}}<br />
+{% if article['Year'] == '' %}<cite>{{ article['Journal'] }}</cite>, Article ASAP<br>
+{% else %}<cite>{{ article['Journal'] }}</cite>, <strong>{{ article['Year'] }}</strong>, <em>{{ article['Volume'] }}</em> {{ article['Issue-info']}}<br>
+{% endif %}
+<strong>DOI: </strong> {{ article['DOI'] }}</p>
 <br class="clearBoth" />
 
 {% endfor %}
-
 
 {% endblock %}
