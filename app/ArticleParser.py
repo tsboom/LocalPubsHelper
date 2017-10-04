@@ -49,7 +49,8 @@ class ArticleParser(object):
 
     def get_title(self):
         title = self.soup.find('span', {'class': 'hlFld-Title'})
-        title = title.text.encode('utf-8')
+        # title = title.text.encode('utf-8')
+        title = title.decode_contents(formatter="none").encode('utf-8')
         return title
 
     # remove all soup params and change references to soup to self.soup
