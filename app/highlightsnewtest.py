@@ -97,11 +97,13 @@ def processDOI(myDOIs):
 
         results.append(articleinfo)
 
-        create_img_folder(coden, datecode)
+
 
         # desired file name
-        filename = "app/static/img/generated/" + coden + '/' + \
-        str(datecode) + "/" + cleanDOI + '.jpeg'
+        pathEnding = coden + '/' + str(datecode) + '/'
+        filename = "app/static/img/generated/" + pathEnding + cleanDOI + '.jpeg'
+        # create folder on local computer for images if doesn't exist already
+        create_img_folder(pathEnding)
         try:
             download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
         except:

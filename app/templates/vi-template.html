@@ -5,21 +5,15 @@
         <h1>Virtual Issue</h1>
         <h5>Copy and paste this HTML into the Virtual Issue.</h5>
     </div>
-<div class="col-xs-3">
 
-    <!-- <a href="{{ url_for('static', filename = 'img/virtualissue/' + results[0]['Coden'] +'/' + results[0]['Datecode'] +'/' + results[0]['Datecode'] + '.zip') }}">
-        <button type="button" class="btn btn-primary btn-sm btn-block" style="margin: 10px;">Download ZIP file of all images</button>
-    </a> -->
 
-</div>
-
-<div id="container-fluid">
-<textarea class="form-control" rows="10" cols="10" name="text">
+    <div id="container-fluid">
+        <textarea class="form-control" rows="10" cols="10" name="text">
     {% for article in results %}
     <div class="sideBox leftSide w125 padBox">
-        <a href="/doi/abs/{{ article['DOI'] }}"><img src="{{ article['Image']}}" /></a>
+        <a href="{{ article['article-link'] }}"><img src="{{ article['Image']}}" /></a>
     </div>
-    <p><a href="/doi/abs/{{ article['DOI'] }}"><strong>{{ article['Title'] }}</strong></a><br />
+    <p><a href="{{ article['article-link'] }}"><strong>{{ article['Title'] }}</strong></a><br />
     {{ article['Authors']}}<br />
     {% if article['Year'] == '' %}<cite>{{ article['Journal'] }}</cite>, Article ASAP<br>
     {% else %}<cite>{{ article['Journal'] }}</cite>, <strong>{{ article['Year'] }}</strong>, <em>{{ article['Volume'] }}</em> {{ article['Issue-info']}}<br>
@@ -31,22 +25,22 @@
 
 
 </textarea>
-</div>
+    </div>
 
-<h4>Preview</h4>
+    <h4>Preview</h4>
+    <div class="col-sm-8">
+        {% for article in results %}
+        <div class="sideBox leftSide w125 padBox" style="float: left; padding: 20px;">
+            <a href="/doi/abs/{{ article['DOI'] }}"><img style="width: 125px;"src="{{ article['toc_href']}}" /></a>
+        </div>
 
-{% for article in results %}
-<div class="sideBox leftSide w125 padBox">
-    <a href="/doi/abs/{{ article['DOI'] }}"><img style="width: 125px;"src="{{ article['toc_href']}}" /></a>
-</div>
-<p><a href="/doi/abs/{{ article['DOI'] }}"><strong>{{ article['Title'] }}</strong></a><br />
-{{ article['Authors']}}<br />
-{% if article['Year'] == '' %}<cite>{{ article['Journal'] }}</cite>, Article ASAP<br>
-{% else %}<cite>{{ article['Journal'] }}</cite>, <strong>{{ article['Year'] }}</strong>, <em>{{ article['Volume'] }}</em> {{ article['Issue-info']}}<br>
-{% endif %}
-<strong>DOI: </strong> {{ article['DOI'] }}</p>
-<br class="clearBoth" />
+        <div class="vi-article" style="float:left; width:500px;"><a href="/doi/abs/{{ article['DOI'] }}"><strong>{{ article['Title'] }}</strong></a><br /> {{ article['Authors']}}<br /> {% if article['Year'] == '' %}<cite>{{ article['Journal'] }}</cite>, Article ASAP<br> {% else %}<cite>{{ article['Journal'] }}</cite>,
+            <strong>{{ article['Year'] }}</strong>, <em>{{ article['Volume'] }}</em> {{ article['Issue-info']}}<br> {% endif %}
+            <strong>DOI: </strong> {{ article['DOI'] }}</p>
 
-{% endfor %}
+        </div>
+        <br class="clearBoth" style="clear:both;"/>
+         {% endfor %}
 
-{% endblock %}
+    </div>
+    {% endblock %}

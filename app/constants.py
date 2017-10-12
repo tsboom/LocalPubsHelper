@@ -4,8 +4,7 @@
 
 # constants to help format URL strings
 
-DOI_PREFIX = 'http://pubs.acs.org/doi/'
-
+DOI_PREFIX = "http://pubs.acs.org/doi/"
 
 
 

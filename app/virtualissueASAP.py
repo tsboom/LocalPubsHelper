@@ -18,11 +18,11 @@ from articleutilities import *
 # import pdb #use pdb.set_trace() to break
 
 
-def createVI(myDOIs):
+def createVI(myDOIs, multiJournal, trackingCode, shortName):
 
     global results
 
-    # create empty array to hold results dicts
+    # create empty array to hold results dict
     results = []
 
     '''
@@ -43,18 +43,25 @@ def createVI(myDOIs):
         coden = get_coden(cleanDOI)
         datecode = get_datecode()
 
-        # create image URL for PB using coden and today's date.
-        img_url = ("/pb-assets/images/selects/" + str(coden) +
-                   "/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
+        if multiJournal == True:
+            # create image URL for PB using shortName
+            shortNamePath = str(shortName) + "/"
+            img_url = "/pb-assets/images/selects/" + shortNamePath + str(cleanDOI) + ".jpeg"
 
-        # create article URL
-        article_link = ("/doi/abs/" + str(DOI))
+            # create image path for flask to display images from local folder
+            img_path = "img/generated/" + shortNamePath + str(cleanDOI) + ".jpeg"
 
-        # create img path for Flask, so that the images can be displayed on
-        # Flask.
-        img_path = "img/generated/" + coden + '/' + \
-            str(datecode) + "/" + str(cleanDOI) + ".jpeg"
+            article_link = ("/doi/abs/" + str(DOI) + str(trackingCode))
+        else:
+            # create image URL for PB using coden and today's date.
+            codenDatePath = str(coden) + "/" + str(datecode) + "/"
+            img_url = "/pb-assets/images/selects/" + codenDatePath + str(cleanDOI) + ".jpeg"
+            # create img path for Flask, so that the images can be displayed on
+            # Flask.
+            img_path = "img/generated/" + codenDatePath + str(cleanDOI) + ".jpeg"
 
+            # create article URL
+            article_link = ("/doi/abs/" + str(DOI))
 
         # set up beautiful soup
         html = get_html(DOI)
@@ -130,34 +137,30 @@ def createVI(myDOIs):
         if not, create the folder
 
         '''
-        # create folder for journal coden and date stamp
-        try:
 
-            os.makedirs("app/static/img/generated/virtualissue/" + coden + '/' + \
-                str(datecode) + "/")
+        if multiJournal == True:
+            # create folder for short journal name (groups images in a named directory)
+            pathEnding = "virtualissue/" + shortNamePath
+            create_img_folder(pathEnding)
 
-        except OSError as exc:
-            if exc.errno != errno.EEXIST:
-                raise exc
-            pass
+            # desired filename
+            filename = "app/static/img/generated/virtualissue/" + shortNamePath + cleanDOI + '.jpeg'
+            try:
+                download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
+            except:
+                pass
 
-        # desired filename
-        filename = "app/static/img/generated/virtualissue/" + coden + '/' + \
-        str(datecode) + "/" + cleanDOI + '.jpeg'
-        try:
-            download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
-        except:
-            pass
+        else:
+            # create folder for journal coden and date stamp
+            pathEnding = "virtualissue/" + codenDatePath
+            create_img_folder(pathEnding)
 
+            # desired filename
+            filename = "app/static/img/generated/virtualissue/" + codenDatePath + cleanDOI + '.jpeg'
+            try:
+                download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
+            except:
+                pass
 
-        # '''
-        # ZIP images using shutil
-        #
-        # '''
-        # filedirectory = "app/static/img/generated/virtualissue/" + \
-        #     coden + '/' + str(datecode) + "/"
-        #
-        # shutil.make_archive(datecode, 'zip', filedirectory)
-        # shutil.copy(datecode + '.zip', filedirectory)
 
     return results

@@ -11,24 +11,10 @@ import errno
 # debugging
 # import pdb #use pdb.set_trace() to break
 
-#constants
-DOI_PREFIX = 'http://pubs.acs.org/doi/'
-# no figures DOI = "10.1021/acs.accounts.7b00142"
-# DOI = "10.1021/acs.accounts.6b00581"
-#enhanced figures DOI
-#DOI = "10.1021/jacs.7b03655"
-
-#DOi with lots of special characters
-DOI = "10.1021/jacs.7b04930"
-
-
 def get_html(DOI):
-    html = r.get(DOI_PREFIX + DOI).text
+    html = r.get(constants.DOI_PREFIX + DOI).text
     # check if html is the actual article, and not an error page!!!
     return html
-#
-# def validateDOI(DOI):
-#     if
 
 def soup_setup(html):
     html = html.encode('utf-8')
@@ -43,10 +29,6 @@ def get_coden(cleanDOI):
     journalprefix = cleanDOI[:-7]
     coden = constants.CODEN_MATCH[journalprefix]
     return coden;
-
-# 
-# def get_figure_number(DOI):
-
 
 def get_datecode():
     date = datetime.date.today()
@@ -82,9 +64,9 @@ def gif_to_jpeg(gif):
     return image_url
 
 
-def create_img_folder(coden, datecode):
+def create_img_folder(pathEnding):
     try:
-        os.makedirs("app/static/img/generated/" + coden + '/' + str(datecode) + "/")
+        os.makedirs("app/static/img/generated/" + pathEnding)
     except OSError as exc:
         if exc.errno != errno.EEXIST:
             raise exc

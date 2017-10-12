@@ -4,6 +4,7 @@ from app import app, render_template, request, jsonify, redirect, url_for
 import csv
 import pdb
 import string
+import constants
 from table_fu import TableFu
 from werkzeug.utils import secure_filename
 from highlightsnewtest import processDOI
@@ -44,6 +45,8 @@ def index():
 
 @app.route('/submit-form', methods=['POST'])
 def highlights():
+
+
     # get text from textarea, split it up DOIS into a list
     doiLIST = str(request.form['text'])
 
@@ -69,10 +72,20 @@ def virtualissue():
 @app.route('/doivirtualissueprocess', methods=['POST'])
 def virtualissueautomate():
 
-    myDOIs = str(request.form["text"]).split('\r\n')
+    # get checkbox
+    multiJournal = request.form.get('checkbox', default=False, type=bool)
+
+    # get tracking code
+    trackingCode = request.form["vi-tracking"]
+
+    # get vi-short-name
+    shortName = request.form['vi-short-name']
+
+    # get DOIs
+    myDOIs = str(request.form["DOIs"]).split('\r\n')
 
     # run python process
-    results = createVI(myDOIs)
+    results = createVI(myDOIs, multiJournal, trackingCode, shortName)
 
     #save results to db
     saved_results = db.virtualissues.insert_one({"data": results, "datetime": datetime.datetime.utcnow() })

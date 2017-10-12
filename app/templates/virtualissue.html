@@ -1,19 +1,43 @@
-{% extends "layout.html" %}
-{% block content %}
-<div class="col-lg-12" padding-left:50px >
-<form action="/doivirtualissueprocess" method="POST" role="form" class="form-horizontal">
-    <div class="form-group">
-        <label name="dois"> Paste DOIs to get virtual issue HTML:</label><br />
-        <textarea class="form-control" rows="10" cols="10" name="text" style="background-color: #FFFF99;"></textarea>
-        <p>
+{% extends "layout.html" %} {% block content %}
+<div class="container-fluid">
+    <form action="/doivirtualissueprocess" method="POST" role="form" class="form-horizontal">
+        <div class="row">
+            <h1>Virtual Issue</h1>
+        </div>
+        <div class="form-group">
+            <label name="vi-journal" class="control-label col-sm-3">Multi-journal VI?</label>
+            <div class="col-sm-5"><input type="checkbox" name="checkbox"> This is a multi-journal virtual issue.</div>
+        </div>
+        <div class="form-group">
+            <label name="vi-short-name" class="control-label col-sm-3">VI Directory name: <br><small class="text-muted">The checkbox must be selected</small></label>
+            <div class="col-sm-5"><input type="text" class="form-control" name="vi-short-name" placeholder="ex: raci"></div>
+        </div>
+        <div class="form-group">
+            <label for="ga-tracking" class="control-label col-sm-3">Google Analytics tracking code: <small class="text-muted">Optional</small> </label>
+            <div class="col-sm-5"><input type="text" class="form-control" name="vi-tracking" placeholder="?ref=trackingcode"></div>
+        </div>
 
-            <button type="submit" value="submit" id="load" name="tester" class="btn btn-default">Submit</button>
+        <div class="form-group">
+            <label name="dois" class="control-label col-sm-3"> Paste DOIs to get virtual issue HTML:</label><br />
+            <div class="col-sm-5">
+                <textarea class="form-control" rows="10" cols="5" name="DOIs" style="background-color: #FFFF99;"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <button type="submit" value="submit" id="load" name="tester" class="btn btn-default">Submit</button>
+            </div>
 
-        </p>
+        </div>
+    </form>
+    <div class="col-sm-offset-3 col-sm-9">
         <img class="loading-dots" src="static/img/loadingdots.gif">
     </div>
+</div>
 
-</form>
+
+
+
 </div>
 
 
