@@ -13,6 +13,7 @@ class Article(object):
         self.volume = volume
         self.issue = issue
         self.toc_gif = toc_gif
+        self.other_gif = other_gif
 
 
 class ArticleParser(object):
@@ -43,7 +44,8 @@ class ArticleParser(object):
             journal = self.get_citation_journal(),
             volume = self.get_citation_volume(),
             issue = self.get_citation_issue(),
-            toc_gif = self.get_toc_gif()
+            toc_gif = self.get_toc_gif(),
+            other_gif = self.get_other_gif(fig_id)
         )
         return article
 
@@ -120,3 +122,10 @@ class ArticleParser(object):
         except:
             toc_gif = "No gif found"
             return toc_gif
+
+    def get_other_gif(self, fig_id):
+        figures = self.soup.select('.figure')
+        for figure in figures:
+            if fig_id in figure.get('id'):
+                other_gif = figure.find('img')['src']
+        return other_gif
