@@ -118,5 +118,15 @@ class ArticleParser(object):
             toc_gif = self.soup.select('#abstractBox > .figure > a > img')[0]['src']
             return toc_gif
         except:
-            toc_gif = "No gif found"
-            return toc_gif
+            try:
+                # try getting abstract image using the old HTML
+                toc_gif = self.soup.select('#abstractBox > #absImg > img')[0]['src']
+                return toc_gif
+            except:
+                try:
+                    # grab figure one for old articles with no abstract image
+                    toc_gif = self.soup.select('.figure > a > img')[0]['src']
+                    return toc_gif
+                except:
+                    toc_gif = "No gif found"
+                    return toc_gif

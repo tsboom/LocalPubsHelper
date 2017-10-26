@@ -144,7 +144,7 @@ def createVI(myDOIs, multiJournal, trackingCode, shortName):
             create_img_folder(pathEnding)
 
             # desired filename
-            filename = "app/static/img/generated/virtualissue/" + shortNamePath + cleanDOI + '.jpeg'
+            filename = "app/static/img/generated/virtualissue/" + shortNamePath + cleanDOI
             try:
                 download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
             except:
@@ -156,7 +156,7 @@ def createVI(myDOIs, multiJournal, trackingCode, shortName):
             create_img_folder(pathEnding)
 
             # desired filename
-            filename = "app/static/img/generated/virtualissue/" + codenDatePath + cleanDOI + '.jpeg'
+            filename = "app/static/img/generated/virtualissue/" + codenDatePath + cleanDOI
             try:
                 download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
             except:
