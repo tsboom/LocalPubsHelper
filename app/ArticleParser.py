@@ -4,7 +4,16 @@ import pdb
 
 
 class Article(object):
-    def __init__(self, title = None, authors = None, year = None, volume = None, journal = None, issue = None, toc_gif = None):
+    def __init__(self,
+        title = None,
+        authors = None,
+        year = None,
+        volume = None,
+        journal = None,
+        issue = None,
+        toc_gif = None,
+        fig_urls = None
+        ):
         #set everything to self. whatever
         self.title = title
         self.authors = authors
@@ -13,6 +22,12 @@ class Article(object):
         self.volume = volume
         self.issue = issue
         self.toc_gif = toc_gif
+        self.fig_urls = fig_urls
+
+    # @staticmethod
+    # def choose_alt_figure(fig_id):
+    #     alt_figure = fig_urls[fig_id]
+    #     return alt_figure
 
 
 class ArticleParser(object):
@@ -26,6 +41,7 @@ class ArticleParser(object):
         volume: The volume number as a string
         issue: The issue number as a string
         toc_gif: The toc GIF image URL as a string
+        other_gif: a string that is part of a URL
     """
 
     # sets soup as instance variable
@@ -34,7 +50,6 @@ class ArticleParser(object):
 
     # parse the soup and return an article
     def parse_article(self):
-
         # create an article instance using named parameters
         article = Article(
             title = self.get_title(),
@@ -43,7 +58,8 @@ class ArticleParser(object):
             journal = self.get_citation_journal(),
             volume = self.get_citation_volume(),
             issue = self.get_citation_issue(),
-            toc_gif = self.get_toc_gif()
+            toc_gif = self.get_toc_gif(),
+            fig_urls = self.get_all_figs(),
         )
         return article
 
@@ -118,15 +134,13 @@ class ArticleParser(object):
             toc_gif = self.soup.select('#abstractBox > .figure > a > img')[0]['src']
             return toc_gif
         except:
-            try:
-                # try getting abstract image using the old HTML
-                toc_gif = self.soup.select('#abstractBox > #absImg > img')[0]['src']
-                return toc_gif
-            except:
-                try:
-                    # grab figure one for old articles with no abstract image
-                    toc_gif = self.soup.select('.figure > a > img')[0]['src']
-                    return toc_gif
-                except:
-                    toc_gif = "No gif found"
-                    return toc_gif
+            toc_gif = "No gif found"
+            return toc_gif
+
+    def get_all_figs(self):
+        '''Loop through all figures and get the URLs for all images'''
+        figures = self.soup.select('.figure')
+        fig_urls = {}
+        for figure in figures:
+            fig_urls[str(figure.get('id'))] = str(figure.find('img')['src'])
+        return fig_urls

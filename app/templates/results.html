@@ -11,7 +11,7 @@
 
     <div class="row">
         <div class="col-xs-2">
-            {{ loop.index }}
+        {{ loop.index }}
             <a href="{{ url_for('static', filename = articleinfo['Flask-image-path'] ) }}">
                 <img src="{{ url_for('static', filename = articleinfo['Flask-image-path'] ) }}" style="width:150px;border: 1px solid #cccccc; padding: 10px 5px 10px 10px;" />
             </a>
@@ -22,7 +22,7 @@
                 <br>{{ articleinfo['article-link'] }}
                 <br>{{ articleinfo['Title'] }}
                 <br>{{ articleinfo['Authors'] }}
-                <br>
+                <br>{{ articleinfo['editors_choice'] }}
             </p>
         </div>
     </div>

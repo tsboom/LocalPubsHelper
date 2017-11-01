@@ -36,8 +36,6 @@ def get_datecode():
     return datecode
 
 
-
-
 def join_commas_and(authors):
     # join correctly formatted authors
     # add ', ' and 'and'
@@ -53,20 +51,16 @@ def join_commas_and(authors):
     return authors_joined
 
 
-
-
-
 # this function gets reused for each image (if you are on the VPN)
 def gif_to_jpeg(gif):
     # get the large jpeg version of image based on URL string
     if "medium" in gif:
         image_url = gif.replace('medium', 'large')
-        image_url = image_url.replace('.gif', '.jpeg')
-        return image_url
     else:
-        return gif
-
-
+        # small gifs
+        image_url = gif.replace('small', 'large')
+    image_url = image_url.replace('.gif', '.jpeg')
+    return image_url
 
 
 def create_img_folder(pathEnding):
@@ -87,9 +81,6 @@ def download_toc_image(filename, toc_href, coden, datecode, cleanDOI):
     urllib.urlretrieve(toc_href, filename)
     print cleanDOI + ' IMAGE DOWNLOADED'
 
-
-def setup():
-    DOI = "10.1021/jacs.7b04930"
-    html = get_html(DOI)
-    soup = soup_setup(html)
-    return soup
+def choose_alt_figure(fig_urls, fig_id):
+    alt_figure = fig_urls[fig_id]
+    return alt_figure
