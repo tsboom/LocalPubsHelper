@@ -24,6 +24,12 @@ class Article(object):
         self.toc_gif = toc_gif
         self.fig_urls = fig_urls
 
+    # @staticmethod
+    # def choose_alt_figure(fig_id):
+    #     alt_figure = fig_urls[fig_id]
+    #     return alt_figure
+
+
 class ArticleParser(object):
     """
     All of the information scraped from an Article on ACS Publications
@@ -53,7 +59,7 @@ class ArticleParser(object):
             volume = self.get_citation_volume(),
             issue = self.get_citation_issue(),
             toc_gif = self.get_toc_gif(),
-            fig_urls = self.get_all_figs()
+            fig_urls = self.get_all_figs(),
         )
         return article
 

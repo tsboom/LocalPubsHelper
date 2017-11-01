@@ -36,8 +36,6 @@ def get_datecode():
     return datecode
 
 
-
-
 def join_commas_and(authors):
     # join correctly formatted authors
     # add ', ' and 'and'
@@ -82,9 +80,3 @@ def download_toc_image(filename, toc_href, coden, datecode, cleanDOI):
 def choose_alt_figure(fig_urls, fig_id):
     alt_figure = fig_urls[fig_id]
     return alt_figure
-
-def setup():
-    DOI = "10.1021/jacs.7b04930"
-    html = get_html(DOI)
-    soup = soup_setup(html)
-    return soup
