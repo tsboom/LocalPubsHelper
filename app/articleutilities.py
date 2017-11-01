@@ -53,13 +53,14 @@ def join_commas_and(authors):
     return authors_joined
 
 
-
-
-
 # this function gets reused for each image (if you are on the VPN)
 def gif_to_jpeg(gif):
     # get the large jpeg version of image based on URL string
-    image_url = gif.replace('medium', 'large')
+    if "medium" in gif:
+        image_url = gif.replace('medium', 'large')
+    else:
+        # small gifs
+        image_url = gif.replace('small', 'large')
     image_url = image_url.replace('.gif', '.jpeg')
     return image_url
 
@@ -78,6 +79,9 @@ def download_toc_image(filename, toc_href, coden, datecode, cleanDOI):
     urllib.urlretrieve(toc_href, filename)
     print cleanDOI + '.jpeg: downloaded'
 
+def choose_alt_figure(fig_urls, fig_id):
+    alt_figure = fig_urls[fig_id]
+    return alt_figure
 
 def setup():
     DOI = "10.1021/jacs.7b04930"

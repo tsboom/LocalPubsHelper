@@ -34,11 +34,8 @@ def processDOI(myDOIs):
         #remove new lines
         rawDOI = DOI.strip()
 
-
-
-
         # deal with custom figures other than the TOC image
-
+        ecHTML = ''
         # check to see if there's extra figure code at the end of the DOI and separate it out
         if ' ' in rawDOI:
             hasAltFigure = True;
@@ -46,12 +43,20 @@ def processDOI(myDOIs):
             DOI = rawDOI.rsplit(' ')[0]
             # get the code at the end of the DOI after the space
             figCode = rawDOI.rsplit(' ')[1]
+            print figCode
+            # check fig code for editors choice
+            if "e" in figCode:
+                hasAltFigure = False
+                # for editors choice
+                ecHTML = "<div class=\"ec-article\"><img src=\"/pb-assets/images/editorschoice/ec-article.gif\"></div>"
+
+                print "ec test" + ecHTML
+
             # get number out of the code
             figNumber = ''.join([i for i in figCode if i.isdigit()])
-
         else:
+            hasAltFigure = False;
             DOI = rawDOI
-
 
         # set up beautiful soup
         html = get_html(DOI)
@@ -68,9 +73,8 @@ def processDOI(myDOIs):
         coden = get_coden(cleanDOI)
         datecode = get_datecode()
 
-        # create image URL for PB using coden and today's date.
-        img_url = ("/pb-assets/images/" + str(coden) + "/" +
-                   "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
+
+
 
         # create article URL
         article_link = ("/doi/" + str(DOI) + "?ref=highlight")
@@ -99,23 +103,19 @@ def processDOI(myDOIs):
 
         # get picture link for alternative images to toc_href using figCode and figNumber
         if hasAltFigure == True:
-            if "F" in figCode:
+            if "f" in figCode:
                 fig_id = "fig" + figNumber
-                other_gif = article.get_other_gif(fig_id)
-                print "figure gif url" + other_gif
-            elif "S" in figCode:
+                other_gif = choose_alt_figure(article.fig_urls, fig_id)
+                print "figure " + fig_id + " gif url: " + other_gif
+            elif "s" in figCode:
                 fig_id = "sch" + figNumber
-                other_gif = article.get_other_gif(fig_id)
-                print "scheme gif: " + other_gif
-            elif "E" in figCode:
-                # for editors choice
-                ecHTML = "<div class=\"ec-article\"><img src=\"/pb-assets/images/editorschoice/ec-article.gif\"></div>"
-                print "ec test"
-            elif "C" in figCode:
+                other_gif = choose_alt_figure(article.fig_urls, fig_id)
+                print "scheme " + fig_id + " gif url: " + other_gif
+            elif "c" in figCode:
                 # for the chart
                 fig_id = "cht" + figNumber
-                other_gif = article.get_other_gif(fig_id)
-                print "chart gif: " + other_gif
+                other_gif = choose_alt_figure(article.fig_urls, fig_id)
+                print "figure " + fig_id + " gif url: " + other_gif
 
             # get the jpeg out of the gif URL
             other_href = gif_to_jpeg("https://pubs.acs.org" + other_gif)
@@ -127,16 +127,25 @@ def processDOI(myDOIs):
             # set desired download path  name for other gif
             pathEnding = coden + '/' + str(datecode) + '/'
             filename = "app/static/img/generated/" + pathEnding + cleanDOI + fig_id + '.jpeg'
+
             # create folder on local computer for images if doesn't exist already
             create_img_folder(pathEnding)
             try:
                 download_toc_image(filename, other_href, coden, datecode, cleanDOI)
             except:
                 pass
+
+            # create image URL for PB using fig code
+            img_url = ("/pb-assets/images/" + str(coden) + "/" +
+                "highlights/" + str(datecode) + "/" + str(cleanDOI) + fig_id +  ".jpeg")
+
         else:
             # desired file name
             pathEnding = coden + '/' + str(datecode) + '/'
-            filename = "app/static/img/generated/" + pathEnding + cleanDOI + '.jpeg'
+            filename = "app/static/img/generated/" + pathEnding + cleanDOI + '.jpeg'\
+            # create image URL for PB using fig code
+            img_url = ("/pb-assets/images/" + str(coden) + "/" +
+                "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
             # create folder on local computer for images if doesn't exist already
             create_img_folder(pathEnding)
             try:
@@ -156,7 +165,8 @@ def processDOI(myDOIs):
             "Flask-image-path": img_path,
             "Coden": coden,
             "Datecode": datecode,
-            "Clean_doi": cleanDOI
+            "Clean_doi": cleanDOI,
+            "editors_choice": ecHTML
 
         }
 

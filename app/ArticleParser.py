@@ -4,7 +4,16 @@ import pdb
 
 
 class Article(object):
-    def __init__(self, title = None, authors = None, year = None, volume = None, journal = None, issue = None, toc_gif = None):
+    def __init__(self,
+        title = None,
+        authors = None,
+        year = None,
+        volume = None,
+        journal = None,
+        issue = None,
+        toc_gif = None,
+        fig_urls = None
+        ):
         #set everything to self. whatever
         self.title = title
         self.authors = authors
@@ -13,8 +22,7 @@ class Article(object):
         self.volume = volume
         self.issue = issue
         self.toc_gif = toc_gif
-        self.other_gif = other_gif
-
+        self.fig_urls = fig_urls
 
 class ArticleParser(object):
     """
@@ -27,6 +35,7 @@ class ArticleParser(object):
         volume: The volume number as a string
         issue: The issue number as a string
         toc_gif: The toc GIF image URL as a string
+        other_gif: a string that is part of a URL
     """
 
     # sets soup as instance variable
@@ -35,7 +44,6 @@ class ArticleParser(object):
 
     # parse the soup and return an article
     def parse_article(self):
-
         # create an article instance using named parameters
         article = Article(
             title = self.get_title(),
@@ -45,7 +53,7 @@ class ArticleParser(object):
             volume = self.get_citation_volume(),
             issue = self.get_citation_issue(),
             toc_gif = self.get_toc_gif(),
-            other_gif = self.get_other_gif(fig_id)
+            fig_urls = self.get_all_figs()
         )
         return article
 
@@ -123,9 +131,10 @@ class ArticleParser(object):
             toc_gif = "No gif found"
             return toc_gif
 
-    def get_other_gif(self, fig_id):
+    def get_all_figs(self):
+        '''Loop through all figures and get the URLs for all images'''
         figures = self.soup.select('.figure')
+        fig_urls = {}
         for figure in figures:
-            if fig_id in figure.get('id'):
-                other_gif = figure.find('img')['src']
-        return other_gif
+            fig_urls[str(figure.get('id'))] = str(figure.find('img')['src'])
+        return fig_urls
