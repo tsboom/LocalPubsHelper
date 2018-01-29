@@ -1,18 +1,31 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="col-lg-5" padding-left:50px >
-<form action="/podcastupload" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
-    <div class="form-group">
-        <label name="csv"> Upload Podcast CSV file here</label><br />
-            <p>Save the CSV in Excel as a Windows-Formatted CSV. <br>
-            Open the CSV in Sublime Text and Save with Encoding UTF-8</p>
-        <!-- <textarea class="form-control" rows="10" cols="10" name="text"></textarea> -->
-        <p>
-            <input type="file" name="file" />
-            <input type="submit" />
-        </p>
+
+<div id="container-fluid">
+    <div class="title">
+        <h1>CSV to Podcast HTML</h1>
     </div>
-</form>
+    <div class="col-sm-8" padding-left:50px>
+        <h4> Upload CSV file here to generate podcast HTML</h4>
+        <p>Save the CSV in Excel as a Windows-Formatted CSV.</p>
+        <p>Open the CSV in Sublime Text and Save with Encoding UTF-8</p>
+
+        <form action="/podcastupload" method="POST" role="form" class="form-horizontal" enctype="multipart/form-data">
+
+
+            <div class="form-group col-sm-8">
+              <input type="file" name="file" class="custom-file-input">
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-8">
+                    <button type="submit" value="submit" class="btn btn-default">Submit</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
 </div>
 
 {% endblock %}
