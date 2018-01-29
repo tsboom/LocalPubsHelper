@@ -19,9 +19,6 @@ from articleutilities import *
 def processDOI(myDOIs):
 
     global results
-
-    # get start time to figure out how long the process took
-    startTime = datetime.datetime.now()
     # create empty array to hold results dicts
 
     results = []
@@ -91,15 +88,13 @@ def processDOI(myDOIs):
         # join authors
         authors_joined = join_commas_and(authors_array)
 
+
         # get picture link
         gif_url = "https://pubs.acs.org" + article.toc_gif
-        # get URL to download the image from
+
         toc_href = gif_to_jpeg(gif_url)
         # set other href to nothing in case there is no other image needed
         other_href = ''
-
-
-
 
         # create TOC img path for Flask, so that the images can be displayed on
         # Flask.
@@ -153,21 +148,11 @@ def processDOI(myDOIs):
                 "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
             # create folder on local computer for images if doesn't exist already
             create_img_folder(pathEnding)
-
             try:
                 download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
             except:
                 pass
 
-            # get the URL of figure 1 and download it if there is no TOC image
-            if article.toc_gif == '':
-                print "no TOC image found. downloading figure 1..."
-                fig1_gif = choose_alt_figure(article.fig_urls, "fig1")
-                other_href = gif_to_jpeg("http://pubs.acs.org" + fig1_gif)
-                try:
-                    download_toc_image(filename, other_href, coden, datecode, cleanDOI)
-                except:
-                    pass
 
         articleinfo = {
             "DOI": DOI,
@@ -190,6 +175,10 @@ def processDOI(myDOIs):
 
         results.append(articleinfo)
 
-    time_elapsed = datetime.datetime.now() - startTime
-    print "Time it took to generate highlights: " + str(time_elapsed) + "\n\n\n"
+
+
+
+
+    print results
+
     return results

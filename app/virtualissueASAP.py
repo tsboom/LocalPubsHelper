@@ -10,7 +10,7 @@ import shutil
 import zipfile
 import errno
 import re
-from datetime import datetime
+import datetime
 from ArticleParser import ArticleParser
 from articleutilities import *
 
@@ -19,10 +19,6 @@ from articleutilities import *
 
 
 def createVI(myDOIs, multiJournal, trackingCode, shortName):
-
-    # get start time to figure out how long the process took
-    startTime = datetime.datetime.now()
-
 
     global results
 
@@ -91,15 +87,6 @@ def createVI(myDOIs, multiJournal, trackingCode, shortName):
 
         toc_href = gif_to_jpeg(gif_url)
 
-        # get the URL of figure 1 and set it to toc_href if there is no TOC image
-        if article.toc_gif == '':
-            print "\n\nno TOC image found. downloading figure 1...\n"
-            try:
-                fig1_gif = choose_alt_figure(article.fig_urls, "fig1")
-                toc_href = gif_to_jpeg("http://pubs.acs.org" + fig1_gif)
-            except:
-                print "no figure 1. no image downloaded."
-                toc_href = 'none'
 
         # get journal name
         journal = article.journal
@@ -147,7 +134,7 @@ def createVI(myDOIs, multiJournal, trackingCode, shortName):
 
         '''
         check to see if there is an existing folder for coden and date,
-        if not, create the folder and download image to it
+        if not, create the folder
 
         '''
 
@@ -157,7 +144,11 @@ def createVI(myDOIs, multiJournal, trackingCode, shortName):
             create_img_folder(pathEnding)
 
             # desired filename
-            filename = "app/static/img/generated/virtualissue/" + shortNamePath + cleanDOI + '.jpeg'
+            filename = "app/static/img/generated/virtualissue/" + shortNamePath + cleanDOI
+            try:
+                download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
+            except:
+                pass
 
         else:
             # create folder for journal coden and date stamp
@@ -165,15 +156,11 @@ def createVI(myDOIs, multiJournal, trackingCode, shortName):
             create_img_folder(pathEnding)
 
             # desired filename
-            filename = "app/static/img/generated/virtualissue/" + codenDatePath + cleanDOI + '.jpeg'
+            filename = "app/static/img/generated/virtualissue/" + codenDatePath + cleanDOI
+            try:
+                download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
+            except:
+                pass
 
-        # download image
-        try:
-            download_toc_image(filename, toc_href, coden, datecode, cleanDOI)
-        except:
-            pass
 
-        print "\n\n------------\n\n"
-    time_elapsed = datetime.datetime.now() - startTime
-    print "Time it took to generate a Virtual Issue: " + str(time_elapsed)  + "\n\n\n"
     return results
