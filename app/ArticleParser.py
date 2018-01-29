@@ -69,13 +69,19 @@ class ArticleParser(object):
         title = title.decode_contents(formatter="none").encode('utf-8')
         return title
 
-    # remove all soup params and change references to soup to self.soup
-    # make all these def self.method_name
     def get_authors(self):
         authors_soup = self.soup.select('#authors > span.hlFld-ContribAuthor')
         author_names = []
         for author in authors_soup:
             name_tag = author.find('span', {'class': 'hlFld-ContribAuthor'})
+
+            # skip hlFld-ContribAuthor spans that contain no names
+            # continue the program if name_tag is empty.
+            if not name_tag or not name_tag.contents:
+                continue
+
+            # find the first item in the scraped author tag, their Name.
+            # (symbols are after the name in the array)
             authors_tag = name_tag.contents[0]
             author_name = authors_tag.contents
             entire_name_symbols = author.text.strip()
@@ -134,7 +140,7 @@ class ArticleParser(object):
             toc_gif = self.soup.select('#abstractBox > .figure > a > img')[0]['src']
             return toc_gif
         except:
-            toc_gif = "No gif found"
+            toc_gif = ''
             return toc_gif
 
     def get_all_figs(self):

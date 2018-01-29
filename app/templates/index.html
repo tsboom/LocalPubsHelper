@@ -6,12 +6,26 @@
     </div>
     <form action="/submit-form" method="POST" role="form" class="form-horizontal">
         <div class="form-group">
-            <label name="dois" class="control-label col-sm-3"> Paste DOIs to get highlights HTML:</label><br />
+            <label name="dois" class="control-label col-sm-2"> Paste DOIs to get highlights information:<br>
+
+            </label>
+
             <div class="col-sm-5">
                 <textarea class="form-control" rows="10" cols="5" name="text"></textarea></div>
+                <div class="col-sm-3">
+                    <small class="text-muted font-weight-light text-left">Add a space and a code at the end of the DOI for more options.<br>
+                    <dl class="dl-horizontal text-left">
+                        <dt>f1</dt><dd>Figure 1</dd>
+                        <dt>s1</dt><dd>Scheme 3</dd>
+                        <dt>c1</dt><dd>Chart 1</dd>
+                        <dt>e</dt><dd>Editor's Choice</dd>
+                    </dl>
+                    <strong>example:</strong> 10.1021/jacs.7b05229 f16
+                    </small>
+                </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-3 col-sm-9">
+            <div class="col-sm-offset-2 col-sm-9">
                 <button type="submit" value="submit" id="load" name="tester" class="btn btn-default">Submit</button>
             </div>
         </div>
