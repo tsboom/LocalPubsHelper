@@ -91,8 +91,6 @@ def processDOI(myDOIs):
         # join authors
         authors_joined = join_commas_and(authors_array)
 
-
-
         # get picture link
         gif_url = "https://pubs.acs.org" + article.toc_gif
         # get URL to download the image from
@@ -184,7 +182,6 @@ def processDOI(myDOIs):
             "Datecode": datecode,
             "Clean_doi": cleanDOI,
             "editors_choice": ecHTML
-
         }
 
         print "\n"
