@@ -119,7 +119,9 @@ CODEN_MATCH = {
     'acssynbio': 'asbcd6',
     'acssensors': 'ascefj',
     'acsaem': 'aaemcq',
-    'acsanm': 'aanmf6'
+    'acsanm': 'aanmf6',
+    'aabmcb': 'aabmcb',
+    'aptsfn': 'aptsfn'
 }
 
 
