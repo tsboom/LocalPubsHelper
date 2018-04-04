@@ -93,7 +93,6 @@ def virtualissueautomate():
     return render_template('vi-template.html', results=results)
 
 
-
 '''
 index for processing a csv into a virtual issue
 '''

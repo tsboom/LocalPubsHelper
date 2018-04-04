@@ -72,10 +72,14 @@ def create_img_folder(pathEnding):
         pass
 
 def download_toc_image(filename, toc_href, coden, datecode, cleanDOI):
-    image_name = cleanDOI + '.jpeg'
+    if toc_href.endswith('.jpeg'):
+        filename = filename + '.jpeg'
+    else:
+        filename = filename + '.gif'
+
     #download image using urllib
     urllib.urlretrieve(toc_href, filename)
-    print cleanDOI + '.jpeg: downloaded'
+    print cleanDOI + ' IMAGE DOWNLOADED'
 
 def choose_alt_figure(fig_urls, fig_id):
     alt_figure = fig_urls[fig_id]
