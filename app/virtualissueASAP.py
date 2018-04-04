@@ -51,7 +51,7 @@ def createVI(myDOIs, multiJournal, trackingCode, shortName):
             # create image path for flask to display images from local folder
             img_path = "img/generated/" + shortNamePath + str(cleanDOI) + ".jpeg"
 
-            article_link = ("/doi/abs/" + str(DOI) + str(trackingCode))
+            article_link = ("/doi/" + str(DOI) + str(trackingCode))
         else:
             # create image URL for PB using coden and today's date.
             codenDatePath = str(coden) + "/" + str(datecode) + "/"
@@ -61,7 +61,7 @@ def createVI(myDOIs, multiJournal, trackingCode, shortName):
             img_path = "img/generated/" + codenDatePath + str(cleanDOI) + ".jpeg"
 
             # create article URL
-            article_link = ("/doi/abs/" + str(DOI))
+            article_link = ("/doi/" + str(DOI))
 
         # set up beautiful soup
         html = get_html(DOI)

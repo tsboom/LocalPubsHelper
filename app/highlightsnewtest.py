@@ -126,7 +126,7 @@ def processDOI(myDOIs):
 
             # set desired download path  name for other gif
             pathEnding = coden + '/' + str(datecode) + '/'
-            filename = "app/static/img/generated/" + pathEnding + cleanDOI + fig_id + '.jpeg'
+            filename = "app/static/img/generated/" + pathEnding + cleanDOI + fig_id
 
             # create folder on local computer for images if doesn't exist already
             create_img_folder(pathEnding)
@@ -142,7 +142,7 @@ def processDOI(myDOIs):
         else:
             # desired file name
             pathEnding = coden + '/' + str(datecode) + '/'
-            filename = "app/static/img/generated/" + pathEnding + cleanDOI + '.jpeg'\
+            filename = "app/static/img/generated/" + pathEnding + cleanDOI
             # create image URL for PB using fig code
             img_url = ("/pb-assets/images/" + str(coden) + "/" +
                 "highlights/" + str(datecode) + "/" + str(cleanDOI) + ".jpeg")
